@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       80287c5a-a2a5-4c6f-8f0c-f5da43fc0fb8
+:END:
+#+title: Operators
+#+date: [2025-02-16 Sun 19:22]
+#+startup: overview
+
+- operators such "+, -, [], !" can be define for a class

@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       9fac3381-1bbb-4739-af15-ee554f5a5360
+:END:
+#+title: Initialization by copy
+#+date: [2025-02-17 Mon 07:14]
+#+startup: overview
+
+* [[id:d420e5ff-3b5c-4669-92da-0d85ea7c41cb][default copying]]

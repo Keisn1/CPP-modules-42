@@ -1,0 +1,58 @@
+:PROPERTIES:
+:ID:       58d196b2-d2b7-47e7-a2d4-a74e93813062
+:END:
+#+title: member functions
+#+date: [2025-02-16 Sun 19:20]
+#+startup: overview
+
+- Member functions can define the meaning of [[id:3032c5dc-9c27-46d9-b82f-8179e6901a4f][initialization (creation)]], copy, move, and cleanup (destruction).
+- in a function, member names can be named without explicit reference to an object
+
+* a class-member function knows for which object it was invoked
+#+begin_src cpp
+class MyClass {
+public:
+    int value;
+
+    void display() {
+        // Directly using 'value' without specifying an object
+        std::cout << "Value: " << value << std::endl;
+
+        // This is equivalent to
+        std::cout << "Value: " << this->value << std::endl;
+    }
+};
+#+end_src
+
+* Dates - An example with structs
+- declaring a conneciton between data and functions
+#+begin_src c
+struct Date {
+        int d, m, y;
+        void init(int dd, int mm, int yy);
+        void add_year(int n);
+        void add_month(int n);
+        void add_day(int n);
+};
+#+end_src
+- member functions of a class (here the struct can be seen as a class) can only be invoked for a specific variable of the appropriate type
+#+begin_src cpp
+Date my_birthday;
+void f()
+{
+        Date today;
+        today.init(16,10,1996);
+        my_birthday.init(30,12,1950);
+        Date tomorrow = today;
+        tomorrow.add_day(1);
+}
+#+end_src
+- we need to specify the structure name when we want to invoke a member function (because the name can be doubled across different structs)
+#+begin_src c
+void Date::init(int dd, int mm, int yy)
+{
+        d = dd;
+        m = mm;
+        y = yy;
+}
+#+end_src

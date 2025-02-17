@@ -1,0 +1,17 @@
+:PROPERTIES:
+:ID:       d420e5ff-3b5c-4669-92da-0d85ea7c41cb
+:END:
+#+title: default copying
+#+date: [2025-02-17 Mon 07:11]
+#+startup: overview
+
+- by default a copy is a copy of each member
+- copy by assignement
+#+begin_src cpp
+Date d1 = my_birthday; // initialization by copy
+Date d2 {my_birthday}; // initialization by copy
+void f(Date& d)
+{
+        d = my_birthday;
+}
+#+end_src

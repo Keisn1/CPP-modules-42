@@ -1,0 +1,16 @@
+:PROPERTIES:
+:ID:       f5c0ab2a-a3a0-4d5c-a12a-db949b1682bf
+:END:
+#+title: Classes
+#+date: [2025-02-16 Sun 19:18]
+#+startup: overview
+
+- A class is a *user-defined type*
+- A class is a [[id:ad816663-173b-48ab-8f5f-89e814babd47][namespace]] containing its [[id:1f945dd7-37f7-4107-b617-d10024725852][members]]
+- A class consists of a set of [[id:1f945dd7-37f7-4107-b617-d10024725852][members]]
+- [[id:80287c5a-a2a5-4c6f-8f0c-f5da43fc0fb8][Operators]]
+
+* [[id:cabc5cc5-1aa2-4e44-95a3-bc833f3af227][Initialization (creation)]]
+* Copy
+* Move
+* Cleanup (destruction)

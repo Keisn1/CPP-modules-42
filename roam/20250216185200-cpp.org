@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       8892542f-4166-40b0-a0e6-d6c13b2534de
+:END:
+#+title: CPP
+#+date: [2025-02-16 Sun 18:52]
+#+startup: overview
+
+https://en.cppreference.com/w/
+
+* [[id:135b022e-e788-439f-8982-b009c7ea0c07][pointer, arrays and references]]
+*
+* [[id:f5c0ab2a-a3a0-4d5c-a12a-db949b1682bf][Classes]]

@@ -1,0 +1,47 @@
+#+title: CPP Module 00
+
+* General Rules
+- compile with
+  #+begin_src shell
+c++ -Wall -Wextra -Werror -std=c++98
+  #+end_src
+- exercises in the form
+  - /ex00; /ex01
+- name files, classes, function, member functions and attirbutes as required
+- class name in *UpperCamelCase*
+  - files containing class code will always be named according to the class name
+    - *ClassName.hpp*
+    - *ClassName.h*
+    - *ClassName.cpp*
+    - *ClassName.tpp*
+
+- unless specified differently, every output needs to be followed by a newline and to Standard output
+- no coding style enforced on the CPP-modules
+- allowed to use almost everything from the standard library
+  - use as much as possible from new libraries
+** forbidden
+- no usage of any other external library
+  - *C++11* libraries are forbidden
+  - *printf
+  - *allow
+  - *free
+- no
+  #+begin_src cpp
+using namespace <ns_name>
+friend
+  #+end_src
+- no containers (vector/list/map)
+- no Algorithms
+- STL allowed in 08 and 09 *only*
+** orthodox canonical form
+- from module 02 to 09, classes need to be designed in th *orthodox canonical form* (except when explicitely stated otherwise)
+** header files
+- no function implementations inside header files
+- should be able to use independently form each other
+  - need to include everything they need
+  - avoid double inclusion (*include guards*)
+** additional files
+- additional files possible
+- but need to turn in mandatory files
+** advice
+- read each module completely before starting

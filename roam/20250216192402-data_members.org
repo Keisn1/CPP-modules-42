@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       a82fced2-e62e-4346-b26f-323073de30da
+:END:
+#+title: data members
+#+date: [2025-02-16 Sun 19:24]
+#+startup: overview

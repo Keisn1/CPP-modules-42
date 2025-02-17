@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       cabc5cc5-1aa2-4e44-95a3-bc833f3af227
+:END:
+#+title: Initialization (creation)
+#+date: [2025-02-17 Mon 07:13]
+#+startup: overview
+
+* [[id:3032c5dc-9c27-46d9-b82f-8179e6901a4f][via member function]]
+* [[id:9fac3381-1bbb-4739-af15-ee554f5a5360][Initialization by copy]]

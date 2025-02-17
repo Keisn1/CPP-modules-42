@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       0e7ee4af-ff53-4900-8844-ddfd5d001105
+:END:
+#+title: private members
+#+date: [2025-02-16 Sun 19:25]
+#+startup: overview
+
+- provide implementation details

@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       7089ff49-847b-4c7d-aa3f-17d9ebf1aceb
+:END:
+#+title: string literals
+#+date: [2025-02-17 Mon 07:40]
+#+startup: overview
+
+* [[id:57b3e01a-53d2-4eee-9db3-cef1e8b533a9][raw string literals]]

@@ -1,0 +1,30 @@
+:PROPERTIES:
+:ID:       3032c5dc-9c27-46d9-b82f-8179e6901a4f
+:END:
+#+title: initialization via member function
+#+date: [2025-02-17 Mon 07:17]
+#+startup: overview
+
+#+begin_src cpp
+class Date {
+private:
+	int day;
+	int month;
+	int year;
+public:
+	void init(int d, int m, int y) {
+		day = d;
+		month = m;
+		year = y;
+	}
+};
+
+Date my_birthday;
+void f()
+{
+	Date today;
+	today.init(16,10,1996);
+	my_birthday.init(30,12,1950);
+}
+#+end_src
+

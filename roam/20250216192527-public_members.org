@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       1619e17d-631a-4bef-8c7e-a80bc205a089
+:END:
+#+title: public members
+#+date: [2025-02-16 Sun 19:25]
+#+startup: overview
+
+- provide the class's interface
+- a *struct* is a class where members are by default *public*

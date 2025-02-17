@@ -1,0 +1,18 @@
+:PROPERTIES:
+:ID:       57b3e01a-53d2-4eee-9db3-cef1e8b533a9
+:END:
+#+title: raw string literals
+#+date: [2025-02-17 Mon 07:40]
+#+startup: overview
+
+ATTENTION: This is messy, ask LLM or refer to the book (it is so awkward)
+
+#+begin_src cpp
+string s = R"(\w\\w)"; // I’m pretty sure I got that right
+#+end_src
+
+- initial R is there to distinguish raw from ordinary string literals
+- paranthesis are there to allow ("unescapted") double quotes
+  #+begin_src cpp
+R"("quoted string")"
+  #+end_src

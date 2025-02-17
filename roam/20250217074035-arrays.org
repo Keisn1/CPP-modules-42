@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       fb2b4479-8ccd-4dcb-a46d-e00b8c3f4f60
+:END:
+#+title: arrays
+#+date: [2025-02-17 Mon 07:40]
+#+startup: overview
+
+
+* [[id:7089ff49-847b-4c7d-aa3f-17d9ebf1aceb][string literals]]

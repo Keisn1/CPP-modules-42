@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       ad816663-173b-48ab-8f5f-89e814babd47
+:END:
+#+title: namespace
+#+date: [2025-02-16 Sun 19:23]
+#+startup: overview

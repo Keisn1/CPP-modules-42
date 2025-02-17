@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       135b022e-e788-439f-8982-b009c7ea0c07
+:END:
+#+title: pointer, arrays and references
+#+date: [2025-02-17 Mon 07:34]
+#+startup: overview
+
+* [[id:935680ea-19b6-42e4-a407-e134b9c9a442][pointer]]
+* [[id:fb2b4479-8ccd-4dcb-a46d-e00b8c3f4f60][arrays]]
+* [[id:7b290dc8-51dc-4328-9a4e-1928ae0b684b][References]]

@@ -5,30 +5,39 @@
 #+date: [2025-02-16 Sun 19:27]
 #+startup: overview
 
+
 - [[id:1619e17d-631a-4bef-8c7e-a80bc205a089][public members]] provide the class's interface
 - [[id:0e7ee4af-ff53-4900-8844-ddfd5d001105][private members]] provide implementation details
+* benefits
+** encapsulation
+- any change of behavior must be effected by its member
+- user code only depends on public interface
+- no need to change representation if we need to change the behavior
+- any error causing an illegal data member must be caused by one of its member functions
+- design of interface becomes crucial
 
+* Example
 #+begin_src cpp
 class X {
-private:				// the representation (implementation) is private
-	int m;
-public: 				// the user interface is public
-	X(int i = 0): m{i} { }		// a constructor (initialize the data member m)
+private:                                // the representation (implementation) is private
+        int m;
+public:                                 // the user interface is public
+        X(int i = 0): m{i} { }          // a constructor (initialize the data member m)
 
-	int mf(int i)			// a member function
-		{
-			int old = m;
-			m = i;			// set a new value
-			return old;		// return the old value
-		}
+        int mf(int i)                   // a member function
+                {
+                        int old = m;
+                        m = i;                  // set a new value
+                        return old;             // return the old value
+                }
 };
 
 X var {7}; // a variable of type X, initialized to 7
 
 int user(X var, X∗ ptr)
 {
-	int x = var.mf(7);
-	int y = ptr−>mf(9);
-	int z = var.m;
+        int x = var.mf(7);
+        int y = ptr−>mf(9);
+        int z = var.m;
 }
 #+end_src

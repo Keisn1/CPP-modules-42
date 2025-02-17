@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       672e36be-f359-4de1-9bff-c38430a33b63
+:END:
+#+title: Class definition
+#+date: [2025-02-17 Mo 09:08]
+#+startup: overview

@@ -8,7 +8,6 @@
 
 - [[id:a82fced2-e62e-4346-b26f-323073de30da][data members]]
 - [[id:58d196b2-d2b7-47e7-a2d4-a74e93813062][member functions]]
-
 - [[id:8bffd3dc-19b6-491f-9ff2-f58611ace817][public and private members]]
 
 

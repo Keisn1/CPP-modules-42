@@ -1,0 +1,18 @@
+:PROPERTIES:
+:ID:       c569cdd6-5e6f-4c69-8e79-04b253ce2d94
+:END:
+#+title: CPP-Class-Examples
+#+date: [2025-02-17 Mo 08:56]
+#+startup: overview
+
+* Declaration (initialization with init - not CPP like)
+#+begin_src cpp
+class Date {
+        int d, m, y;
+public:
+        void init(int dd, int mm, int yy); // initialize
+        void add_year(int n);
+        void add_month(int n);
+        void add_day(int n);
+};
+#+end_src

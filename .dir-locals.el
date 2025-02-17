@@ -1,2 +1,2 @@
-((nil . ((org-roam-directory . "~/workspace/cpp-module-00/roam")
-         (org-roam-db-location . "~/workspace/cpp-module-00/roam/cpp_modules.db"))))
+((nil . ((org-roam-directory . "~/workspace/CPP-modules-42/roam")
+         (org-roam-db-location . "~/workspace/CPP-modules-42/roam/cpp_modules.db"))))

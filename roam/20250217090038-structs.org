@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       ed015bf4-eaf7-4741-ae91-3e7400ee15a8
+:END:
+#+title: structs
+#+date: [2025-02-17 Mo 09:00]
+#+startup: overview
+
+By definition, a struct is a class in which members are by default public; that is,
+#+begin_src cpp
+struct S { /* ... */ };
+#+end_src
+is simply shorthand for
+#+begin_src cpp
+class S { public: /* ... */ };
+#+end_src

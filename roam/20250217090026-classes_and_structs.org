@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       3a20abaf-18b7-4c54-b670-9b906f3f46d5
+:END:
+#+title: Classes (and structs)
+#+date: [2025-02-17 Mo 09:00]
+#+startup: overview
+
+* [[id:f5c0ab2a-a3a0-4d5c-a12a-db949b1682bf][Classes]]
+* [[id:ed015bf4-eaf7-4741-ae91-3e7400ee15a8][structs]]

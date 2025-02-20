@@ -7,3 +7,4 @@
 
 * [[id:3032c5dc-9c27-46d9-b82f-8179e6901a4f][via member function]]
 * [[id:9fac3381-1bbb-4739-af15-ee554f5a5360][Initialization by copy]]
+* [[id:5a5767d3-c89d-4179-8839-ebffbf58b96e][Constructors]]

@@ -1,0 +1,6 @@
+:PROPERTIES:
+:ID:       802df8a9-a1b3-4d64-987c-a971bc9cb03e
+:END:
+#+title: lvalue references
+#+date: [2025-02-20 Thu 07:18]
+#+startup: overview

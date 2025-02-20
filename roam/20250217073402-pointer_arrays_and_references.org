@@ -8,3 +8,17 @@
 * [[id:935680ea-19b6-42e4-a407-e134b9c9a442][pointer]]
 * [[id:fb2b4479-8ccd-4dcb-a46d-e00b8c3f4f60][arrays]]
 * [[id:7b290dc8-51dc-4328-9a4e-1928ae0b684b][References]]
+
+* Difference between pointers and references
+- Difference of using pointer to using names of a certain object
+  - different syntax
+  - pointer can point to different objects at different points in time
+  - pointer may be a [[id:e1110164-d1cc-44fb-a529-7163f852bb3a][nullptr]]
+- possible Problems tackle certain problems that come with using pointers
+  - syntax ugly
+  - protecting code
+  - not possible to overload [[id:80287c5a-a2a5-4c6f-8f0c-f5da43fc0fb8][Operators]] without writing =&x+&y=
+- *References* tackle these probems
+  - access with the exactly the same syntax as the name of the object
+  - a reference always refers to the object to which it was initialized
+  - there is no "null reference", we may assume that a reference refers to an object

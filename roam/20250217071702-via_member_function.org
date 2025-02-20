@@ -5,6 +5,10 @@
 #+date: [2025-02-17 Mon 07:17]
 #+startup: overview
 
+- error prone
+- no where stated that a user needs to call init
+- could do it twice
+
 #+begin_src cpp
 class Date {
 private:

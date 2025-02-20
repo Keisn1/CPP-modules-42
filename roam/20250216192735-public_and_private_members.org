@@ -1,13 +1,15 @@
 :PROPERTIES:
 :ID:       8bffd3dc-19b6-491f-9ff2-f58611ace817
 :END:
-#+title: public and private members
+#+title: public and private members (access control)
 #+date: [2025-02-16 Sun 19:27]
 #+startup: overview
 
 
 - [[id:1619e17d-631a-4bef-8c7e-a80bc205a089][public members]] provide the class's interface
 - [[id:0e7ee4af-ff53-4900-8844-ddfd5d001105][private members]] provide implementation details
+- access specifiers can b eused many times in a single class declaration
+
 * benefits
 ** encapsulation
 - any change of behavior must be effected by its member

@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       e1110164-d1cc-44fb-a529-7163f852bb3a
+:END:
+#+title: nullptr
+#+date: [2025-02-19 Wed 20:26]
+#+startup: overview
+
+- NULL was a Macro and there have been differences in implementations (0 or 0L)
+- in C usually NULL=(void*)0;
+  - illegal in C++
+  - can't assign a void* to an int*
+#+begin_src c
+int* p = NULL;
+#+end_src

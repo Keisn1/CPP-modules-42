@@ -4,3 +4,38 @@
 #+title: References
 #+date: [2025-02-17 Mon 07:31]
 #+startup: overview
+
+* What is it
+- *an alias* alternative name for an object
+- *main use*:
+  - specifying aguments and return values for functions in general and for *overload operators*
+- passing function *arguments by reference*
+  - we make it explicit
+
+#+begin_src cpp
+template<class T>
+class vector {
+	T∗ elem;
+// ...
+public:
+	T& operator[](int i) { return elem[i]; } // return reference to element
+	const T& operator[](int i) const { return elem[i]; } // return reference to const element
+	void push_back(const T& a); // pass element to be added by reference
+// ...
+};
+
+void f(const vector<double>& v)
+{
+	double d1 = v[1]; // copy the value of the double referred to by v.operator[](1) into d1
+	v[2] = 7; // place 7 in the double referred to by the result of v.operator[](2)
+	v.push_back(d1); // give push_back() a reference to d1 to work with
+}
+#+end_src
+
+* lvalue/rvalue/cont/non-const
+** lvalue
+- refer to objects whose value we want to change
+** *const*
+- refer to objects whose value we not want to change
+** rvalue
+- reer to objects whose value we do not need to preserve after we have used it

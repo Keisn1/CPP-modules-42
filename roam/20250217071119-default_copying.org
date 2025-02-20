@@ -5,13 +5,19 @@
 #+date: [2025-02-17 Mon 07:11]
 #+startup: overview
 
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::467++0.00][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 467]]
+- by default, objects can be copied
 - by default a copy is a copy of each member
-- copy by assignement
-#+begin_src cpp
+ 
+- initialization by copy
+  #+begin_src cpp
 Date d1 = my_birthday; // initialization by copy
 Date d2 {my_birthday}; // initialization by copy
+  #+end_src
+- copy by assignement
+  #+begin_src cpp
 void f(Date& d)
 {
         d = my_birthday;
 }
-#+end_src
+  #+end_src

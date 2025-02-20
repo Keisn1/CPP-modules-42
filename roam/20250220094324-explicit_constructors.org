@@ -1,0 +1,76 @@
+:PROPERTIES:
+:ID:       be04324f-c6d0-4903-9606-5c9b3ac0870f
+:END:
+#+title: explicit constructors
+#+date: [2025-02-20 Thu 09:43]
+#+startup: overview
+
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::473++4.01][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 473]]
+* What and Why
+- explicit prevents that a constructor is used as an implicit conversion
+- should be done when a constructor only has one argument
+  - best to document your reason for use of implicit concstuctors
+- also known as *direct initialization*
+- there is a problem of implicit conversions
+  - a constructor with one argument acts as an implicit conversion
+  - this becomes obscure
+    #+begin_src cpp
+void my_fct(Date d);
+void f() {
+        Date d {15};
+        my_fct(15);				// obscure
+        d = 15;				// obscure
+}
+    #+end_src
+
+#+begin_src cpp
+class Date {
+    int d, m, y;
+public:
+    explicit Date(int dd =0, int mm =0, int yy =0);
+// ...
+};
+
+Date d1 {15}; // OK: considered explicit
+Date d2 = Date{15}; // OK: explicit
+Date d3 = {15}; // error: = initialization does not do implicit conversions
+Date d4 = 15; // error: = initialization does not do implicit conversions
+
+void f()
+{
+        my_fct(15); // error: argument passing does not do implicit conversions
+        my_fct({15}); // error: argument passing does not do implicit conversions
+        my_fct(Date{15}); // OK: explicit
+}
+#+end_src
+* Examples
+** *explicit* keyword is not used outside of the class definition
+#+begin_src cpp
+class Date {
+        int d, m, y;
+public:
+        explicit Date(int dd);
+// ...
+};
+Date::Date(int dd) { /* ... */ } // OK
+explicit Date::Date(int dd) { /* ... */ } // error
+#+end_src
+** can also be valuable for constructors with zero or more arguments
+#+begin_src cpp
+struct X {
+        explicit X();
+        explicit X(int,int);
+};
+
+X x1 = {}; // error : implicit
+X x2 = {1,2}; // error : implicit
+
+X x3 {}; // OK: explicit
+X x4 {1,2}; // OK: explicit
+
+int f(X);
+int i1 = f({}); // error : implicit
+int i2 = f({1,2}); // error : implicit
+int i3 = f(X{}); // OK: explicit
+int i4 = f(X{1,2}); // OK: explicit
+#+end_src

@@ -6,7 +6,7 @@
 #+startup: overview
 
 [[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::471++0.00][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 471]]
-- has the same name as the class itself
+* has the same name as the class itself
   #+begin_src cpp
 class Date {
 private:
@@ -16,20 +16,19 @@ public:
 }
   #+end_src
 
-- *when a class has a constructor*, all objects will be initialized by a constructor call
-  - arguments must be applied
-  - we can use initializer notation
-    - is more explicit about what is being done
-  - throws error if the initializer is missing
-    - it would work with structs though
-      #+begin_src cpp
-    Date today = Date (20, 2, 2025)
+* *when a class has a constructor*, all objects will be initialized by a constructor call
+- arguments must be applied
+- we can use initializer notation
+  - is more explicit about what is being done
+- throws error if the initializer is missing
+  - it would work with structs though
+    #+begin_src cpp
+Date today = Date (20, 2, 2025)
     Date today(20, 2, 2025)
     Date today;						// error: initializer missing
-    Date today = Date {20, 2, 2025};
-      #+end_src
-
-- can be overloaded
+Date today = Date {20, 2, 2025};
+    #+end_src
+* can be overloaded
   #+begin_src cpp
 class Date {
 	int d, m, y;
@@ -42,3 +41,12 @@ public:
 	Date(const char∗); // date in string representation
 };
   #+end_src
+* default arguments
+:PROPERTIES:
+:ID:       a6c7803d-7756-41ea-95de-a3ef74db7876
+:END:
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::472++6.43][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 472]]
+#+begin_src cpp
+
+#+end_src
+* [[id:be04324f-c6d0-4903-9606-5c9b3ac0870f][explicit constructors]]

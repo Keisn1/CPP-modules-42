@@ -7,6 +7,7 @@ class PhoneBook {
 private:
 	Contact contacts[8];
 public:
+	explicit PhoneBook();		// no implicit initilaization
 	void add();
 	void search();
 	void exit();

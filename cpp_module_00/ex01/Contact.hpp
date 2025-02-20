@@ -7,8 +7,8 @@ class Contact {
 private:
 	std::string first_name;
 public:
-	explicit Contact(std::string fn);
-	std::string get_first_name();
+	explicit Contact(std::string& fn);
+	void display() const;
 };
 
 

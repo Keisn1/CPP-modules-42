@@ -9,6 +9,7 @@
 - no where stated that a user needs to call init
 - could do it twice
 
+- [[id:2e4c9090-004c-46bf-ab12-f38863ca3501][when a class has a constructor*, all objects will be initialized by a constructor call]]
 #+begin_src cpp
 class Date {
 private:

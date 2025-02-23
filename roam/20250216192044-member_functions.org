@@ -56,3 +56,10 @@ void Date::init(int dd, int mm, int yy)
         y = yy;
 }
 #+end_src
+* const
+#+begin_src cpp
+std::string get_last_name() const;
+#+end_src
+-  indicates that this member function is a "const member function"
+- function is not allowed to modify any member variables of the class it belongs to, except those marked as =mutable=
+- allows this function to be called on const instances of the class.

@@ -1,0 +1,18 @@
+:PROPERTIES:
+:ID:       c4c0f974-311b-43cb-9e30-dd8524376e27
+:END:
+#+title: member initializer list
+#+date: [2025-02-23 Sun 10:04]
+#+startup: overview
+
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::515++6.23][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 515]]
+
+#+begin_src cpp
+class MyClass {
+    int x;
+    int y;
+
+public:
+    MyClass(int a, int b) : x(a), y(b) {// Constructor body, if needed}
+};
+#+end_src

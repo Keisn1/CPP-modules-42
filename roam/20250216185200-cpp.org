@@ -7,5 +7,9 @@
 
 https://en.cppreference.com/w/
 
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::32++1.53][How to write C++ code]]
+
 * [[id:135b022e-e788-439f-8982-b009c7ea0c07][pointer, arrays and references]]
 * [[id:3a20abaf-18b7-4c54-b670-9b906f3f46d5][Classes (and structs)]]
+
+* [[id:a70435e1-43e1-4261-950b-bce58a614ad9][type conversions]]

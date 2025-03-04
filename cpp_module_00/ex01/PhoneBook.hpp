@@ -6,11 +6,13 @@
 class PhoneBook {
 private:
 	Contact contacts[8];
+	int nbr_ctcts;
 public:
 	explicit PhoneBook();		// no implicit initilaization
-	void add();
-	void search();
-	void exit();
+	void add(Contact ct);
+	void display();
+	void display_ctct(int index);
+	int get_nbr_ctcts();
 };
 
 

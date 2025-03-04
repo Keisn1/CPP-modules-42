@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       a70435e1-43e1-4261-950b-bce58a614ad9
+:END:
+#+title: type conversions
+#+date: [2025-03-04 Tue 07:24]
+#+startup: overview
+
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::313++3.54][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 313]]
+
+=static_cast= is checked at compile-time, making it safer than C-style casts by preventing certain inappropriate conversions, but it does not perform runtime checks like =dynamic_cast=.

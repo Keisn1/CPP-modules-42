@@ -11,7 +11,8 @@ private:
 	std::string mobile;
 	std::string secret;
 public:
-	explicit Contact(std::string& first_name, std::string& last_name, std::string& nick_name, std::string& mobile, std::string& secret);
+	explicit Contact();
+	explicit Contact(const std::string& first_name, const std::string& last_name, const std::string& nick_name, const std::string& mobile, const std::string& secret);
 	std::string get_first_name() const;
 	std::string get_last_name() const;
 	std::string get_nick_name() const;

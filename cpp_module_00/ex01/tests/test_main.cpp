@@ -1,49 +1,95 @@
 #include "test_main.hpp"
-#include "Contact.hpp"
-#include "gtest/gtest.h"
-#include <gtest/gtest.h>
 
 int main(int argc, char *argv[]) {
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }
 
-struct ContactTestParams {
-	std::string first_name;
-	std::string last_name;
-	std::string nick_name;
-	std::string mobile;
-	std::string secret;
-	std::string want_out;
-};
-
-class ContactTestSuite : public::testing::TestWithParam<ContactTestParams> {};
-
-TEST_P(ContactTestSuite, firstTests) {
-	ContactTestParams p = GetParam();
-
-	Contact contact {p.first_name, p.last_name, p.nick_name, p.mobile, p.secret};
-	ASSERT_STREQ(p.first_name.c_str(), contact.get_first_name().c_str());
-	ASSERT_STREQ(p.last_name.c_str(), contact.get_last_name().c_str());
-	ASSERT_STREQ(p.nick_name.c_str(), contact.get_nick_name().c_str());
-	ASSERT_STREQ(p.mobile.c_str(), contact.get_mobile().c_str());
-	ASSERT_STREQ(p.secret.c_str(), contact.get_secret().c_str());
-
+TEST(PhoneBookTest, FirstTest) {
+	PhoneBook pb ;
 	testing::internal::CaptureStdout();
-	contact.display();
+	pb.display();
 	std::string got = testing::internal::GetCapturedStdout();
 
-	ASSERT_STREQ(p.want_out.c_str(), got.c_str());
-	return;
-};
+	std::string want = R"(|index     |first name|last name |nickname  |
+|----------|----------|----------|----------|
+)";
+	ASSERT_STREQ(want.c_str(), got.c_str());
 
-INSTANTIATE_TEST_SUITE_P(ContactTests, ContactTestSuite,
-                         testing::Values(ContactTestParams{
-                             "Santa", "Klaus", "NickiMinaj", "+960 3537", "Mein Reigntier ist ein Esel",
-                             R"(First Name: Santa
-Last Name: Klaus
-Nickname: NickiMinaj
-Mobile: +960 3537
-Secret: Mein Reigntier ist ein Esel
-)"}
-));
+	// 1st Contact
+	pb.add(Contact{"kay", "freyer", "keisn", "11111", "my secret"});
+	testing::internal::CaptureStdout();
+	pb.display();
+	got = testing::internal::GetCapturedStdout();
+
+	want = R"(|index     |first name|last name |nickname  |
+|----------|----------|----------|----------|
+|         0|       kay|    freyer|     keisn|
+)";
+	ASSERT_STREQ(want.c_str(), got.c_str());
+
+	// 2nd Contact
+	pb.add(Contact{"karl", "freyer", "keisn", "11111", "my secret"});
+	testing::internal::CaptureStdout();
+	pb.display();
+	got = testing::internal::GetCapturedStdout();
+	want = R"(|index     |first name|last name |nickname  |
+|----------|----------|----------|----------|
+|         0|       kay|    freyer|     keisn|
+|         1|      karl|    freyer|     keisn|
+)";
+	ASSERT_STREQ(want.c_str(), got.c_str());
+
+	// 3rd Contact
+	pb.add(Contact{"christopher", "freyer", "keisn", "11111", "my secret"});
+	testing::internal::CaptureStdout();
+	pb.display();
+	got = testing::internal::GetCapturedStdout();
+
+	want = R"(|index     |first name|last name |nickname  |
+|----------|----------|----------|----------|
+|         0|       kay|    freyer|     keisn|
+|         1|      karl|    freyer|     keisn|
+|         2|christoph.|    freyer|     keisn|
+)";
+	ASSERT_STREQ(want.c_str(), got.c_str());
+
+
+	// adding contact 3, 4, 5, 6, 7
+	pb.add(Contact{"kay", "freyer", "||||||||||||||||", "11111", "my secret"});
+	pb.add(Contact{"kay", "))))))))))))))))", "keisn", "11111", "my secret"});
+	pb.add(Contact{"*&^%$%#_)(*#$)", "freyer", "keisn", "11111", "my secret"});
+	pb.add(Contact{"..............", "freyer", "keisn", "11111", "my secret"});
+	pb.add(Contact{"kay", " 😋😛😜🤪😝🤑", "keisn", "11111", "my secret"});
+
+	testing::internal::CaptureStdout();
+	pb.display();
+	got = testing::internal::GetCapturedStdout();
+
+	want = R"(|index     |first name|last name |nickname  |
+|----------|----------|----------|----------|
+|         0|       kay|    freyer|     keisn|
+|         1|      karl|    freyer|     keisn|
+|         2|christoph.|    freyer|     keisn|
+|         3|       kay|    freyer||||||||||.|
+|         4|       kay|))))))))).|     keisn|
+|         5|*&^%$%#_).|    freyer|     keisn|
+|         6|..........|    freyer|     keisn|
+|         7|       kay| 😋😛.|     keisn|
+)";
+	ASSERT_STREQ(want.c_str(), got.c_str());
+
+	// replace last one
+	pb.add(Contact{"kay", "kay", "||||||||||||||||", "11111", "my secret"});
+	want = R"(|index     |first name|last name |nickname  |
+|----------|----------|----------|----------|
+|         0|       kay|    freyer|     keisn|
+|         1|      karl|    freyer|     keisn|
+|         2|christoph.|    freyer|     keisn|
+|         3|       kay|    freyer||||||||||.|
+|         4|       kay|))))))))).|     keisn|
+|         5|*&^%$%#_).|    freyer|     keisn|
+|         6|..........|    freyer|     keisn|
+|         7|       kay|       kay|     keisn|
+)";
+}

@@ -4,6 +4,23 @@
 # @file
 # @version 0.1
 
+CXX := c++
+CXX_FLAGS := -std=c++98 -Wall -Werror -Wextra
+
+SRC_FILES := Contact.cpp Contact.hpp PhoneBook.cpp PhoneBook.hpp main.cpp
+OBJ_FILES := $(SRC_FILES:%.cpp=%.o)
+
+NAME := phonebook_app
+
+$(NAME): $(SRC_FILES)
+	$(CXX) $(CXX_FLAGS) $(SRC_FILES) -o $(NAME)
+
+clean:
+	rm -rf $(OBJ_FILES)
+
+fclean: clean
+	rm -rf $(NAME)
+
 unittest:
 	cmake -S . -B build && \
 	cmake --build build && \

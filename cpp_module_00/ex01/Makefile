@@ -6,14 +6,15 @@
 
 CXX := c++
 CXX_FLAGS := -std=c++98 -Wall -Werror -Wextra
+INCLUDES := -Iincludes
 
-SRC_FILES := Contact.cpp Contact.hpp PhoneBook.cpp PhoneBook.hpp main.cpp
+SRC_FILES := src/Contact.cpp  src/PhoneBook.cpp src/main.cpp
 OBJ_FILES := $(SRC_FILES:%.cpp=%.o)
 
 NAME := phonebook_app
 
 $(NAME): $(SRC_FILES)
-	$(CXX) $(CXX_FLAGS) $(SRC_FILES) -o $(NAME)
+	$(CXX) $(CXX_FLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
 
 clean:
 	rm -rf $(OBJ_FILES)

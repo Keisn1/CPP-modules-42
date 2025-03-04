@@ -11,7 +11,7 @@ TEST(PhoneBookTest, FirstTest) {
 	pb.display();
 	std::string got = testing::internal::GetCapturedStdout();
 
-	std::string want = R"(|index     |first name|last name |nickname  |
+	std::string want = R"(|     index|first name| last name|  nickname|
 |----------|----------|----------|----------|
 )";
 	ASSERT_STREQ(want.c_str(), got.c_str());
@@ -22,18 +22,18 @@ TEST(PhoneBookTest, FirstTest) {
 	pb.display();
 	got = testing::internal::GetCapturedStdout();
 
-	want = R"(|index     |first name|last name |nickname  |
+	want = R"(|     index|first name| last name|  nickname|
 |----------|----------|----------|----------|
 |         0|       kay|    freyer|     keisn|
 )";
 	ASSERT_STREQ(want.c_str(), got.c_str());
-
+	
 	// 2nd Contact
 	pb.add(Contact{"karl", "freyer", "keisn", "11111", "my secret"});
 	testing::internal::CaptureStdout();
 	pb.display();
 	got = testing::internal::GetCapturedStdout();
-	want = R"(|index     |first name|last name |nickname  |
+	want = R"(|     index|first name| last name|  nickname|
 |----------|----------|----------|----------|
 |         0|       kay|    freyer|     keisn|
 |         1|      karl|    freyer|     keisn|
@@ -46,7 +46,7 @@ TEST(PhoneBookTest, FirstTest) {
 	pb.display();
 	got = testing::internal::GetCapturedStdout();
 
-	want = R"(|index     |first name|last name |nickname  |
+	want = R"(|     index|first name| last name|  nickname|
 |----------|----------|----------|----------|
 |         0|       kay|    freyer|     keisn|
 |         1|      karl|    freyer|     keisn|
@@ -66,7 +66,7 @@ TEST(PhoneBookTest, FirstTest) {
 	pb.display();
 	got = testing::internal::GetCapturedStdout();
 
-	want = R"(|index     |first name|last name |nickname  |
+	want = R"(|     index|first name| last name|  nickname|
 |----------|----------|----------|----------|
 |         0|       kay|    freyer|     keisn|
 |         1|      karl|    freyer|     keisn|
@@ -81,7 +81,7 @@ TEST(PhoneBookTest, FirstTest) {
 
 	// replace last one
 	pb.add(Contact{"kay", "kay", "||||||||||||||||", "11111", "my secret"});
-	want = R"(|index     |first name|last name |nickname  |
+	want = R"(|     index|first name| last name|  nickname|
 |----------|----------|----------|----------|
 |         0|       kay|    freyer|     keisn|
 |         1|      karl|    freyer|     keisn|

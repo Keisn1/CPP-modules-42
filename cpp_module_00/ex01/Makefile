@@ -8,7 +8,7 @@ CXX := c++
 CXX_FLAGS := -std=c++98 -Wall -Werror -Wextra
 INCLUDES := -Iincludes
 
-SRC_FILES := src/Contact.cpp  src/PhoneBook.cpp src/main.cpp
+SRC_FILES := src/Contact.cpp src/PhoneBook.cpp src/main.cpp
 OBJ_FILES := $(SRC_FILES:%.cpp=%.o)
 
 NAME := phonebook_app
@@ -21,6 +21,8 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+
+re: fclean $(NAME)
 
 unittest:
 	cmake -S . -B build && \

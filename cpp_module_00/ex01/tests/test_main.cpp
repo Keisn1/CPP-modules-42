@@ -17,7 +17,7 @@ TEST(PhoneBookTest, FirstTest) {
 	ASSERT_STREQ(want.c_str(), got.c_str());
 
 	// 1st Contact
-	pb.add(Contact{"kay", "freyer", "keisn", "11111", "my secret"});
+	pb.add(Contact("kay", "freyer", "keisn", "11111", "my secret"));
 	testing::internal::CaptureStdout();
 	pb.display();
 	got = testing::internal::GetCapturedStdout();
@@ -29,7 +29,7 @@ TEST(PhoneBookTest, FirstTest) {
 	ASSERT_STREQ(want.c_str(), got.c_str());
 	
 	// 2nd Contact
-	pb.add(Contact{"karl", "freyer", "keisn", "11111", "my secret"});
+	pb.add(Contact("karl", "freyer", "keisn", "11111", "my secret"));
 	testing::internal::CaptureStdout();
 	pb.display();
 	got = testing::internal::GetCapturedStdout();
@@ -41,7 +41,7 @@ TEST(PhoneBookTest, FirstTest) {
 	ASSERT_STREQ(want.c_str(), got.c_str());
 
 	// 3rd Contact
-	pb.add(Contact{"christopher", "freyer", "keisn", "11111", "my secret"});
+	pb.add(Contact("christopher", "freyer", "keisn", "11111", "my secret"));
 	testing::internal::CaptureStdout();
 	pb.display();
 	got = testing::internal::GetCapturedStdout();
@@ -56,11 +56,11 @@ TEST(PhoneBookTest, FirstTest) {
 
 
 	// adding contact 3, 4, 5, 6, 7
-	pb.add(Contact{"kay", "freyer", "||||||||||||||||", "11111", "my secret"});
-	pb.add(Contact{"kay", "))))))))))))))))", "keisn", "11111", "my secret"});
-	pb.add(Contact{"*&^%$%#_)(*#$)", "freyer", "keisn", "11111", "my secret"});
-	pb.add(Contact{"..............", "freyer", "keisn", "11111", "my secret"});
-	pb.add(Contact{"kay", " 😋😛😜🤪😝🤑", "keisn", "11111", "my secret"});
+	pb.add(Contact("kay", "freyer", "||||||||||||||||", "11111", "my secret"));
+	pb.add(Contact("kay", "))))))))))))))))", "keisn", "11111", "my secret"));
+	pb.add(Contact("*&^%$%#_)(*#$)", "freyer", "keisn", "11111", "my secret"));
+	pb.add(Contact("..............", "freyer", "keisn", "11111", "my secret"));
+	pb.add(Contact("kay", " 😋😛😜🤪😝🤑", "keisn", "11111", "my secret"));
 
 	testing::internal::CaptureStdout();
 	pb.display();
@@ -80,7 +80,7 @@ TEST(PhoneBookTest, FirstTest) {
 	ASSERT_STREQ(want.c_str(), got.c_str());
 
 	// replace last one
-	pb.add(Contact{"kay", "kay", "||||||||||||||||", "11111", "my secret"});
+	pb.add(Contact("kay", "kay", "||||||||||||||||", "11111", "my secret"));
 	want = R"(|     index|first name| last name|  nickname|
 |----------|----------|----------|----------|
 |         0|       kay|    freyer|     keisn|

@@ -5,8 +5,8 @@
 
 class PhoneBook {
 private:
-	Contact contacts[8];
-	int nbr_ctcts;
+	Contact _contacts[8];
+	int _nbr_ctcts;
 public:
 	explicit PhoneBook();		// no implicit initilaization
 	void add(Contact ct);

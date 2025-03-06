@@ -8,21 +8,25 @@ int main(int argc, char *argv[]) {
 }
 
 TEST(ZombieTestSuite, firstTests) {
-	testing::internal::CaptureStdout();
+	int N = 6;
 	std::string zombie_name = "Foo";
-	Zombie* z = newZombie(zombie_name);
+	Zombie* zombies = zombieHorde(N, zombie_name);
+
+	for (int i = 0; i < N; i++) {
+		testing::internal::CaptureStdout();
+		zombies[i].announce();
+		std::string got = testing::internal::GetCapturedStdout();
+		std::string want = zombie_name + ": BraiiiiiiinnnzzzZ...\n";
+		ASSERT_STREQ(want.c_str(), got.c_str());
+	}
+
+	testing::internal::CaptureStdout();
+	delete[] zombies;
 	std::string got = testing::internal::GetCapturedStdout();
-	std::string want = zombie_name + ": BraiiiiiiinnnzzzZ...\n";
+	std::string str = zombie_name + " got destroyed\n";
+	std::string want = "";
+	for (int i = 0; i < N ; i++ )
+		want += str;
 	ASSERT_STREQ(want.c_str(), got.c_str());
 
-	testing::internal::CaptureStdout();
-	delete z;
-	got = testing::internal::GetCapturedStdout();
-	ASSERT_STREQ((zombie_name + " got destroyed\n").c_str(), got.c_str());
-
-	testing::internal::CaptureStdout();
-	randomChump(zombie_name);
-	got = testing::internal::GetCapturedStdout();
-	want = zombie_name + ": BraiiiiiiinnnzzzZ...\n" + zombie_name + " got destroyed\n";
-	ASSERT_STREQ(want.c_str(), got.c_str());
 }

@@ -8,7 +8,6 @@
 * [[id:935680ea-19b6-42e4-a407-e134b9c9a442][pointer]]
 * [[id:fb2b4479-8ccd-4dcb-a46d-e00b8c3f4f60][arrays]]
 * [[id:7b290dc8-51dc-4328-9a4e-1928ae0b684b][References]]
-
 * Difference between pointers and references
 - Difference of using pointer to using names of a certain object
   - different syntax

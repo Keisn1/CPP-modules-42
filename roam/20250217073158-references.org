@@ -6,7 +6,8 @@
 #+startup: overview
 
 * What is it
-- *an alias* alternative name for an object
+- *an alias*
+  - alternative name for an object
 - *main use*:
   - specifying aguments and return values for functions in general and for *overload operators*
 - passing function *arguments by reference*

@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       846c3d57-5552-4156-911c-0d6fbbefe991
+:END:
+#+title: const pointers
+#+date: [2025-03-06 Thu 20:36]
+#+startup: overview
+
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::201++6.43][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 201]]

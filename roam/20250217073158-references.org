@@ -36,7 +36,8 @@ void f(const vector<double>& v)
 * lvalue/rvalue/cont/non-const
 ** lvalue
 - refer to objects whose value we want to change
-** *const*
-- refer to objects whose value we not want to change
 ** rvalue
 - reer to objects whose value we do not need to preserve after we have used it
+** *const*
+- refer to objects whose value we not want to change
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::208++4.81][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 208]]

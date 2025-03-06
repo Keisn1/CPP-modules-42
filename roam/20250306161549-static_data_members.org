@@ -1,0 +1,16 @@
+:PROPERTIES:
+:ID:       5f8d644e-e575-42c6-8244-c7eccf548a24
+:END:
+#+title: static data members
+#+date: [2025-03-06 Thu 16:15]
+#+startup: overview
+
+- Static data members are shared among all instances of the class
+- There's only one copy of a static data member, regardless of the number of objects created
+- They are used for storing values common to all objects and are often used for class-wide settings or counters
+- Static data members must be defined outside the class, typically in a source file, without the =static= keyword
+- They can be accessed using the class name and scope resolution operator (e.g., =ClassName::member=) or through an object
+
+[[file:~/workspace/CPP-modules-42/cpp_module_00/ex02/Account.cpp::int Account::_nbAccounts = 0;][example for initialization of static data members]]
+https://www.geeksforgeeks.org/cpp-static-data-members/
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::482++0.00][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 482]]

@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       f68da68e-6c12-455b-a14a-96da78e9a71b
+:END:
+#+title: constant member functions
+#+date: [2025-03-06 Thu 16:23]
+#+startup: overview
+
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::476++0.00][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 476]]
+#+begin_src cpp
+std::string get_last_name() const;
+#+end_src
+
+- indicates that this member function is a "const member function"
+- function is not allowed to modify any member variables of the class it belongs to, except those marked as =mutable=
+- allows this function to be called on const instances of the class.

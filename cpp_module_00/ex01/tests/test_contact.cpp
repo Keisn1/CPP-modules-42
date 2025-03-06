@@ -40,11 +40,11 @@ TEST_P(ContactTestSuite, firstTests) {
 
 INSTANTIATE_TEST_SUITE_P(ContactTests, ContactTestSuite,
                          testing::Values(ContactTestParams{
-                             "Santa", "Klaus", "NickiMinaj", "+960 3537", "Mein Reigntier ist ein Esel",
-                             R"(First Name: Santa
+								 "Santa", "Klaus", "NickiMinaj", "+960 3537", "Mein Reigntier ist ein Esel",
+								 R"(First Name: Santa
 Last Name: Klaus
 Nickname: NickiMinaj
 Mobile: +960 3537
 Darkest Secret: Mein Reigntier ist ein Esel
 )"}
-));
+							 ));

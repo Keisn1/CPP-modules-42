@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <cctype>
+#include <cstddef>
 #include <iostream>
 
 int main(int argc, char* argv[]) {
@@ -19,9 +20,8 @@ int main(int argc, char* argv[]) {
     } else {
         for (int i = 1; i < argc; i++) {
             std::string str = argv[i];
-            for (char c : str) {
-                std::cout << static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
-            }
+            for (size_t j = 0; j < str.length(); j++)
+                std::cout << static_cast<char>(std::toupper(static_cast<unsigned char>(str[j])));
         }
     }
     std::cout << std::endl;

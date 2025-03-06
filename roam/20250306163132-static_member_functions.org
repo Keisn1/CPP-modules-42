@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       0c6b6c98-614a-4997-8c5b-86106fe7047a
+:END:
+#+title: static member functions
+#+date: [2025-03-06 Thu 16:31]
+#+startup: overview
+
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::482++0.00][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 482]]
+
+- a function that needs access to members of a class, yet doesn’t need to be invoked for a particular object, is called a static member function

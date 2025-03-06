@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       6160580f-f681-45f0-9404-a60d122ac73d
+:END:
+#+title: non-static data members
+#+date: [2025-03-06 Thu 16:15]
+#+startup: overview
+
+- Each instance (object) of the class has its own copy of non-static data members.
+- They store values specific to each object.
+- They can be accessed through the object's name using the dot operator (e.g., =object.member=).

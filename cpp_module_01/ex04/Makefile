@@ -10,12 +10,10 @@ CXX_FLAGS := -std=c++98 -Wall -Werror -Wextra
 SRC_DIR := src
 BUILD_DIR := build
 INCLUDES := -Iincludes
-SRC_FILES := 	$(SRC_DIR)/Weapon.cpp \
-				$(SRC_DIR)/HumanA.cpp \
-				$(SRC_DIR)/HumanB.cpp \
+SRC_FILES := 	$(SRC_DIR)/replace_string.cpp \
 				$(SRC_DIR)/main.cpp
 
-NAME := weapon
+NAME := sed
 
 all: $(NAME)
 

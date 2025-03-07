@@ -27,6 +27,12 @@ TEST_P(replaceStringTest, firstTests) {
 INSTANTIATE_TEST_SUITE_P(replaceString, replaceStringTest,
 						 testing::Values(
 							 replaceStringParams{"kay", "kay", "jim", "jim"},
-							 replaceStringParams{"kay kay", "kay", "jim", "jim jim"}
+							 replaceStringParams{"   kay   ", "kay", "jim", "   jim   "},
+							 replaceStringParams{"   kay   ", " ", "", "kay"},
+							 replaceStringParams{"kay kay", "kay", "jim", "jim jim"},
+							 replaceStringParams{"kay kay", "kay", "jimmy", "jimmy jimmy"},
+							 replaceStringParams{"kay kay", "", "jimmy", "kay kay"},
+							 replaceStringParams{"kay kay", "kay", "", " "},
+							 replaceStringParams{"kay kay", "kay", "j j", "j j j j"}
 							 )
 	);

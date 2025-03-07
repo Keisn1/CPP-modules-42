@@ -23,6 +23,7 @@ $(NAME): $(SRC_FILES)
 	$(CXX) $(CXX_FLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
 
 clean:
+	rm -rf .cache
 	rm -rf build
 
 fclean: clean

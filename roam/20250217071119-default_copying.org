@@ -14,6 +14,7 @@
 Date d1 = my_birthday; // initialization by copy
 Date d2 {my_birthday}; // initialization by copy
   #+end_src
+
 - copy by assignement
   #+begin_src cpp
 void f(Date& d)

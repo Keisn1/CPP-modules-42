@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       31a46e6d-42d9-4217-9b38-13447154d98d
+:END:
+#+title: default arguments
+#+date: [2025-03-10 Mon 07:46]
+#+startup: overview
+
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::339++6.43][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 339]]

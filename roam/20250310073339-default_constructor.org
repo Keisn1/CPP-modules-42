@@ -1,0 +1,37 @@
+:PROPERTIES:
+:ID:       96dd34f4-9f7b-4df1-9ccc-9fc19b4984d8
+:END:
+#+title: default constructor
+#+date: [2025-03-10 Mon 07:33]
+#+startup: overview
+
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::508++6.01][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 508]]
+- constructor that can be invoked without an argument
+- used when no arguments are specified (or empty initializer list C++11)
+
+- [[id:31a46e6d-42d9-4217-9b38-13447154d98d][default arguments]] can make a constructor into a default constructor
+  #+begin_src cpp
+class String {
+public:
+String(const char∗ p = ""); // ...
+};
+String s1;     // OK
+String s2 {};  // OK
+  #+end_src
+
+* built-in types
+- have default constructors
+- not invoked for uninitialized non-static variables
+  #+begin_src cpp
+void f()
+{
+int a0; // uninitialized
+int a1(); // function declaration (intended?)
+int a {}; // a becomes 0
+double d {}; // d becomes 0.0
+char∗ p {}; // p becomes nullptr
+int∗ p1 = new int; // uninitialized int
+int∗ p2 = new int{}; // the int is initialized to 0
+}
+  #+end_src
+- most often used for template arguments

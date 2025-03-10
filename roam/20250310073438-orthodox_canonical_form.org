@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       6f557d4f-295d-438c-895b-559093a2b76a
+:END:
+#+title: orthodox canonical form
+#+date: [2025-03-10 Mon 07:34]
+#+startup: overview
+
+* [[id:96dd34f4-9f7b-4df1-9ccc-9fc19b4984d8][default constructor]]

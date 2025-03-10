@@ -6,13 +6,19 @@
 #+startup: overview
 
 [[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::471++0.00][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 471]]
-* has the same name as the class itself
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::506++1.00][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 506]]
+- A member with the same name as its class is called a constructor.
+- no return type
+- job is to initialize an instance of the class
+  - often times initialization must establish a /class invariant/ (some condition that holds true whenever a function member is called)
+- default constructor (without any arguments) disappears when you define a constructor that requires arguments
+
   #+begin_src cpp
 class Date {
 private:
-	int d, m, y;
+	        int d, m, y;
 public:
-	Date(int dd, int mm, int yy); // constructor
+	        Date(int dd, int mm, int yy); // constructor
 }
   #+end_src
 
@@ -20,6 +26,7 @@ public:
 :PROPERTIES:
 :ID:       2e4c9090-004c-46bf-ab12-f38863ca3501
 :END:
+- if one or more constructors are declared, one of the constructors will be used for initialization
 - arguments must be applied
 - we can use initializer notation
   - is more explicit about what is being done
@@ -29,8 +36,9 @@ public:
 Date today = Date (20, 2, 2025)
 Date today(20, 2, 2025)
 Date today;						// error: initializer missing
-Date today = Date {20, 2, 2025};
+Date today = Date {20, 2, 2025}; // C++11
     #+end_src
+
 * can be overloaded
   #+begin_src cpp
 class Date {
@@ -44,10 +52,6 @@ public:
 	Date(const char∗); // date in string representation
 };
   #+end_src
-* default arguments
-:PROPERTIES:
-:ID:       a6c7803d-7756-41ea-95de-a3ef74db7876
-:END:
-[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::472++6.43][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 472]]
+
 * [[id:c4c0f974-311b-43cb-9e30-dd8524376e27][member initializer list]]
 * [[id:be04324f-c6d0-4903-9606-5c9b3ac0870f][explicit constructors]]

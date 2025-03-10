@@ -6,3 +6,4 @@
 #+startup: overview
 
 * [[id:d420e5ff-3b5c-4669-92da-0d85ea7c41cb][default copying]]
+* [[id:c8b98433-e26b-4629-92c1-a4ab27bc401f][copy constructor]]

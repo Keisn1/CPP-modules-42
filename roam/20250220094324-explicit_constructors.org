@@ -1,11 +1,21 @@
 :PROPERTIES:
 :ID:       be04324f-c6d0-4903-9606-5c9b3ac0870f
 :END:
-#+title: explicit constructors
+#+title: explicit constructors (explicit keyword)
 #+date: [2025-02-20 Thu 09:43]
 #+startup: overview
 
 [[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::473++4.01][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 473]]
+
+#+begin_src cpp
+class Date {
+	// ...
+public:
+    explicit Date(int dd =0, int mm =0, int yy =0);
+	// ...
+};
+#+end_src
+
 * What and Why
 - explicit prevents that a constructor is used as an implicit conversion
 - should be done when a constructor only has one argument

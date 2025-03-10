@@ -1,0 +1,40 @@
+:PROPERTIES:
+:ID:       c8b98433-e26b-4629-92c1-a4ab27bc401f
+:END:
+#+title: copy constructor
+#+date: [2025-03-10 Mon 08:38]
+#+startup: overview
+
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::522++6.43][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 522]]
+
+- Copy constructor: =X(const X&)=
+- Copy assignment: =X& operator=(const X&)=
+
+- supposed to make a copy of an object
+* difference between copy and copy assignment
+- copy constructor initializes uninitialized memory
+- copy assignment operator must correctly deal with an object that has already been constructed and may own resources
+* [#A] be sure to copy every base member
+[[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::524++0.00][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 524]]
+#+begin_src cpp
+class X {
+        string s;
+        string s2;
+        vector<string> v;
+        X(const X& other) // copy constructor
+                :s{other.s}, v{other.v} // probably sloppy and probably wrong
+                {
+                }
+// ...
+};
+#+end_src
+* fundamental technique of first making a copy and then swapping representation
+#+begin_src cpp
+Matrix& Matrix::operator=(const Matrix& m)
+// copy assignment
+{
+        Matrix tmp {m}; // make a copy
+        swap(tmp,∗this); // swap tmp’s representation with *this’s
+        return ∗this;
+}
+#+end_src

@@ -1,0 +1,9 @@
+:PROPERTIES:
+:ID:       4fda5c30-a53d-4747-b914-4439342dd414
+:END:
+#+title: istream
+#+date: [2025-03-10 Mo 20:31]
+#+startup: overview
+
+ *Input Streams (=istream=)*:
+ - Used for reading data. The standard input stream is =std::cin=, which reads data from the console.

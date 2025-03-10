@@ -1,0 +1,24 @@
+:PROPERTIES:
+:ID:       3ddcc15a-5ac1-4db4-a6ce-2574b015a9b0
+:END:
+#+title: streams
+#+date: [2025-03-10 Mo 20:30]
+#+startup: overview
+
+In C++, streams are objects that provide a way to perform input and output (I/O) operations in a consistent and type-safe manner.
+
+- C++ Standard Library
+- used for reading from and writing to various data sources, such as the console, files, and strings.
+
+[[id:4fda5c30-a53d-4747-b914-4439342dd414][istream]]
+
+2. *Output Streams (=ostream=)*: Used for writing data. The standard output stream is =std::cout=, which writes data to the console. There's also =std::cerr= for writing error messages.
+
+3. *File Streams*: Includes =std::ifstream= for reading from files and =std::ofstream= for writing to files. They are defined in the =<fstream>= header.
+
+4. *String Streams*: Includes =std::istringstream= and =std::ostringstream= for reading from and writing to strings, respectively, defined in the =<sstream>= header.
+
+5. *Stream Operators (=>>= and =<<=)*: The extraction (=>>=) and insertion (=<<=) operators are used with streams for reading and writing data.
+
+Streams in C++ provide an abstract layer over I/O operations, handling details like buffering and formatting, thus making it easier to perform I/O tasks consistently across different data sources.
+

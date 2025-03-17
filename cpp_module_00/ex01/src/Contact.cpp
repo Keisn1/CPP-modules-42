@@ -10,13 +10,12 @@ Contact::Contact(const std::string &first_name, const std::string &last_name,
 	  _mobile(mobile), _secret(secret) {}
 
 Contact::Contact(std::istream& in) {
-	_first_name = get_field_loop("First name", in);
-	_last_name = get_field_loop("Last name", in);
-	_nick_name = get_field_loop("Nickname", in);
-	_mobile = get_field_loop("Phone number", in);
-	_secret = get_field_loop("Darkest Secret", in);
+	_first_name = get_entry("First name", in);
+	_last_name = get_entry("Last name", in);
+	_nick_name = get_entry("Nickname", in);
+	_mobile = get_entry("Phone number", in);
+	_secret = get_entry("Darkest Secret", in);
 }
-
 
 std::string Contact::get_first_name() const {return _first_name;}
 std::string Contact::get_last_name() const {return _last_name;}
@@ -32,7 +31,7 @@ void Contact::display() const {
 	std::cout << DEEPSKYBLUE << "Darkest Secret: " << DARKVIOLET << _secret << RESET << std::endl;
 };
 
-std::string get_field_loop(std::string field, std::istream& in) {
+std::string get_entry(std::string field, std::istream& in) {
 	std::cout << DARKSALMON << field << "?" << RESET << std::endl;
 	std::string entry;
 	std::getline(in, entry);

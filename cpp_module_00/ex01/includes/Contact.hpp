@@ -32,6 +32,6 @@ public:
 	void display() const;
 };
 
-std::string get_field_loop(std::string field, std::istream& in);
+std::string get_entry(std::string field, std::istream& in);
 
 #endif // CONTACT_H

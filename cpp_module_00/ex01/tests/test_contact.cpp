@@ -2,16 +2,7 @@
 #include "gtest/gtest.h"
 #include <sstream>
 
-struct ContactTestParams {
-	std::string first_name;
-	std::string last_name;
-	std::string nick_name;
-	std::string mobile;
-	std::string secret;
-	std::string want_out;
-};
-
-class ContactTestSuite : public::testing::TestWithParam<ContactTestParams> {};
+class ContactTestSuite : public::testing::TestWithParam<ContactParams> {};
 
 TEST(ContactTestSuite, emptyContact) {
 	Contact contact {};
@@ -23,7 +14,7 @@ TEST(ContactTestSuite, emptyContact) {
 }
 
 TEST_P(ContactTestSuite, firstTests) {
-	ContactTestParams p = GetParam();
+	ContactParams p = GetParam();
 
 	Contact contact {p.first_name, p.last_name, p.nick_name, p.mobile, p.secret};
 	ASSERT_STREQ(p.first_name.c_str(), contact.get_first_name().c_str());
@@ -36,20 +27,24 @@ TEST_P(ContactTestSuite, firstTests) {
 	contact.display();
 	std::string got = testing::internal::GetCapturedStdout();
 
-	ASSERT_STREQ(p.want_out.c_str(), got.c_str());
+	std::stringstream wantStream;
+	wantStream << DEEPSKYBLUE << "First Name: " << DARKVIOLET << p.first_name << RESET << "\n"
+		<< DEEPSKYBLUE << "Last Name: " << DARKVIOLET << p.last_name << RESET << "\n"
+		<< DEEPSKYBLUE << "Nickname: " << DARKVIOLET << p.nick_name << RESET << "\n"
+		<< DEEPSKYBLUE << "Mobile: " << DARKVIOLET << p.mobile << RESET << "\n"
+		<< DEEPSKYBLUE << "Darkest Secret: " << DARKVIOLET << p.secret << RESET << "\n";
+
+	std::string want = wantStream.str();
+	ASSERT_STREQ(want.c_str(), got.c_str());
 	return;
 };
 
 INSTANTIATE_TEST_SUITE_P(ContactTests, ContactTestSuite,
-                         testing::Values(ContactTestParams{
-							 "Santa", "Klaus", "NickiMinaj", "+960 3537", "Mein Reigntier ist ein Esel",
-							 R"(First Name: Santa
-Last Name: Klaus
-Nickname: NickiMinaj
-Mobile: +960 3537
-Darkest Secret: Mein Reigntier ist ein Esel
-)"}
+						 testing::Values(ContactParams{
+							 "Santa", "Klaus", "NickiMinaj", "+960 3537", "Mein Reigntier ist ein Esel"}
 						 ));
+
+
 
 TEST(ContactStreamTest, firstTests) {
 	std::string first_name = "Christian";

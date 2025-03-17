@@ -32,6 +32,8 @@ INSTANTIATE_TEST_SUITE_P(replaceString, replaceStringTest,
 							 replaceStringParams{"kay kay", "kay", "jim", "jim jim"},
 							 replaceStringParams{"kay kay", "kay", "jimmy", "jimmy jimmy"},
 							 replaceStringParams{"kay kay", "", "jimmy", "kay kay"},
+							 replaceStringParams{"kk", "k", "j", "jj"},
+							 replaceStringParams{"\n\n", "\n", "-", "--"},
 							 replaceStringParams{"kay kay", "kay", "", " "},
 							 replaceStringParams{"kay kay", "kay", "j j", "j j j j"}
 							 )

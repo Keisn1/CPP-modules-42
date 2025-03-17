@@ -8,7 +8,7 @@
 std::string read_file(char* path) {
     std::ifstream file(path);
     if (!file.is_open()) {
-        std::cerr << "Error: " << std::strerror(errno) << std::endl;
+        std::cerr << "Error opening file: " << std::strerror(errno) << std::endl;
         exit(EXIT_FAILURE);
     }
 
@@ -22,7 +22,6 @@ std::string read_file(char* path) {
 }
 
 void write_to_file(char *path, std::string text) {
-
     std::string new_filename = std::string(path) + ".replace";
     std::ofstream new_file(new_filename.c_str());
     if (!new_file.is_open()) {
@@ -34,8 +33,10 @@ void write_to_file(char *path, std::string text) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc != 4)
+    if (argc != 4) {
         std::cerr << "Expect 3 arguments" << std::endl;
+        return 0;
+    }
 
     std::string text = read_file(argv[1]);
     replace_string(text, std::string(argv[2]), std::string(argv[3]));

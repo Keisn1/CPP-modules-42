@@ -3,6 +3,7 @@
 
 #include "Contact.hpp"
 
+
 class PhoneBook {
 private:
 	Contact _contacts[8];
@@ -15,5 +16,6 @@ public:
 	int get_nbr_ctcts();
 };
 
+std::string get_field_loop(std::string field);
 
 #endif // PHONEBOOK_H

@@ -1,36 +1,26 @@
+#include "Contact.hpp"
 #include "PhoneBook.hpp"
 #include <limits>
 
 std::string get_cmd_loop() {
-	std::cout << "What do you want to do? ADD, SEARCH or EXIT?" << std::endl;
+	std::cout << DARKSALMON << "What do you want to do? ADD, SEARCH or EXIT?" << RESET << std::endl;
 	std::string input;
 	std::getline(std::cin, input);
 	while (input != "EXIT" && input != "ADD" && input != "SEARCH") {
-		std::cout << "You can choose between: ADD, SEARCH and EXIT" << std::endl;
+		std::cout << RED << "You can choose between: ADD, SEARCH and EXIT" << RESET << std::endl;
 		std::getline(std::cin, input);
 	}
 	return input;
 }
 
-std::string get_field_loop(std::string field) {
-	std::cout << field << "?" << std::endl;
-	std::string entry;
-	std::getline(std::cin, entry);
-	while (entry.empty()) {
-		std::cout << field << "?" << std::endl;
-		std::getline(std::cin, entry);
-	}
-	return entry;
-}
-
 int get_index_loop(int nbr_contacts) {
 	int index;
-	std::cout << "Which contact do you want to be displayed. Give me index: ";
+	std::cout << DARKSALMON << "Which contact do you want to be displayed. Give me index: " << RESET;
 	std::cin >> index;
 	while (std::cin.fail() || (0 < index && index > nbr_contacts-1)) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Invalid input. Please enter an integer between 0 and " << nbr_contacts-1 << ": " ;
+		std::cout << RED << "Invalid input. Please enter an integer between 0 and " << nbr_contacts-1 << ": " << RESET ;
 		std::cin >> index;
 	}
 	std::cin.clear();
@@ -39,7 +29,7 @@ int get_index_loop(int nbr_contacts) {
 }
 
 int main() {
-	std::cout << "Welcome to PhoneBook!" << std::endl;
+	std::cout << FORESTGREEN << "Welcome to PhoneBook!" << RESET << std::endl;
 
 	PhoneBook pb;
 	while (1) {
@@ -53,14 +43,8 @@ int main() {
 				pb.display_ctct(index);
 			}
 		}
-		if (input == "ADD") {
-			std::string first_name = get_field_loop("First name");
-			std::string last_name = get_field_loop("Last name");
-			std::string nick_name = get_field_loop("Nickname");
-			std::string phone_nbr = get_field_loop("Phone number");
-			std::string secret = get_field_loop("Darkest Secret");
-			pb.add(Contact(first_name, last_name, nick_name, phone_nbr, secret));
-		}
+		if (input == "ADD")
+			pb.add(Contact(std::cin));
 	}
 
 }

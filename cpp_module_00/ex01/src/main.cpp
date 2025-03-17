@@ -1,7 +1,6 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-
 int main() {
 	PhoneBook pb;
 	while (1) {
@@ -15,5 +14,4 @@ int main() {
 		if (input == "ADD")
 			pb.add(Contact(std::cin));
 	}
-
 }

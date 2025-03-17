@@ -142,6 +142,7 @@ TEST(PhoneBookDisplayCtct, someTests) {
 	ASSERT_STREQ(wantStream.str().c_str(), got_out.c_str());
 
 	testing::internal::CaptureStdout();
+	in.clear();
 	in.str("1\n0");
 	pb.get_index(in);
 	got_out = testing::internal::GetCapturedStdout();
@@ -151,6 +152,7 @@ TEST(PhoneBookDisplayCtct, someTests) {
 	ASSERT_STREQ(wantStream.str().c_str(), got_out.c_str());
 
 	testing::internal::CaptureStdout();
+	in.clear();
 	in.str("11\n0");
 	pb.get_index(in);
 	got_out = testing::internal::GetCapturedStdout();

@@ -3,16 +3,17 @@
 #include <cstdlib>
 #include <limits>
 
-int get_int_from_istream(std::istream &in) {
-    int res;
+int get_int_from_istream(std::istream &in, int& res) {
+    bool failed;
     in >> res;
+    failed = in.fail();
     if (in.eof()) {
         std::cout << "Input stream closed, leaving." << std::endl;
         exit(EXIT_SUCCESS);
     }
     in.clear();
     in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    return res;
+    return failed;
 }
 
 std::string get_line_wrapper(std::istream &in) {

@@ -57,10 +57,10 @@ int PhoneBook::get_index(std::istream &in) {
     if (_nbr_ctcts < 1)
         return -1;
     std::cout << DARKSALMON << "Which contact do you want to be displayed. Give me an index between 0 and " << _nbr_ctcts-1 << " (or -1 to continue): " << RESET;
-    index = get_int_from_istream(in);
-    while (std::cin.fail() || index < -1 || index > _nbr_ctcts-1) {
+    bool failed = get_int_from_istream(in, index);
+    while (failed || index < -1 || index > _nbr_ctcts-1) {
         std::cout << RED << "Invalid input. Please enter an integer between 0 and " << _nbr_ctcts-1 << " (or -1 to continue): " << RESET ;
-        index = get_int_from_istream(in);
+        failed = get_int_from_istream(in, index);
     }
     return index;
 }

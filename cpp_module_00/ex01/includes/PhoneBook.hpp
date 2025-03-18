@@ -19,6 +19,6 @@ public:
 
 std::string get_line_wrapper(std::istream &in);
 std::string get_cmd(std::istream& in);
-int get_int_from_istream(std::istream &in);
+int get_int_from_istream(std::istream &in, int& res);
 
 #endif // PHONEBOOK_H

@@ -52,28 +52,29 @@ void Harl::complain(std::string level) {
 
 void Harl::filter(std::string level) {
     std::map<std::string, int> actions;
-    actions["DEBUG"] = 0;
-    actions["INFO"] = 1;
-    actions["WARNING"] = 2;
-    actions["ERROR"] = 3;
+    // starting with 1 because default constructor of int yields 0
+    actions["DEBUG"] = 1;
+    actions["INFO"] = 2;
+    actions["WARNING"] = 3;
+    actions["ERROR"] = 4;
 
     switch (actions[level]) {
-    case (0):
+    case (1):
         debug();
         info();
         warning();
         error();
         break;
-    case (1):
+    case (2):
         info();
         warning();
         error();
         break;
-    case (2):
+    case (3):
         warning();
         error();
         break;
-    case (3):
+    case (4):
         error();
         break;
     default:

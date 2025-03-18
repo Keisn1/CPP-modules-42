@@ -7,6 +7,7 @@ class PhoneBook {
 private:
 	Contact _contacts[8];
 	int _nbr_ctcts;
+		int _oldest_index;
 public:
 	explicit PhoneBook();		// no implicit initilaization
 	~PhoneBook();

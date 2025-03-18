@@ -2,7 +2,7 @@
 #include "Contact.hpp"
 #include <limits>
 
-PhoneBook::PhoneBook() : _nbr_ctcts(0) {
+PhoneBook::PhoneBook() : _nbr_ctcts(0), _oldest_index(0) {
     std::cout << FORESTGREEN << "Welcome to PhoneBook!" << RESET << std::endl;
 };
 
@@ -20,10 +20,13 @@ void print_entry(std::string entry) {
 void PhoneBook::display() {
     std::cout << SADDLEBROWN << "|     index|first name| last name|  nickname|" << std::endl;
     std::cout << "|----------|----------|----------|----------|" << RESET << std::endl;
-    int count = 0;
 
+    int count = 0;
+    int index = (_oldest_index-1) -  ((_oldest_index-1) % 8);
     while (count < _nbr_ctcts) {
-        std::cout << SADDLEBROWN << "|" << FORESTGREEN << "         " << count;
+        if (index == _oldest_index)
+            index -= 8;
+        std::cout << SADDLEBROWN << "|" << FORESTGREEN << "         " << index++;
         print_entry(_contacts[count].get_first_name());
         print_entry(_contacts[count].get_last_name());
         print_entry(_contacts[count].get_nick_name());
@@ -34,9 +37,9 @@ void PhoneBook::display() {
 
 void PhoneBook::add(Contact ct) {
     if (_nbr_ctcts < 8)
-        _contacts[_nbr_ctcts++] = ct;
-    else
-        _contacts[7] = ct;
+        _nbr_ctcts++;
+
+    _contacts[(_oldest_index++) % 8] = ct;
 }
 
 void PhoneBook::display_ctct(std::istream& in) {

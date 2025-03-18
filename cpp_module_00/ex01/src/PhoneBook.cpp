@@ -1,6 +1,7 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 #include <limits>
+#include <cstdlib>
 
 PhoneBook::PhoneBook() : _nbr_ctcts(0), _oldest_index(0) {
     std::cout << FORESTGREEN << "Welcome to PhoneBook!" << RESET << std::endl;
@@ -50,19 +51,16 @@ void PhoneBook::display_ctct(std::istream& in) {
 }
 
 
+
 int PhoneBook::get_index(std::istream &in) {
     int index;
     if (_nbr_ctcts < 1)
         return -1;
     std::cout << DARKSALMON << "Which contact do you want to be displayed. Give me an index between 0 and " << _nbr_ctcts-1 << " (or -1 to continue): " << RESET;
-    in >> index;
+    index = get_int_from_istream(in);
     while (std::cin.fail() || index < -1 || index > _nbr_ctcts-1) {
-        in.clear();
-        in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << RED << "Invalid input. Please enter an integer between 0 and " << _nbr_ctcts-1 << " (or -1 to continue): " << RESET ;
-        in >> index;
+        index = get_int_from_istream(in);
     }
-    in.clear();
-    in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     return index;
 }

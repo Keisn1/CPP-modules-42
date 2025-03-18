@@ -34,11 +34,11 @@ void Contact::display() const {
 std::string get_entry(std::string field, std::istream& in) {
 	std::cout << DARKSALMON << field << "?" << RESET << std::endl;
 	std::string entry;
-	std::getline(in, entry);
+	entry = get_line_wrapper(in);
 	while (entry.empty()) {
 		std::cout << RED << "Field must not be empty" << RESET << std::endl;
 		std::cout << DARKSALMON << field << "?" << RESET << std::endl;
-		std::getline(in, entry);
+		entry = get_line_wrapper(in);
 	}
 	return entry;
 }

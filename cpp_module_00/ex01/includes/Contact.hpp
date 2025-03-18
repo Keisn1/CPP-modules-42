@@ -33,5 +33,6 @@ public:
 };
 
 std::string get_entry(std::string field, std::istream& in);
+std::string get_line_wrapper(std::istream &in);
 
 #endif // CONTACT_H

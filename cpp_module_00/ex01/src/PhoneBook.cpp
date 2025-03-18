@@ -51,7 +51,7 @@ int PhoneBook::get_index(std::istream &in) {
     int index;
     if (_nbr_ctcts < 1)
         return -1;
-    std::cout << DARKSALMON << "Which contact do you want to be displayed. Give me index 0 and " << _nbr_ctcts-1 << " (or -1 to continue): " << RESET;
+    std::cout << DARKSALMON << "Which contact do you want to be displayed. Give me an index between 0 and " << _nbr_ctcts-1 << " (or -1 to continue): " << RESET;
     in >> index;
     while (std::cin.fail() || index < -1 || index > _nbr_ctcts-1) {
         in.clear();

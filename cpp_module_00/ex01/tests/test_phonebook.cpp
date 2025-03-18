@@ -138,7 +138,7 @@ TEST(PhoneBookDisplayCtct, someTests) {
 	pb.get_index(in);
 	got_out = testing::internal::GetCapturedStdout();
 	std::stringstream wantStream;
-	wantStream << DARKSALMON << "Which contact do you want to be displayed. Give me index 0 and 0 (or -1 to continue): " << RESET;
+	wantStream << DARKSALMON << "Which contact do you want to be displayed. Give me an index between 0 and 0 (or -1 to continue): " << RESET;
 	ASSERT_STREQ(wantStream.str().c_str(), got_out.c_str());
 
 	testing::internal::CaptureStdout();
@@ -147,7 +147,7 @@ TEST(PhoneBookDisplayCtct, someTests) {
 	pb.get_index(in);
 	got_out = testing::internal::GetCapturedStdout();
 	wantStream.str("");
-	wantStream << DARKSALMON << "Which contact do you want to be displayed. Give me index 0 and 0 (or -1 to continue): " << RESET
+	wantStream << DARKSALMON << "Which contact do you want to be displayed. Give me an index between 0 and 0 (or -1 to continue): " << RESET
 			   << RED << "Invalid input. Please enter an integer between 0 and 0 (or -1 to continue): " << RESET ;
 	ASSERT_STREQ(wantStream.str().c_str(), got_out.c_str());
 
@@ -157,63 +157,43 @@ TEST(PhoneBookDisplayCtct, someTests) {
 	pb.get_index(in);
 	got_out = testing::internal::GetCapturedStdout();
 	wantStream.str("");
-	wantStream << DARKSALMON << "Which contact do you want to be displayed. Give me index 0 and 0 (or -1 to continue): " << RESET
+	wantStream << DARKSALMON << "Which contact do you want to be displayed. Give me an index between 0 and 0 (or -1 to continue): " << RESET
 			   << RED << "Invalid input. Please enter an integer between 0 and 0 (or -1 to continue): " << RESET ;
 	ASSERT_STREQ(wantStream.str().c_str(), got_out.c_str());
 }
 
-TEST(getCmdFunction, someTests) {
+struct getCmdParams {
+	std::string input;
+	std::string want_str ;
+	std::vector<std::string> wantOutElems;
+};
+
+class getCmdTest : public::testing::TestWithParam<getCmdParams>{};
+
+TEST_P(getCmdTest, someTests) {
+	struct getCmdParams params = GetParam();
 	std::istringstream in;
 	std::stringstream wantStream;
+	for (auto s : params.wantOutElems)
+		wantStream << s;
 
 	testing::internal::CaptureStdout();
-	in.str("ADD");
+	in.str(params.input);
 	std::string got_str = get_cmd(in);
 	std::string got_out = testing::internal::GetCapturedStdout();
-	ASSERT_STREQ("ADD", got_str.c_str());
-	wantStream << DARKSALMON << "What do you want to do? ADD, SEARCH or EXIT?" << RESET << "\n";
-	ASSERT_STREQ(wantStream.str().c_str(), got_out.c_str());
-
-	testing::internal::CaptureStdout();
-	in.clear();
-	in.str("EXIT");
-	got_str = get_cmd(in);
-	got_out = testing::internal::GetCapturedStdout();
-	ASSERT_STREQ("EXIT", got_str.c_str());
-	wantStream.str("");
-	wantStream << DARKSALMON << "What do you want to do? ADD, SEARCH or EXIT?" << RESET << "\n";
-	ASSERT_STREQ(wantStream.str().c_str(), got_out.c_str());
-
-	testing::internal::CaptureStdout();
-	in.clear();
-	in.str("SEARCH");
-	got_str = get_cmd(in);
-	got_out = testing::internal::GetCapturedStdout();
-	ASSERT_STREQ("SEARCH", got_str.c_str());
-	wantStream.str("");
-	wantStream << DARKSALMON << "What do you want to do? ADD, SEARCH or EXIT?" << RESET << "\n";
-	ASSERT_STREQ(wantStream.str().c_str(), got_out.c_str());
-
-	testing::internal::CaptureStdout();
-	in.clear();
-	in.str("SEARC\nSEARCH");
-	got_str = get_cmd(in);
-	got_out = testing::internal::GetCapturedStdout();
-	ASSERT_STREQ("SEARCH", got_str.c_str());
-	wantStream.str("");
-	wantStream << DARKSALMON << "What do you want to do? ADD, SEARCH or EXIT?" << RESET << "\n"
-			   << RED << "You can choose between: ADD, SEARCH and EXIT" << RESET << "\n";
-	ASSERT_STREQ(wantStream.str().c_str(), got_out.c_str());
-
-	in.clear();
-	in.str("");
-	// std::cout << in.eof() << std::endl;
-	testing::internal::CaptureStdout();
-	got_str = get_cmd(in);
-	got_out = testing::internal::GetCapturedStdout();
-	ASSERT_STREQ("", got_str.c_str());
-
-	wantStream.str("");
-	wantStream << DARKSALMON << "What do you want to do? ADD, SEARCH or EXIT?" << RESET << "\n";
+	ASSERT_STREQ(params.want_str.c_str(), got_str.c_str());
 	ASSERT_STREQ(wantStream.str().c_str(), got_out.c_str());
 }
+
+INSTANTIATE_TEST_SUITE_P(getCmdTests, getCmdTest,
+						 testing::Values(
+							 getCmdParams{"ADD", "add", {DARKSALMON, "What do you want to do? ADD, SEARCH or EXIT?", RESET, "\n"}},
+							 getCmdParams{"add", "add", {DARKSALMON, "What do you want to do? ADD, SEARCH or EXIT?", RESET, "\n"}},
+							 getCmdParams{"EXIT", "exit", {DARKSALMON, "What do you want to do? ADD, SEARCH or EXIT?", RESET, "\n"}},
+							 getCmdParams{"exit", "exit", {DARKSALMON, "What do you want to do? ADD, SEARCH or EXIT?", RESET, "\n"}},
+							 getCmdParams{"SEARCH", "search", {DARKSALMON, "What do you want to do? ADD, SEARCH or EXIT?", RESET, "\n"}},
+							 getCmdParams{"search", "search", {DARKSALMON, "What do you want to do? ADD, SEARCH or EXIT?", RESET, "\n"}},
+							 getCmdParams{"asdf\nsearch", "search", {DARKSALMON , "What do you want to do? ADD, SEARCH or EXIT?" , RESET , "\n" , RED , "You can choose between: ADD, SEARCH and EXIT" , RESET , "\n"}}
+						 ));
+
+

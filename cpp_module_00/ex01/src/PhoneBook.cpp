@@ -71,5 +71,7 @@ int PhoneBook::get_index(std::istream &in) {
         std::cout << RED << "Invalid input. Please enter an integer between 0 and " << _nbr_ctcts-1 << " (or -1 to continue): " << RESET ;
         in >> index;
     }
+    in.clear();  // Clear the error flags
+    in.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
     return index;
 }

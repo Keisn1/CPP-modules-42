@@ -22,7 +22,10 @@ std::string get_line_wrapper(std::istream &in) {
         std::cerr << "EOF encountered. Exiting..." << std::endl;
         exit(EXIT_SUCCESS);
     }
-    std::getline(in, input);
+    if (!std::getline(in, input)) {
+        std::cerr << "EOF encountered. Exiting..." << std::endl;
+        exit(EXIT_SUCCESS);
+	}
     return input;
 }
 

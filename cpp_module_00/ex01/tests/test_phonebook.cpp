@@ -60,7 +60,6 @@ TEST_P(PhoneBookTestSuite, ExampleTest) {
 
 	size_t index = contacts.size() < 8 ? 0 : contacts.size()-8;
 
-	std::cout << index << std::endl;
 	std::stringstream contactsStream1;
 	while (index % 8) {
 		ContactParams ct = contacts[index];

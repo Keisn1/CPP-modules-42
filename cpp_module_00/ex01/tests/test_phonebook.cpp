@@ -53,19 +53,21 @@ TEST_P(PhoneBookTestSuite, ExampleTest) {
 	wantStream << SADDLEBROWN << "|     index|first name| last name|  nickname|" << "\n"
 			   << "|----------|----------|----------|----------|" << RESET << "\n";
 
+	std::stringstream contactsStream;
 	size_t max_size = contacts.size() >= 8 ? 8 : contacts.size();
 	if (max_size == 0)
 		return;
-	for (size_t i = 0; i < max_size-1; i++) {
+
+	std::vector<int> indices;
+	for (size_t i = 1; i <= max_size; i++ )
+		indices.push_back(contacts.size() - i);
+
+	for (size_t i = 0; i < max_size; i++) {
 		ContactParams ct = contacts[i];
-		wantStream << SADDLEBROWN << "|" << FORESTGREEN <<   "         " << i;
-		contact_to_stream(ct, wantStream);
+		contactsStream << SADDLEBROWN << "|" << FORESTGREEN <<   "         " << indices[max_size-1-i];
+		contact_to_stream(ct, contactsStream);
 	}
-
-	ContactParams ct = contacts[contacts.size()-1];
-	wantStream << SADDLEBROWN << "|" << FORESTGREEN <<   "         " << max_size-1;
-	contact_to_stream(ct, wantStream);
-
+	wantStream << contactsStream.str();
 	std::string want = wantStream.str();
 	ASSERT_STREQ(want.c_str(), got.c_str());
 }
@@ -74,16 +76,20 @@ INSTANTIATE_TEST_SUITE_P(
 	PhoneBook, PhoneBookTestSuite,
 	testing::Values(
 		PhoneBookTestParams{std::vector<ContactParams>{}},
+		
 		PhoneBookTestParams{std::vector<ContactParams>{
 				ContactParams{"kay", "freyer", "keisn", "111", "my secret"}}},
+
 		PhoneBookTestParams{std::vector<ContactParams>{
 				ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
 					ContactParams{"karl", "freyer", "keisn", "111", "my secret"}}},
+
 		PhoneBookTestParams{std::vector<ContactParams>{
 				ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
 					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
 					ContactParams{"christophe", "freyer", "keisn", "111",
 						"my secret"}}},
+
 		PhoneBookTestParams{std::vector<ContactParams>{
 				ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
 					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
@@ -94,6 +100,7 @@ INSTANTIATE_TEST_SUITE_P(
 					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
 					ContactParams{"christophe", "freyer", "keisn", "111",
 						"my secret"}}}
+
 		// PhoneBookTestParams{std::vector<ContactParams>{
 		// 		ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
 		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
@@ -104,7 +111,7 @@ INSTANTIATE_TEST_SUITE_P(
 		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
 		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
 		// 			ContactParams{"christophe", "freyer", "keisn", "111",
-		// 				"my secret"}}}
+		// 				"my secret"}}},
 
         // PhoneBookTestParams{std::vector<ContactParams>{
 		// 		ContactParams{"kay", "freyer", "keisn", "111", "my secret"},

@@ -3,6 +3,7 @@
 #include "test_main.hpp"
 #include "gtest/gtest.h"
 #include <gtest/gtest.h>
+#include <iostream>
 #include <sstream>
 #include <vector>
 
@@ -53,21 +54,28 @@ TEST_P(PhoneBookTestSuite, ExampleTest) {
 	wantStream << SADDLEBROWN << "|     index|first name| last name|  nickname|" << "\n"
 			   << "|----------|----------|----------|----------|" << RESET << "\n";
 
-	std::stringstream contactsStream;
 	size_t max_size = contacts.size() >= 8 ? 8 : contacts.size();
 	if (max_size == 0)
 		return;
 
-	std::vector<int> indices;
-	for (size_t i = 1; i <= max_size; i++ )
-		indices.push_back(contacts.size() - i);
+	size_t index = contacts.size() < 8 ? 0 : contacts.size()-8;
 
-	for (size_t i = 0; i < max_size; i++) {
-		ContactParams ct = contacts[i];
-		contactsStream << SADDLEBROWN << "|" << FORESTGREEN <<   "         " << indices[max_size-1-i];
-		contact_to_stream(ct, contactsStream);
+	std::cout << index << std::endl;
+	std::stringstream contactsStream1;
+	while (index % 8) {
+		ContactParams ct = contacts[index];
+		contactsStream1 << SADDLEBROWN << "|" << FORESTGREEN <<   "         " << index++;
+		contact_to_stream(ct, contactsStream1);
 	}
-	wantStream << contactsStream.str();
+
+	std::stringstream contactsStream2;
+	while (index < contacts.size()) {
+		ContactParams ct = contacts[index];
+		contactsStream2 << SADDLEBROWN << "|" << FORESTGREEN <<   "         " << index++;
+		contact_to_stream(ct, contactsStream2);
+	}
+
+	wantStream << contactsStream2.str() << contactsStream1.str();
 	std::string want = wantStream.str();
 	ASSERT_STREQ(want.c_str(), got.c_str());
 }
@@ -99,31 +107,30 @@ INSTANTIATE_TEST_SUITE_P(
 					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
 					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
 					ContactParams{"christophe", "freyer", "keisn", "111",
-						"my secret"}}}
+						"my secret"}}},
 
-		// PhoneBookTestParams{std::vector<ContactParams>{
-		// 		ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"christophe", "freyer", "keisn", "111",
-		// 				"my secret"}}},
+		PhoneBookTestParams{std::vector<ContactParams>{
+				ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"christophe", "freyer", "keisn", "111", "my secret"}}},
 
-        // PhoneBookTestParams{std::vector<ContactParams>{
-		// 		ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"christophe", "freyer", "keisn", "111", "my secret"},
-		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"}}}
+        PhoneBookTestParams{std::vector<ContactParams>{
+				ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"christophe", "freyer", "keisn", "111", "my secret"},
+					ContactParams{"karl", "freyer", "keisn", "111", "my secret"}}}
 	));
 
 TEST(PhoneBookDisplayCtct, someTests) {

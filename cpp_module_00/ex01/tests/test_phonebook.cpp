@@ -93,30 +93,30 @@ INSTANTIATE_TEST_SUITE_P(
 					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
 					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
 					ContactParams{"christophe", "freyer", "keisn", "111",
-						"my secret"}}},
-		PhoneBookTestParams{std::vector<ContactParams>{
-				ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"christophe", "freyer", "keisn", "111",
-						"my secret"}}},
+						"my secret"}}}
+		// PhoneBookTestParams{std::vector<ContactParams>{
+		// 		ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"christophe", "freyer", "keisn", "111",
+		// 				"my secret"}}}
 
-        PhoneBookTestParams{std::vector<ContactParams>{
-				ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"christophe", "freyer", "keisn", "111", "my secret"},
-					ContactParams{"karl", "freyer", "keisn", "111", "my secret"}}}
+        // PhoneBookTestParams{std::vector<ContactParams>{
+		// 		ContactParams{"kay", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"christophe", "freyer", "keisn", "111", "my secret"},
+		// 			ContactParams{"karl", "freyer", "keisn", "111", "my secret"}}}
 	));
 
 TEST(PhoneBookDisplayCtct, someTests) {

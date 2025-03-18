@@ -1,5 +1,6 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
+#include <cstdio>
 #include <limits>
 #include <cstdlib>
 
@@ -50,17 +51,25 @@ void PhoneBook::display_ctct(std::istream& in) {
     _contacts[index].display();
 }
 
-
-
 int PhoneBook::get_index(std::istream &in) {
     int index;
     if (_nbr_ctcts < 1)
         return -1;
     std::cout << DARKSALMON << "Which contact do you want to be displayed. Give me an index between 0 and " << _nbr_ctcts-1 << " (or -1 to continue): " << RESET;
-    bool failed = get_int_from_istream(in, index);
-    while (failed || index < -1 || index > _nbr_ctcts-1) {
+    if (in.eof()) {
+        std::cerr << "EOF encountered. Exiting...\n";
+        exit(EXIT_SUCCESS);
+    }
+    in >> index;
+    while (in.fail() || index < -1 || index > _nbr_ctcts-1) {
+        in.clear();  // Clear the error flags
+        in.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+        if (in.eof()) {
+            std::cerr << std::endl << "EOF encountered. Exiting..." << std::endl;
+            exit(EXIT_SUCCESS);
+        }
         std::cout << RED << "Invalid input. Please enter an integer between 0 and " << _nbr_ctcts-1 << " (or -1 to continue): " << RESET ;
-        failed = get_int_from_istream(in, index);
+        in >> index;
     }
     return index;
 }

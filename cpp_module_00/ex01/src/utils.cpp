@@ -5,12 +5,12 @@
 
 int get_int_from_istream(std::istream &in, int& res) {
     bool failed;
-    in >> res;
-    failed = in.fail();
     if (in.eof()) {
-        std::cout << "Input stream closed, leaving." << std::endl;
+        std::cout << "EOF, leaving." << std::endl;
         exit(EXIT_SUCCESS);
     }
+    in >> res;
+    failed = in.fail();
     in.clear();
     in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     return failed;
@@ -18,11 +18,11 @@ int get_int_from_istream(std::istream &in, int& res) {
 
 std::string get_line_wrapper(std::istream &in) {
     std::string input;
-    std::getline(in, input);
     if (in.eof()) {
-        std::cout << "Input stream closed, leaving." << std::endl;
+        std::cerr << "EOF encountered. Exiting..." << std::endl;
         exit(EXIT_SUCCESS);
     }
+    std::getline(in, input);
     return input;
 }
 

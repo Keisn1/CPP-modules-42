@@ -134,6 +134,7 @@ TEST(PhoneBookDisplayCtct, someTests) {
 	pb.add(Contact("kay", "freyer", "Keisn", "111", "secret"));
 
 	testing::internal::CaptureStdout();
+	in.clear();
 	in.str("0");
 	pb.get_index(in);
 	got_out = testing::internal::GetCapturedStdout();

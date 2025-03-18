@@ -1,5 +1,6 @@
 #include "Harl.hpp"
 #include <iostream>
+#include <map>
 
 void Harl::debug() {
     std::cout << "[DEBUG]" << std::endl << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special ketchup burger. I really do!" << std::endl;
@@ -47,4 +48,35 @@ void Harl::complain(std::string level) {
         }
     }
     std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+}
+
+void Harl::filter(std::string level) {
+    std::map<std::string, int> actions;
+    actions["DEBUG"] = 0;
+    actions["INFO"] = 1;
+    actions["WARNING"] = 2;
+    actions["ERROR"] = 3;
+
+    switch (actions[level]) {
+    case (0):
+        debug();
+        info();
+        warning();
+        error();
+        break;
+    case (1):
+        info();
+        warning();
+        error();
+        break;
+    case (2):
+        warning();
+        error();
+        break;
+    case (3):
+        error();
+        break;
+    default:
+        std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+    }
 }

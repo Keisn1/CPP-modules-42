@@ -32,4 +32,10 @@ TEST(harlTests, firstTests) {
 	got = testing::internal::GetCapturedStdout();
 	want = "This is unacceptable! I want to speak to the manager now.\n";
 	ASSERT_STREQ(want.c_str(), got.c_str());
+
+	testing::internal::CaptureStdout();
+	harl.complain("something else");
+	got = testing::internal::GetCapturedStdout();
+	want = "Unknown log level: something else\n";
+	ASSERT_STREQ(want.c_str(), got.c_str());
 }

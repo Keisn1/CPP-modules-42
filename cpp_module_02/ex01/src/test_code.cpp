@@ -6,6 +6,7 @@ void run_test_code() {
     Fixed const b( 10 );
     std::cout << "a is " << a << std::endl;
     std::cout << "b is " << b << std::endl;
+    Fixed const c( 42.42f );
 
     // Fixed const c( 42.42f );
     // Fixed const d( b );

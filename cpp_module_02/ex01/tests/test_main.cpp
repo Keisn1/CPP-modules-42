@@ -15,6 +15,8 @@ TEST(testCode, test) {
 Int constructor called
 a is 0
 b is 10
+Float constructor called
+Destructor called
 Destructor called
 Destructor called
 )";

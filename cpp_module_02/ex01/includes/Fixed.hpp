@@ -1,21 +1,27 @@
 #ifndef FIXED_H
 #define FIXED_H
 
+#include <iostream>
+
 class Fixed {
         private:
                 int _raw_bits;
                 static int _frac_bits;
         public:
                 Fixed(void);
+                Fixed(const int val);
+                Fixed(const float val);
                 Fixed(const Fixed&);
                 ~Fixed(void);
                 Fixed& operator=(const Fixed&);
-                // function does not modify any member variables of the class
-                // allowing it to be called on constant instances of the class.
+// function does not modify any member variables of the class
+// allowing it to be called on constant instances of the class.
                 int getVal(void) const;
                 int getRawBits(void) const;
                 int setRawBits(int const raw);
+                float toFloat(void) const;
 };
 
+std::ostream& operator<<(std::ostream& out, const Fixed& fixed);
 
 #endif // FIXED_H

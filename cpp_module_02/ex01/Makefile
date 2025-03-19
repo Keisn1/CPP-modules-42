@@ -17,7 +17,7 @@ CXXFLAGS := -std=c++98 -Wall -Werror -Wextra
 SRC_DIR := src
 BUILD_DIR := build
 INCLUDES := -Iincludes
-SRC_FILES := $(SRC_DIR)/Fixed.cpp $(SRC_DIR)/main.cpp $(SRC_DIR)/test_code.cpp
+SRC_FILES := $(SRC_DIR)/Fixed.cpp
 
 NAME := fixed
 

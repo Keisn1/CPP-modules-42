@@ -1,7 +1,7 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-int Fixed::_frac_bits = 8;
+const int Fixed::_frac_bits = 8;
 
 Fixed::Fixed() : _raw_bits(0) {
     std::cout << "Default constructor called" << std::endl;
@@ -51,10 +51,20 @@ int Fixed::getRawBits(void) const {
 }
 
 float Fixed::toFloat(void) const {
-    return _raw_bits;
+    float res = 0;
+    int rest = _raw_bits;
+    int summand = 1;
+    int count = 0;
+    while (count < 32 - _frac_bits) {
+        res += (rest & 1) * summand;
+        summand *= 2;
+        rest >>= 1;
+        count++;
+    }
+    return res;
 }
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
-    out << fixed.toFloat();
+    out << static_cast<int>(fixed.toFloat());
     return out;
 }

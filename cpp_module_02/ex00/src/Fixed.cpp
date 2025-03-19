@@ -1,7 +1,7 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-int Fixed::_frac_bits = 8;
+const int Fixed::_frac_bits = 8;
 
 Fixed::Fixed() : _raw_bits(0) {
     std::cout << "Default constructor called" << std::endl;

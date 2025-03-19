@@ -6,7 +6,7 @@
 class Fixed {
         private:
                 int _raw_bits;
-                static int _frac_bits;
+                static const int _frac_bits;
         public:
                 Fixed(void);
                 Fixed(const int val);

@@ -1,12 +1,20 @@
 #include "gtest/gtest.h"
 #include "Fixed.hpp"
-#include "main.hpp"
 
 int main(int argc, char *argv[]) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
 
+void run_test_code() {
+    Fixed a;
+    Fixed b( a );
+    Fixed c;
+    c = b;
+    std::cout << a.getRawBits() << std::endl;
+    std::cout << b.getRawBits() << std::endl;
+    std::cout << c.getRawBits() << std::endl;
+}
 
 TEST(FixedPointTests, firstTests) {
     testing::internal::CaptureStdout();

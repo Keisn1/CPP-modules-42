@@ -1,0 +1,5 @@
+#+title: Readme
+
+* fixed-point numbers
+- balance between performance, accuracy, range and precision
+- used in computer graphics, sound processing, scientific programming etc.

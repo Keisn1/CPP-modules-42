@@ -1,22 +1,29 @@
 ##
-# cpp01/ex01
+# cpp02/ex00
 #
 # @file
 # @version 0.1
 
+# = ... lazy assignment
+# variable is not calculated at the time of assignment
+# evaluated every time the variable is used
+# := (Simple or Immediate Assignment)
+# variable is calculated and fixed at the time of assignment
+# variable's value will not change even if the variables it depends on change later
+
 CXX := c++
-CXX_FLAGS := -std=c++98 -Wall -Werror -Wextra
+CXXFLAGS := -std=c++98 -Wall -Werror -Wextra
 
 SRC_DIR := src
 BUILD_DIR := build
 INCLUDES := -Iincludes
-SRC_FILES := 	$(SRC_DIR)/Fixed.cpp $(SRC_DIR)/main.cpp
+SRC_FILES := $(SRC_DIR)/Fixed.cpp $(SRC_DIR)/main.cpp $(SRC_DIR)/test_code.cpp
 
 NAME := fixed
 
 all: $(NAME)
 
-$(NAME): $(SRC_FILES)
+$(NAME):
 	$(CXX) $(CXX_FLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
 
 clean:
@@ -26,7 +33,8 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	make $(NAME)
 
 unittest:
 	cmake -S . -B build && \

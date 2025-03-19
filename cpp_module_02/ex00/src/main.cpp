@@ -1,9 +1,6 @@
-#include "Fixed.hpp"
-#include <iostream>
+#include "main.hpp"
 
 int main() {
-	Fixed fp;
-	// Fixed fp = Fixed();
-	std::cout << fp.getVal() << std::endl;
+	run_test_code();
 	return 0;
 }

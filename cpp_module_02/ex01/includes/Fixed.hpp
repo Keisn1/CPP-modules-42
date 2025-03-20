@@ -13,9 +13,9 @@ class Fixed {
                 // Fixed(const float val);
                 Fixed(const Fixed&);
                 ~Fixed(void);
-                Fixed& operator=(const Fixed&);
-// function does not modify any member variables of the class
-// allowing it to be called on constant instances of the class.
+                Fixed &operator=(const Fixed &);
+                // function does not modify any member variables of the class
+                // allowing it to be called on constant instances of the class.
                 int getRawBits(void) const;
                 int setRawBits(int const raw);
                 float toFloat(void) const;

@@ -3,12 +3,11 @@
 
 const int Fixed::_frac_bits = 8;
 
-Fixed::Fixed() : _raw_bits(0) {
-    std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed() : _raw_bits(0) { std::cout << "Default constructor called" << std::endl; }
 
 Fixed::Fixed(const int val) : _raw_bits(val) {
     std::cout << "Int constructor called" << std::endl;
+    _raw_bits = val << 8;
 }
 
 // Copy constructor
@@ -40,9 +39,7 @@ Fixed &Fixed::operator=(const Fixed& fixed) {
 // or simply because your coding style mandates explicitly defining special member functions.
 // Without additional context, there's no immediate need to do anything in such a destructor unless the class manages resources
 // (like dynamic memory, file handles, etc.) that require manual cleanup.
-Fixed::~Fixed() {
-    std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
 int Fixed::getRawBits(void) const {
     std::cout << "getRawBits member function called" << std::endl;
@@ -50,7 +47,19 @@ int Fixed::getRawBits(void) const {
 }
 
 int Fixed::toInt(void) const {
-    return 0;
+    int rest = _raw_bits >> 8;
+    int count = 0;
+    int result = 0;
+    int summand = 1;
+    while (count < 23) {
+        result += summand * (rest & 1);
+        summand *= 2;
+        rest >>= 1;
+        count++;
+    }
+    if (rest)
+        result += -8388608;
+    return result;
 }
 
 float Fixed::toFloat(void) const {
@@ -68,6 +77,6 @@ float Fixed::toFloat(void) const {
 }
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
-    out << static_cast<int>(fixed.toFloat());
+    out << fixed.toInt();
     return out;
 }

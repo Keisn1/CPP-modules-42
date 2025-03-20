@@ -1,5 +1,5 @@
 ##
-# cpp01/ex01
+# cpp01/ex05
 #
 # @file
 # @version 0.1
@@ -27,7 +27,8 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE) $(NAME)
 
 unittest:
 	cmake -S . -B build && \

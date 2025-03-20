@@ -27,7 +27,8 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE) $(NAME)
 
 unittest:
 	cmake -S . -B build && \

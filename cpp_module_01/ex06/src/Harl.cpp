@@ -1,19 +1,21 @@
 #include "Harl.hpp"
 #include <iostream>
 
-Harl::Harl(void) {
-    log_fun_map["DEBUG"] = &Harl::debug;
-    log_fun_map["INFO"] = &Harl::info;
-    log_fun_map["WARNING"] = &Harl::warning;
-    log_fun_map["ERROR"] = &Harl::error;
+Harl::t_log_func Harl::get_debug_level(std::string level) {
+    if (level == "DEBUG") { return &Harl::debug; }
+    if (level == "INFO") { return &Harl::info; }
+    if (level == "WARNING") { return &Harl::warning; }
+    if (level == "ERROR") { return &Harl::error; }
+    return NULL;
 }
 
 void Harl::complain(std::string level) {
-    t_log_func log_fun = log_fun_map[level];
-    if (log_fun)
-        (this->*log_fun)();
+    Harl::t_log_func log_func= get_debug_level(level);
+    if (log_func)
+        (this->*log_func)();
     else
         std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+    return;
 }
 
 void Harl::debug() {
@@ -32,24 +34,23 @@ void Harl::error() {
 }
 
 void Harl::filter(std::string level) {
-    std::map<std::string, int> actions;
-    // starting with 1 because default constructor of int yields 0
-    actions["DEBUG"] = 1;
-    actions["INFO"] = 2;
-    actions["WARNING"] = 3;
-    actions["ERROR"] = 4;
+    std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int level_nbr = -1;
+    for (int i = 0; i < 4 ; i++)
+        if (level == levels[i])
+            level_nbr = i;
 
-    switch (actions[level]) {
-    case (1):
+    switch (level_nbr) {
+    case (0):
         debug();
         // fall through
-    case (2):
+    case (1):
         info();
         // fall through
-    case (3):
+    case (2):
         warning();
         // fall through
-    case (4):
+    case (3):
         error();
         break;
     default:

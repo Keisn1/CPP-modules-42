@@ -178,6 +178,12 @@ Fixed Fixed::operator+(const Fixed &fixed) {
     return res;
 }
 
+Fixed Fixed::operator-(const Fixed &fixed) {
+    Fixed res;
+    res.setRawBits(subtract(_raw_bits, fixed.getRawBits()));
+    return res;
+}
+
 Fixed Fixed::operator*(const Fixed &fixed) {
     return toFloat() * fixed.toFloat();
 }

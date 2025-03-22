@@ -88,7 +88,8 @@ INSTANTIATE_TEST_SUITE_P(lowerThan, TestOperatorsSuite,
 enum ArithmeticOp {
     PLUS, // 0
     MULTIPLY,
-    DIVIDE
+    DIVIDE,
+    SUBTRACT,
 };
 
 struct testArithmeticParams {
@@ -107,11 +108,14 @@ TEST_P(TestArithmeticSuite, testLowerThan) {
     Fixed b(params.b);
     Fixed want(params.want);
 
-    std::cout << "1: " << a*b << std::endl;
+    std::cout << "1: " << a-b << std::endl;
 
     switch (params.op) {
     case PLUS:
         ASSERT_TRUE( want == (a + b));
+        break;
+    case SUBTRACT:
+        ASSERT_TRUE( want == (a - b));
         break;
     case MULTIPLY:
         ASSERT_TRUE( want == (a * b));
@@ -172,4 +176,24 @@ INSTANTIATE_TEST_SUITE_P(
         testArithmeticParams{8, 0.0, 3.0, DIVIDE, 0.0},
         testArithmeticParams{9, 5.5, 2.0, DIVIDE, 2.75},
         testArithmeticParams{10, 9.81, 3.27, DIVIDE, 2.99609}
+        ));
+
+
+
+INSTANTIATE_TEST_SUITE_P(
+    Substraction,
+    TestArithmeticSuite,
+    testing::Values(
+        testArithmeticParams{0, 5, 2, SUBTRACT, 3},
+        testArithmeticParams{1, 10, 10, SUBTRACT, 0},
+        testArithmeticParams{2, -5, -3, SUBTRACT, -2},
+        testArithmeticParams{3, 0, 7, SUBTRACT, -7},
+        testArithmeticParams{4, 15, 20, SUBTRACT, -5},
+        testArithmeticParams{5, 7, -3, SUBTRACT, 10},
+        testArithmeticParams{6, 5.5, 2.25, SUBTRACT, 3.25},
+        testArithmeticParams{7, -10.0, 5.0, SUBTRACT, -15.0},
+        testArithmeticParams{8, 0.0, -3.0, SUBTRACT, 3.0},
+        testArithmeticParams{9, 3.1415, 3.1414, SUBTRACT, 0.0000},
+        testArithmeticParams{10, 100.0, 50.5, SUBTRACT, 49.5},
+        testArithmeticParams{9, 3.766, 3.1655, SUBTRACT, 0.601562}
         ));

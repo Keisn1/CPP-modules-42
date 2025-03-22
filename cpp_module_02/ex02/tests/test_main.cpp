@@ -106,9 +106,7 @@ TEST_P(TestArithmeticSuite, testLowerThan) {
     Fixed b(params.b);
     Fixed want(params.want);
 
-    std::cout << "1: " << params.a*params.b << std::endl;
     std::cout << "1: " << a*b << std::endl;
-    std::cout << "1: " << want << std::endl;
 
     switch (params.op) {
     case PLUS:
@@ -141,15 +139,15 @@ INSTANTIATE_TEST_SUITE_P(
     Multiply,
     TestArithmeticSuite,
     testing::Values(testArithmeticParams{0, 0, 0, MULTIPLY, 0},
-        testArithmeticParams{1, 2, 3, MULTIPLY, 6},
-        testArithmeticParams{2, -1, 5, MULTIPLY, -5},
-        testArithmeticParams{3, 7, 0, MULTIPLY, 0},
-        testArithmeticParams{4, -3, -4, MULTIPLY, 12},
-        testArithmeticParams{5, 10, 10, MULTIPLY, 100},
+                    testArithmeticParams{1, 2, 3, MULTIPLY, 6},
+                    testArithmeticParams{2, -1, 5, MULTIPLY, -5},
+                    testArithmeticParams{3, 7, 0, MULTIPLY, 0},
+                    testArithmeticParams{4, -3, -4, MULTIPLY, 12},
+                    testArithmeticParams{5, 10, 10, MULTIPLY, 100},
 
-   testArithmeticParams{6, 1.5, 2.0, MULTIPLY, 3.0},
-   testArithmeticParams{7, -2.5, 4.0, MULTIPLY, -10.0},
-   testArithmeticParams{8, 0.0, 0.0, MULTIPLY, 0.0},
-   testArithmeticParams{9, 3.14, 2.71, MULTIPLY, 8.5094}
-   // testArithmeticParams{10, -1.5, -2.5, MULTIPLY, 3.75}
-));
+                    testArithmeticParams{6, 1.5, 2.0, MULTIPLY, 3.0},
+                    testArithmeticParams{7, -2.5, 4.0, MULTIPLY, -10.0},
+                    testArithmeticParams{8, 0.0, 0.0, MULTIPLY, 0.0},
+                    testArithmeticParams{9, 3.14, 2.71, MULTIPLY, 8.51562},
+                    testArithmeticParams{10, -1.5, -2.5, MULTIPLY, 3.75}
+        ));

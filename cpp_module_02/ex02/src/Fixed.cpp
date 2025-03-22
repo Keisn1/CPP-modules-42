@@ -167,11 +167,6 @@ bool Fixed::operator>=(const Fixed& fixed) {
     return *this > fixed;
 }
 
-std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
-    out << fixed.toFloat();
-    return out;
-}
-
 Fixed Fixed::operator+(const Fixed &fixed) {
     Fixed res;
     res.setRawBits(add(_raw_bits, fixed.getRawBits()));
@@ -192,6 +187,33 @@ Fixed Fixed::operator/(const Fixed &fixed) {
     if (fixed.toFloat() == 0)
         return Fixed ();
     return toFloat() / fixed.toFloat();
+}
+
+Fixed& Fixed::operator++(void){
+    _raw_bits++;
+    return *this;
+}
+
+Fixed& Fixed::operator++(int){
+    _raw_bits++;
+    return *this;
+}
+
+Fixed& Fixed::operator--(void){
+    _raw_bits--;
+    return *this;
+}
+
+Fixed& Fixed::operator--(int){
+    _raw_bits--;
+    return *this;
+}
+
+
+
+std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
+    out << fixed.toFloat();
+    return out;
 }
 
 int add(int a, int b) {

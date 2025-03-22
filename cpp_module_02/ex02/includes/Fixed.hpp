@@ -26,10 +26,14 @@ public:
         bool operator>(const Fixed&);
         bool operator<=(const Fixed&);
         bool operator>=(const Fixed&);
-        Fixed operator+(const Fixed& fixed);
-        Fixed operator-(const Fixed& fixed);
-        Fixed operator*(const Fixed& fixed);
-        Fixed operator/(const Fixed& fixed);
+        Fixed operator+(const Fixed&);
+        Fixed operator-(const Fixed&);
+        Fixed operator*(const Fixed&);
+        Fixed operator/(const Fixed&);
+        Fixed& operator++();
+        Fixed& operator++(int);
+        Fixed& operator--();
+        Fixed& operator--(int);
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed);

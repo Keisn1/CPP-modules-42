@@ -197,3 +197,80 @@ INSTANTIATE_TEST_SUITE_P(
         testArithmeticParams{10, 100.0, 50.5, SUBTRACT, 49.5},
         testArithmeticParams{9, 3.766, 3.1655, SUBTRACT, 0.601562}
         ));
+
+enum IncrementOp {
+    INC, // 0
+    DEC,
+    P_INC, // 0
+    P_DEC
+};
+
+struct testIncOpParams {
+    int testNbr;
+    float a;
+    IncrementOp op;
+    float want;
+};
+
+class TestIncOpSuite : public::testing::TestWithParam<testIncOpParams>{};
+
+TEST_P(TestIncOpSuite, testLowerThan) {
+    struct testIncOpParams params = GetParam();
+    Fixed a(params.a);
+    Fixed want(params.want);
+
+    switch (params.op) {
+    case INC:
+        ++a;
+        ASSERT_TRUE( want == a);
+        break;
+    case DEC:
+        --a;
+        ASSERT_TRUE( want == a);
+        break;
+    case P_INC:
+        a++;
+        ASSERT_TRUE( want == a);
+        break;
+    case P_DEC:
+        a--;
+        ASSERT_TRUE( want == a);
+        break;
+    }
+}
+
+INSTANTIATE_TEST_SUITE_P(
+    Increment,
+    TestIncOpSuite,
+    testing::Values(
+        testIncOpParams{0, 0, INC, 0.00390625},
+        testIncOpParams{0, 5, INC, 5.00390625},
+        testIncOpParams{0, 2.25, INC, 2.25390625}
+        ));
+
+INSTANTIATE_TEST_SUITE_P(
+    P_Increment,
+    TestIncOpSuite,
+    testing::Values(
+        testIncOpParams{0, 0, P_INC, 0.00390625},
+        testIncOpParams{0, 5, P_INC, 5.00390625},
+        testIncOpParams{0, 2.25, P_INC, 2.25390625}
+        ));
+
+INSTANTIATE_TEST_SUITE_P(
+    Decrement,
+    TestIncOpSuite,
+    testing::Values(
+        testIncOpParams{0, 0, DEC, -0.00390625},
+        testIncOpParams{0, -5, DEC, -5.00390625},
+        testIncOpParams{0, 2.25, DEC, 2.24609375}
+        ));
+
+INSTANTIATE_TEST_SUITE_P(
+    P_Decrement,
+    TestIncOpSuite,
+    testing::Values(
+        testIncOpParams{0, 0, P_DEC, -0.00390625},
+        testIncOpParams{0, -5, P_DEC, -5.00390625},
+        testIncOpParams{0, 2.25, P_DEC, 2.24609375}
+        ));

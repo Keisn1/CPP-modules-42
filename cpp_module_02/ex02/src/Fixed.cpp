@@ -2,6 +2,9 @@
 #include <iostream>
 #include <cmath>
 
+int add(int a, int b);
+int subtract(int a, int b);
+
 const int Fixed::_frac_bits = 8;
 
 Fixed::Fixed() : _raw_bits(0) { std::cout << "Default constructor called" << std::endl; }
@@ -177,4 +180,39 @@ Fixed Fixed::operator+(const Fixed &fixed) {
 
 Fixed Fixed::operator*(const Fixed &fixed) {
     return toFloat() * fixed.toFloat();
+}
+
+Fixed Fixed::operator/(const Fixed &fixed) {
+    if (fixed.toFloat() == 0)
+        return Fixed ();
+    return toFloat() / fixed.toFloat();
+}
+
+int add(int a, int b) {
+    while (b != 0) {
+        // Calculate carry
+        int carry = a & b;
+
+        // Sum without carry
+        a = a ^ b;
+
+        // Calculate next carry
+        b = carry << 1;
+    }
+    return a;
+}
+
+int subtract(int a, int b) {
+    while (b != 0) {
+        // Calculate borrow where `b` has a 1 and `a` has a 0
+        int borrow = (~a) & b;
+
+        // Subtract without considering borrow using XOR
+        a = a ^ b;
+
+        // Calculate next borrow
+        b = borrow << 1;
+    }
+
+    return a;
 }

@@ -87,7 +87,8 @@ INSTANTIATE_TEST_SUITE_P(lowerThan, TestOperatorsSuite,
 
 enum ArithmeticOp {
     PLUS, // 0
-    MULTIPLY // 0
+    MULTIPLY,
+    DIVIDE
 };
 
 struct testArithmeticParams {
@@ -114,6 +115,9 @@ TEST_P(TestArithmeticSuite, testLowerThan) {
         break;
     case MULTIPLY:
         ASSERT_TRUE( want == (a * b));
+        break;
+    case DIVIDE:
+        ASSERT_TRUE( want == (a / b));
         break;
     }
 }
@@ -150,4 +154,22 @@ INSTANTIATE_TEST_SUITE_P(
                     testArithmeticParams{8, 0.0, 0.0, MULTIPLY, 0.0},
                     testArithmeticParams{9, 3.14, 2.71, MULTIPLY, 8.51562},
                     testArithmeticParams{10, -1.5, -2.5, MULTIPLY, 3.75}
+        ));
+
+
+INSTANTIATE_TEST_SUITE_P(
+    Division,
+    TestArithmeticSuite,
+    testing::Values(
+        testArithmeticParams{0, 6, 3, DIVIDE, 2},
+        testArithmeticParams{1, -10, 2, DIVIDE, -5},
+        testArithmeticParams{2, 9, -3, DIVIDE, -3},
+        testArithmeticParams{3, 0, 1, DIVIDE, 0},
+        testArithmeticParams{5, 20, 4, DIVIDE, 5},
+        testArithmeticParams{5, 20, 0, DIVIDE, 0},
+        testArithmeticParams{6, 7.5, 2.5, DIVIDE, 3.0},
+        testArithmeticParams{7, -8.0, 4.0, DIVIDE, -2.0},
+        testArithmeticParams{8, 0.0, 3.0, DIVIDE, 0.0},
+        testArithmeticParams{9, 5.5, 2.0, DIVIDE, 2.75},
+        testArithmeticParams{10, 9.81, 3.27, DIVIDE, 2.99609}
         ));

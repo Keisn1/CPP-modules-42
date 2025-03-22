@@ -28,6 +28,7 @@ public:
         bool operator>=(const Fixed&);
         Fixed operator+(const Fixed& fixed);
         Fixed operator*(const Fixed& fixed);
+        Fixed operator/(const Fixed& fixed);
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed);

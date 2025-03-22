@@ -7,10 +7,12 @@ class Fixed {
         private:
                 int _raw_bits;
                 static const int _frac_bits;
+                int _getIntPart(void) const;
+                int _encode(float val) const;
         public:
                 Fixed(void);
-                Fixed(const int val);
-                // Fixed(const float val);
+                Fixed(int val);
+                Fixed(float val);
                 Fixed(const Fixed&);
                 ~Fixed(void);
                 Fixed &operator=(const Fixed &);

@@ -1,13 +1,53 @@
 #include "Fixed.hpp"
 #include <iostream>
+#include <cmath>
 
 const int Fixed::_frac_bits = 8;
 
 Fixed::Fixed() : _raw_bits(0) { std::cout << "Default constructor called" << std::endl; }
 
-Fixed::Fixed(const int val) : _raw_bits(val) {
+Fixed::Fixed(int val) : _raw_bits(val) {
     std::cout << "Int constructor called" << std::endl;
     _raw_bits = val << 8;
+}
+
+int Fixed::_encode(float val) const {
+    int res;
+    int int_part;
+    float float_part;
+    bool is_neg;
+
+    is_neg = false;
+    if (val < 0) {
+        is_neg = true;
+        val *= -1;
+    }
+    int_part = static_cast<int>(val);
+    float_part = val - int_part;
+    res = int_part << 8;
+
+    int comp = 128;
+    float add = 0.5;
+    float infimum = 0;
+    while (comp > 0) {
+        if (float_part >= (infimum + add)) {
+            res |= comp;
+            infimum += add;
+        }
+        add /= 2;
+        comp /= 2;
+    }
+
+    if (is_neg) {
+        res ^= -1;
+        res += 1;
+    }
+    return res;
+}
+
+Fixed::Fixed(float val) : _raw_bits(val) {
+    std::cout << "Float constructor called" << std::endl;
+    _raw_bits = _encode(val);
 }
 
 // Copy constructor
@@ -46,32 +86,38 @@ int Fixed::getRawBits(void) const {
     return _raw_bits;
 }
 
+int Fixed::_getIntPart(void) const {
+    return _raw_bits >> 8;
+}
+
 int Fixed::toInt(void) const {
-    int rest = _raw_bits >> 8;
-    int count = 0;
-    int result = 0;
+    int rest = _getIntPart();
+    int res = 0;
     int summand = 1;
+    int count = 0;
     while (count < 23) {
-        result += summand * (rest & 1);
+        res += summand * (rest & 1);
         summand *= 2;
         rest >>= 1;
         count++;
     }
     if (rest)
-        result += -8388608;
-    return result;
+        res += -8388608;
+    return res;
 }
 
 float Fixed::toFloat(void) const {
-    float res = 0;
-    int rest = _raw_bits;
-    int summand = 1;
-    int count = 0;
-    while (count < 32 - _frac_bits) {
-        res += (rest & 1) * summand;
-        summand *= 2;
-        rest >>= 1;
-        count++;
+    float res = static_cast<float>(_getIntPart());
+    int float_bits =  _raw_bits & 255;
+    if (float_bits == 0)
+        return res;
+    int comp = 128;
+    float add = 0.5;
+    while (comp > 0) {
+        if (float_bits & comp)
+            res += add;
+        comp /= 2;
+        add /= 2;
     }
     return res;
 }

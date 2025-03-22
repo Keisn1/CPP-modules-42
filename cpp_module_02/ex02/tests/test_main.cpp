@@ -45,8 +45,6 @@ TEST_P(TestOperatorsSuite, testLowerThan) {
         ASSERT_EQ(params.want, a >= b);
         break;
     case EQ:
-        std::cout << "a: " << a << std::endl;
-        std::cout << "b: " << b << std::endl;
         ASSERT_EQ(params.want, a == b);
         break;
     case NEQ:
@@ -88,7 +86,8 @@ INSTANTIATE_TEST_SUITE_P(lowerThan, TestOperatorsSuite,
 
 
 enum ArithmeticOp {
-    PLUS // 0
+    PLUS, // 0
+    MULTIPLY // 0
 };
 
 struct testArithmeticParams {
@@ -107,18 +106,22 @@ TEST_P(TestArithmeticSuite, testLowerThan) {
     Fixed b(params.b);
     Fixed want(params.want);
 
-    Fixed res = a+b;
-    std::cout << "want " << want << std::endl;
-    std::cout << "got " << res << std::endl;
+    std::cout << "1: " << params.a*params.b << std::endl;
+    std::cout << "1: " << a*b << std::endl;
+    std::cout << "1: " << want << std::endl;
+
     switch (params.op) {
     case PLUS:
         ASSERT_TRUE( want == (a + b));
+        break;
+    case MULTIPLY:
+        ASSERT_TRUE( want == (a * b));
         break;
     }
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    lowerThan,
+    Plus,
     TestArithmeticSuite,
     testing::Values(
         testArithmeticParams{0, 0, 0, PLUS, 0},
@@ -133,3 +136,20 @@ INSTANTIATE_TEST_SUITE_P(
         testArithmeticParams{9, 0.1015625, 0.203125 , PLUS, 0.3046875},
         testArithmeticParams{10, 0.1015626, 0.203125 , PLUS, 0.30859375}
         ));
+
+INSTANTIATE_TEST_SUITE_P(
+    Multiply,
+    TestArithmeticSuite,
+    testing::Values(testArithmeticParams{0, 0, 0, MULTIPLY, 0},
+        testArithmeticParams{1, 2, 3, MULTIPLY, 6},
+        testArithmeticParams{2, -1, 5, MULTIPLY, -5},
+        testArithmeticParams{3, 7, 0, MULTIPLY, 0},
+        testArithmeticParams{4, -3, -4, MULTIPLY, 12},
+        testArithmeticParams{5, 10, 10, MULTIPLY, 100},
+
+   testArithmeticParams{6, 1.5, 2.0, MULTIPLY, 3.0},
+   testArithmeticParams{7, -2.5, 4.0, MULTIPLY, -10.0},
+   testArithmeticParams{8, 0.0, 0.0, MULTIPLY, 0.0},
+   testArithmeticParams{9, 3.14, 2.71, MULTIPLY, 8.5094}
+   // testArithmeticParams{10, -1.5, -2.5, MULTIPLY, 3.75}
+));

@@ -169,22 +169,12 @@ std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
     return out;
 }
 
-int add(int a, int b) {
-    while (b != 0) {
-        // Calculate carry
-        int carry = a & b;
-
-        // Sum without carry
-        a = a ^ b;
-
-        // Calculate next carry
-        b = carry << 1;
-    }
-    return a;
-}
-
 Fixed Fixed::operator+(const Fixed &fixed) {
     Fixed res;
     res.setRawBits(add(_raw_bits, fixed.getRawBits()));
     return res;
+}
+
+Fixed Fixed::operator*(const Fixed &fixed) {
+    return toFloat() * fixed.toFloat();
 }

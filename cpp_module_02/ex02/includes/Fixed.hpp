@@ -27,8 +27,12 @@ public:
         bool operator<=(const Fixed&);
         bool operator>=(const Fixed&);
         Fixed operator+(const Fixed& fixed);
+        Fixed operator*(const Fixed& fixed);
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed);
+
+int add(int a, int b);
+int multiply(int a, int b);
 
 #endif // FIXED_H

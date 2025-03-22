@@ -1,5 +1,6 @@
 #include "Fixed.hpp"
 #include "gtest/gtest.h"
+#include <iomanip>
 
 struct IntToIntParams {
 	int in_val;
@@ -59,6 +60,11 @@ TEST_P(TestFloatToFloatSuite, tests) {
 	FloatToFloatParams params = GetParam();
 	Fixed a (params.in_val);
 	float got = a.toFloat();
+
+	std::cout<< std::fixed << std::setprecision(20) << got<< std::endl;
+	std::cout<< std::fixed << std::setprecision(20) << params.want << std::endl;
+
+
 	ASSERT_EQ(params.want, got);
 }
 
@@ -79,5 +85,12 @@ INSTANTIATE_TEST_SUITE_P(
 		FloatToFloatParams{-13.999999, -13.99609375},
 		FloatToFloatParams{-8388607.63, -8388607.62890625},
 		FloatToFloatParams{-42.42, -42.421875},
-		FloatToFloatParams{42.42, 42.421875}
+		FloatToFloatParams{42.42, 42.421875},
+		FloatToFloatParams{0.101562, 0.1015625},
+		FloatToFloatParams{0.203125,0.203125},
+		FloatToFloatParams{0.3046875, 0.3046875},
+		FloatToFloatParams{0.3046876, 0.30859375},
+		FloatToFloatParams{0.1015626, 0.10546875},
+		FloatToFloatParams{0.3046876, 0.3125}
+
 		));

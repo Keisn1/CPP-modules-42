@@ -8,10 +8,12 @@ int main(int argc, char *argv[]) {
 }
 
 enum ComparisonOp {
-    LT, // 0
-    GT,  // 1
-    LEQ,
-    GEQ
+  LT, // 0
+  GT, // 1
+  LEQ,
+  GEQ,
+  EQ,
+  NEQ
 };
 
 struct testOperatorsParams {
@@ -40,6 +42,14 @@ TEST_P(TestOperatorsSuite, testLowerThan) {
         ASSERT_EQ(params.want, a <= b);
         break;
     case GEQ:
+        ASSERT_EQ(params.want, a >= b);
+        break;
+    case EQ:
+        std::cout << "a: " << a << std::endl;
+        std::cout << "b: " << b << std::endl;
+        ASSERT_EQ(params.want, a == b);
+        break;
+    case NEQ:
         ASSERT_EQ(params.want, a >= b);
         break;
     }
@@ -72,7 +82,8 @@ INSTANTIATE_TEST_SUITE_P(lowerThan, TestOperatorsSuite,
                              testOperatorsParams{22, 1, 0, GEQ, true},
                              testOperatorsParams{23, 2, 0, GEQ, true},
                              testOperatorsParams{24, 0.1, 0.1000001, GEQ, true},
-                             testOperatorsParams{25, 2.2, -0.02, GEQ, true}
+                             testOperatorsParams{25, 2.2, -0.02, GEQ, true},
+                             testOperatorsParams{25, 0.308594, 0.308594, EQ, true}
                              ));
 
 
@@ -119,6 +130,6 @@ INSTANTIATE_TEST_SUITE_P(
         testArithmeticParams{6, 1.5, 2.5, PLUS, 4.0},
         testArithmeticParams{7, 2.0, 3.5, PLUS, 5.5},
         testArithmeticParams{8, 0.0, 0.0, PLUS, 0.0},
-        testArithmeticParams{9, 0.101562, 0.203125 , PLUS, 0.304688}
-        // testArithmeticParams{10, 0.25, 0.5, PLUS, 0.75}
+        testArithmeticParams{9, 0.1015625, 0.203125 , PLUS, 0.3046875},
+        testArithmeticParams{10, 0.1015626, 0.203125 , PLUS, 0.30859375}
         ));

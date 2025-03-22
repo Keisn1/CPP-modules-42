@@ -77,5 +77,6 @@ INSTANTIATE_TEST_SUITE_P(
 		FloatToFloatParams{-1.75, -1.75},
 		FloatToFloatParams{13.999999, 13.99609375},
 		FloatToFloatParams{-13.999999, -13.99609375},
-		FloatToFloatParams{-8388607.63, -8388607.62890625}
+		FloatToFloatParams{-8388607.63, -8388607.62890625},
+		FloatToFloatParams{-42.42, -42.421875}
 		));

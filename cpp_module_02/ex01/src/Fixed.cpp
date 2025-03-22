@@ -11,6 +11,39 @@ Fixed::Fixed(int val) : _raw_bits(val) {
     _raw_bits = val << 8;
 }
 
+int encode_up(float float_part) {
+    int res = 255;
+    int comp = 128;
+    float sub = 0.5;
+    float suprenum = 0.99609375;
+    while (comp > 0) {
+        if (float_part <= (suprenum - sub)) {
+            res ^= comp;
+            suprenum -= sub;
+        } 
+        sub /= 2;
+        comp /= 2;
+    }
+    return res;
+}
+
+// encoding with infimum (from the bottom)
+// int encode_down(float float_part, float* infimum) {
+//     int res = 0;
+//     int comp = 128;
+//     float add = 0.5;
+//     *infimum = 0;
+//     while (comp > 0) {
+//         if (float_part >= (*infimum + add)) {
+//             res |= comp;
+//             *infimum += add;
+//         }
+//         add /= 2;
+//         comp /= 2;
+//     }
+//     return res;
+// }
+
 int Fixed::_encode(float val) const {
     int res;
     int int_part;
@@ -26,17 +59,7 @@ int Fixed::_encode(float val) const {
     float_part = val - int_part;
     res = int_part << 8;
 
-    int comp = 128;
-    float add = 0.5;
-    float infimum = 0;
-    while (comp > 0) {
-        if (float_part >= (infimum + add)) {
-            res |= comp;
-            infimum += add;
-        }
-        add /= 2;
-        comp /= 2;
-    }
+    res += encode_up(float_part);
 
     if (is_neg) {
         res ^= -1;
@@ -82,7 +105,6 @@ Fixed &Fixed::operator=(const Fixed& fixed) {
 Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
 int Fixed::getRawBits(void) const {
-    std::cout << "getRawBits member function called" << std::endl;
     return _raw_bits;
 }
 
@@ -123,6 +145,6 @@ float Fixed::toFloat(void) const {
 }
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
-    out << fixed.toInt();
+    out << fixed.toFloat();
     return out;
 }

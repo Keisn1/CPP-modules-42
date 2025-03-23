@@ -107,9 +107,7 @@ TEST_P(TestArithmeticSuite, testLowerThan) {
     Fixed a(params.a);
     Fixed b(params.b);
     Fixed want(params.want);
-
-    std::cout << "1: " << a-b << std::endl;
-
+    std::cout << a/b << std::endl;
     switch (params.op) {
     case PLUS:
         ASSERT_TRUE( want == (a + b));
@@ -140,7 +138,7 @@ INSTANTIATE_TEST_SUITE_P(
         testArithmeticParams{7, 2.0, 3.5, PLUS, 5.5},
         testArithmeticParams{8, 0.0, 0.0, PLUS, 0.0},
         testArithmeticParams{9, 0.1015625, 0.203125 , PLUS, 0.3046875},
-        testArithmeticParams{10, 0.1015626, 0.203125 , PLUS, 0.30859375}
+        testArithmeticParams{10, 0.1015626, 0.203125 , PLUS, 0.3046875}
         ));
 
 INSTANTIATE_TEST_SUITE_P(
@@ -152,7 +150,6 @@ INSTANTIATE_TEST_SUITE_P(
                     testArithmeticParams{3, 7, 0, MULTIPLY, 0},
                     testArithmeticParams{4, -3, -4, MULTIPLY, 12},
                     testArithmeticParams{5, 10, 10, MULTIPLY, 100},
-
                     testArithmeticParams{6, 1.5, 2.0, MULTIPLY, 3.0},
                     testArithmeticParams{7, -2.5, 4.0, MULTIPLY, -10.0},
                     testArithmeticParams{8, 0.0, 0.0, MULTIPLY, 0.0},
@@ -175,7 +172,7 @@ INSTANTIATE_TEST_SUITE_P(
         testArithmeticParams{7, -8.0, 4.0, DIVIDE, -2.0},
         testArithmeticParams{8, 0.0, 3.0, DIVIDE, 0.0},
         testArithmeticParams{9, 5.5, 2.0, DIVIDE, 2.75},
-        testArithmeticParams{10, 9.81, 3.27, DIVIDE, 2.99609}
+        testArithmeticParams{10, 9.81, 3.27, DIVIDE, 3}
         ));
 
 
@@ -301,25 +298,25 @@ TEST_P(TestMinMaxSuite, testLowerThan) {
 
     switch (params.op) {
     case MIN:
-        if (params.a <= params.b)
+        if (a <= b)
             ASSERT_EQ(&Fixed::min(a, b), &a); // c should be a reference to small if small < big
         else
             ASSERT_EQ(&Fixed::min(a, b), &b);   // Otherwise c should be a reference to big
         break;
     case MIN_CONST:
-        if (params.a <= params.b)
+        if (a <= b)
             ASSERT_EQ(&Fixed::min(const_a, const_b), &const_a); // c should be a reference to small if small < big
         else
             ASSERT_EQ(&Fixed::min(const_a, const_b), &const_b);   // Otherwise c should be a reference to big
         break;
     case MAX:
-        if (params.a >= params.b)
+        if (a >= b)
             ASSERT_EQ(&Fixed::max(a, b), &a); // c should be a reference to small if small < big
         else
             ASSERT_EQ(&Fixed::max(a, b), &b);   // Otherwise c should be a reference to big
         break;
     case MAX_CONST:
-        if (params.a >= params.b)
+        if (a >= b)
             ASSERT_EQ(&Fixed::max(const_a, b), &const_a); // c should be a reference to small if small < big
         else
             ASSERT_EQ(&Fixed::max(const_a, const_b), &const_b);   // Otherwise c should be a reference to big
@@ -328,7 +325,7 @@ TEST_P(TestMinMaxSuite, testLowerThan) {
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    P_Decrement,
+    MinMax,
     TestMinMaxSuite,
     testing::Values(
         testMinMaxParams{0, 0, 1, MIN},
@@ -339,36 +336,36 @@ INSTANTIATE_TEST_SUITE_P(
         testMinMaxParams{5, 0.0, -0.00390624, MIN},
         testMinMaxParams{6, 0.0, -0.00390625, MIN},
         testMinMaxParams{7, 0.0, -0.0000001, MIN},
-        testMinMaxParams{7, 1.0, 1.0000001, MIN},
-        testMinMaxParams{7, -1.0, -1.0000001, MIN},
-        testMinMaxParams{0, 0, 1, MAX},
-        testMinMaxParams{1, 1, 1, MAX},
-        testMinMaxParams{2, 2, 1, MAX},
-        testMinMaxParams{3, 0.0, 0.00390625, MAX},
-        testMinMaxParams{4, 0.0, 0.00390624, MAX},
-        testMinMaxParams{5, 0.0, -0.00390624, MAX},
-        testMinMaxParams{6, 0.0, -0.00390625, MAX},
-        testMinMaxParams{7, 0.0, -0.0000001, MAX},
-        testMinMaxParams{7, 1.0, 1.0000001, MAX},
-        testMinMaxParams{7, -1.0, -1.0000001, MAX},
-        testMinMaxParams{0, 0, 1, MIN_CONST},
-        testMinMaxParams{1, 1, 1, MIN_CONST},
-        testMinMaxParams{2, 2, 1, MIN_CONST},
-        testMinMaxParams{3, 0.0, 0.00390625, MIN_CONST},
-        testMinMaxParams{4, 0.0, 0.00390624, MIN_CONST},
-        testMinMaxParams{5, 0.0, -0.00390624, MIN_CONST},
-        testMinMaxParams{6, 0.0, -0.00390625, MIN_CONST},
-        testMinMaxParams{7, 0.0, -0.0000001, MIN_CONST},
-        testMinMaxParams{7, 1.0, 1.0000001, MIN_CONST},
-        testMinMaxParams{7, -1.0, -1.0000001, MIN_CONST},
-        testMinMaxParams{0, 0, 1, MAX_CONST},
-        testMinMaxParams{1, 1, 1, MAX_CONST},
-        testMinMaxParams{2, 2, 1, MAX_CONST},
-        testMinMaxParams{3, 0.0, 0.00390625, MAX_CONST},
-        testMinMaxParams{4, 0.0, 0.00390624, MAX_CONST},
-        testMinMaxParams{5, 0.0, -0.00390624, MAX_CONST},
-        testMinMaxParams{6, 0.0, -0.00390625, MAX_CONST},
-        testMinMaxParams{7, 0.0, -0.0000001, MAX_CONST},
-        testMinMaxParams{7, 1.0, 1.0000001, MAX_CONST},
-        testMinMaxParams{7, -1.0, -1.0000001, MAX_CONST}
+        testMinMaxParams{8, 1.0, 1.0000001, MIN},
+        testMinMaxParams{9, -1.0, -1.0000001, MIN},
+        testMinMaxParams{10, 0, 1, MAX},
+        testMinMaxParams{11, 1, 1, MAX},
+        testMinMaxParams{12, 2, 1, MAX},
+        testMinMaxParams{13, 0.0, 0.00390625, MAX},
+        testMinMaxParams{14, 0.0, 0.00390624, MAX},
+        testMinMaxParams{15, 0.0, -0.00390624, MAX},
+        testMinMaxParams{16, 0.0, -0.00390625, MAX},
+        testMinMaxParams{17, 0.0, -0.0000001, MAX},
+        testMinMaxParams{18, 1.0, 1.0000001, MAX},
+        testMinMaxParams{19, -1.0, -1.0000001, MAX},
+        testMinMaxParams{20, 0, 1, MIN_CONST},
+        testMinMaxParams{21, 1, 1, MIN_CONST},
+        testMinMaxParams{22, 2, 1, MIN_CONST},
+        testMinMaxParams{23, 0.0, 0.00390625, MIN_CONST},
+        testMinMaxParams{24, 0.0, 0.00390624, MIN_CONST},
+        testMinMaxParams{25, 0.0, -0.00390624, MIN_CONST},
+        testMinMaxParams{26, 0.0, -0.00390625, MIN_CONST},
+        testMinMaxParams{27, 0.0, -0.0000001, MIN_CONST},
+        testMinMaxParams{28, 1.0, 1.0000001, MIN_CONST},
+        testMinMaxParams{29, -1.0, -1.0000001, MIN_CONST},
+        testMinMaxParams{30, 0, 1, MAX_CONST},
+        testMinMaxParams{31, 1, 1, MAX_CONST},
+        testMinMaxParams{32, 2, 1, MAX_CONST},
+        testMinMaxParams{33, 0.0, 0.00390625, MAX_CONST},
+        testMinMaxParams{34, 0.0, 0.00390624, MAX_CONST},
+        testMinMaxParams{35, 0.0, -0.00390624, MAX_CONST},
+        testMinMaxParams{36, 0.0, -0.00390625, MAX_CONST},
+        testMinMaxParams{37, 0.0, -0.0000001, MAX_CONST},
+        testMinMaxParams{38, 1.0, 1.0000001, MAX_CONST},
+        testMinMaxParams{39, -1.0, -1.0000001, MAX_CONST}
         ));

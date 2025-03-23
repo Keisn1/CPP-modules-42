@@ -9,7 +9,7 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-project(cpp_module_02)
+project(cpp_module_03)
 option(BUILD_TEST "Build tests" ON)
 
 set(CMAKE_CXX_FLAGS "-Wall -Werror -Wextra -fsanitize=address")

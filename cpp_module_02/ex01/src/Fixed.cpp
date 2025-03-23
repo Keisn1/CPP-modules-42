@@ -20,9 +20,8 @@ Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
 // Copy constructor
 // initializes uninitilaized memory
-Fixed::Fixed(const Fixed &fixed) {
+Fixed::Fixed(const Fixed &fixed) : _raw_bits(fixed._raw_bits) {
     std::cout << "Copy constructor called" << std::endl;
-    *this = fixed;
 }
 
 // Copy-assignement operator

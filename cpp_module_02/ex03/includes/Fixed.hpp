@@ -24,10 +24,10 @@ public:
         bool operator>(const Fixed&) const;
         bool operator<=(const Fixed&) const;
         bool operator>=(const Fixed&) const;
-        Fixed operator+(const Fixed&);
-        Fixed operator-(const Fixed&);
-        Fixed operator*(const Fixed&);
-        Fixed operator/(const Fixed&);
+        Fixed operator+(const Fixed&) const;
+        Fixed operator-(const Fixed&) const;
+        Fixed operator*(const Fixed&) const;
+        Fixed operator/(const Fixed&) const;
         Fixed& operator++();
         Fixed& operator++(int);
         Fixed& operator--();

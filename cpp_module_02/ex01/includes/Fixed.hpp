@@ -7,8 +7,6 @@ class Fixed {
         private:
                 int _raw_bits;
                 static const int _frac_bits;
-                int _getIntPart(void) const;
-                int _encode(float val) const;
         public:
                 Fixed(void);
                 Fixed(int val);

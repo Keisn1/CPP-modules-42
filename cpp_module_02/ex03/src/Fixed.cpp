@@ -8,25 +8,21 @@ int subtract(int a, int b);
 
 const int Fixed::_frac_bits = 8;
 
-Fixed::Fixed() : _raw_bits(0) { std::cout << "Default constructor called" << std::endl; }
+Fixed::Fixed() : _raw_bits(0) {}
 
 Fixed::Fixed(int val) : _raw_bits(val) {
-    std::cout << "Int constructor called" << std::endl;
     _raw_bits = val << _frac_bits;
 }
 
 Fixed::Fixed(float val) : _raw_bits(val) {
-    std::cout << "Float constructor called" << std::endl;
     _raw_bits = roundf(val * (1 << _frac_bits));
 }
 
-Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
+Fixed::~Fixed() {}
 
 // Copy constructor
 // initializes uninitilaized memory
-Fixed::Fixed(const Fixed &fixed) : _raw_bits(fixed._raw_bits) {
-    std::cout << "Copy constructor called" << std::endl;
-}
+Fixed::Fixed(const Fixed &fixed) : _raw_bits(fixed._raw_bits) {}
 
 // private member functions
 // public member functions
@@ -58,7 +54,6 @@ float Fixed::toFloat(void) const {
 // This is useful for making user-defined types behave more like built-in types.
 // Each operator can be overloaded, and the syntax is typically `return_type ClassName::operator<operator_symbol>(parameter_list)`.
 Fixed &Fixed::operator=(const Fixed& fixed) {
-    std::cout << "Copy assignment operator called" << std::endl;
     this->_raw_bits = fixed.getRawBits();
     return *this;
 }
@@ -94,23 +89,23 @@ bool Fixed::operator>=(const Fixed& fixed) const {
     return *this > fixed;
 }
 
-Fixed Fixed::operator+(const Fixed &fixed) {
+Fixed Fixed::operator+(const Fixed &fixed) const {
     Fixed res;
     res.setRawBits(add(_raw_bits, fixed.getRawBits()));
     return res;
 }
 
-Fixed Fixed::operator-(const Fixed &fixed) {
+Fixed Fixed::operator-(const Fixed &fixed) const {
     Fixed res;
     res.setRawBits(subtract(_raw_bits, fixed.getRawBits()));
     return res;
 }
 
-Fixed Fixed::operator*(const Fixed &fixed) {
+Fixed Fixed::operator*(const Fixed &fixed) const {
     return toFloat() * fixed.toFloat();
 }
 
-Fixed Fixed::operator/(const Fixed &fixed) {
+Fixed Fixed::operator/(const Fixed &fixed) const {
     if (fixed.toFloat() == 0)
         return Fixed ();
     return toFloat() / fixed.toFloat();

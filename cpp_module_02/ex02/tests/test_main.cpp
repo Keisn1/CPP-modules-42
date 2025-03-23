@@ -274,3 +274,65 @@ INSTANTIATE_TEST_SUITE_P(
         testIncOpParams{0, -5, P_DEC, -5.00390625},
         testIncOpParams{0, 2.25, P_DEC, 2.24609375}
         ));
+
+
+enum MinMaxOp {
+  MIN,
+  MAX
+};
+
+struct testMinMaxParams {
+    int testNbr;
+    float a;
+    float b;
+    MinMaxOp op;
+};
+
+class TestMinMaxSuite : public::testing::TestWithParam<testMinMaxParams>{};
+
+TEST_P(TestMinMaxSuite, testLowerThan) {
+    struct testMinMaxParams params = GetParam();
+    Fixed a(params.a);
+    Fixed b(params.b);
+
+    switch (params.op) {
+    case MIN:
+        if (params.a <= params.b)
+            ASSERT_EQ(&Fixed::min(a, b), &a); // c should be a reference to small if small < big
+        else
+            ASSERT_EQ(&Fixed::min(a, b), &b);   // Otherwise c should be a reference to big
+        break;
+    case MAX:
+        if (params.a >= params.b)
+            ASSERT_EQ(&Fixed::max(a, b), &a); // c should be a reference to small if small < big
+        else
+            ASSERT_EQ(&Fixed::max(a, b), &b);   // Otherwise c should be a reference to big
+        break;
+    }
+}
+
+INSTANTIATE_TEST_SUITE_P(
+    P_Decrement,
+    TestMinMaxSuite,
+    testing::Values(
+        testMinMaxParams{0, 0, 1, MIN},
+        testMinMaxParams{1, 1, 1, MIN},
+        testMinMaxParams{2, 2, 1, MIN},
+        testMinMaxParams{3, 0.0, 0.00390625, MIN},
+        testMinMaxParams{4, 0.0, 0.00390624, MIN},
+        testMinMaxParams{5, 0.0, -0.00390624, MIN},
+        testMinMaxParams{6, 0.0, -0.00390625, MIN},
+        testMinMaxParams{7, 0.0, -0.0000001, MIN},
+        testMinMaxParams{7, 1.0, 1.0000001, MIN},
+        testMinMaxParams{7, -1.0, -1.0000001, MIN},
+        testMinMaxParams{0, 0, 1, MAX},
+        testMinMaxParams{1, 1, 1, MAX},
+        testMinMaxParams{2, 2, 1, MAX},
+        testMinMaxParams{3, 0.0, 0.00390625, MAX},
+        testMinMaxParams{4, 0.0, 0.00390624, MAX},
+        testMinMaxParams{5, 0.0, -0.00390624, MAX},
+        testMinMaxParams{6, 0.0, -0.00390625, MAX},
+        testMinMaxParams{7, 0.0, -0.0000001, MAX},
+        testMinMaxParams{7, 1.0, 1.0000001, MAX},
+        testMinMaxParams{7, -1.0, -1.0000001, MAX}
+        ));

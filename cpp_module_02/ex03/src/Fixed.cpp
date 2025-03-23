@@ -22,7 +22,9 @@ Fixed::~Fixed() {}
 
 // Copy constructor
 // initializes uninitilaized memory
-Fixed::Fixed(const Fixed &fixed) : _raw_bits(fixed._raw_bits) {}
+Fixed::Fixed(const Fixed &fixed) {
+    *this = fixed;
+}
 
 // private member functions
 // public member functions

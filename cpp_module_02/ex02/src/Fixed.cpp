@@ -24,8 +24,9 @@ Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
 // Copy constructor
 // initializes uninitilaized memory
-Fixed::Fixed(const Fixed &fixed) : _raw_bits(fixed._raw_bits) {
+Fixed::Fixed(const Fixed &fixed) {
     std::cout << "Copy constructor called" << std::endl;
+    *this = fixed;
 }
 
 // private member functions
@@ -94,23 +95,23 @@ bool Fixed::operator>=(const Fixed& fixed) const {
     return *this > fixed;
 }
 
-Fixed Fixed::operator+(const Fixed &fixed) {
+Fixed Fixed::operator+(const Fixed &fixed) const {
     Fixed res;
     res.setRawBits(add(_raw_bits, fixed.getRawBits()));
     return res;
 }
 
-Fixed Fixed::operator-(const Fixed &fixed) {
+Fixed Fixed::operator-(const Fixed &fixed) const {
     Fixed res;
     res.setRawBits(subtract(_raw_bits, fixed.getRawBits()));
     return res;
 }
 
-Fixed Fixed::operator*(const Fixed &fixed) {
+Fixed Fixed::operator*(const Fixed &fixed) const {
     return toFloat() * fixed.toFloat();
 }
 
-Fixed Fixed::operator/(const Fixed &fixed) {
+Fixed Fixed::operator/(const Fixed &fixed) const {
     if (fixed.toFloat() == 0)
         return Fixed ();
     return toFloat() / fixed.toFloat();

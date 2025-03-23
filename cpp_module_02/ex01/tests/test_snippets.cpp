@@ -23,8 +23,7 @@ void snippet_2() {
 }
 
 void snippet_3() {
-    Fixed
-        a;
+    Fixed a;
     Fixed const b( 10 );
     Fixed const c( 42.42f );
     Fixed const d( b );

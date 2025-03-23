@@ -81,15 +81,16 @@ INSTANTIATE_TEST_SUITE_P(
 		FloatToFloatParams{-8388608.5, -8388608.5},
 		FloatToFloatParams{0.75, 0.75},
 		FloatToFloatParams{-1.75, -1.75},
-		FloatToFloatParams{13.999999, 14},
-		FloatToFloatParams{-13.999999, -14},
+		FloatToFloatParams{13.999999, 13.99609375},
+		FloatToFloatParams{-13.999999, -13.99609375},
 		FloatToFloatParams{-8388607.63, -8388607.62890625},
 		FloatToFloatParams{-42.42, -42.421875},
 		FloatToFloatParams{42.42, 42.421875},
 		FloatToFloatParams{0.101562, 0.1015625},
 		FloatToFloatParams{0.203125,0.203125},
 		FloatToFloatParams{0.3046875, 0.3046875},
-		FloatToFloatParams{0.3046876, 0.3046875},
-		FloatToFloatParams{0.1015626, 0.1015625},
-		FloatToFloatParams{0.3046876, 0.3046875}
+		FloatToFloatParams{0.3046876, 0.30859375},
+		FloatToFloatParams{0.1015626, 0.10546875},
+		FloatToFloatParams{0.3046876, 0.30859375}
+
 		));

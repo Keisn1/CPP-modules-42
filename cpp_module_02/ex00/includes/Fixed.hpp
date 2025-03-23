@@ -13,7 +13,7 @@ class Fixed {
                 // function does not modify any member variables of the class
                 // allowing it to be called on constant instances of the class.
                 int getRawBits(void) const;
-                int setRawBits(int const raw);
+                void setRawBits(int const raw);
 };
 
 

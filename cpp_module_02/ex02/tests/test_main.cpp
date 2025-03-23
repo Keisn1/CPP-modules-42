@@ -278,7 +278,9 @@ INSTANTIATE_TEST_SUITE_P(
 
 enum MinMaxOp {
   MIN,
-  MAX
+  MAX,
+  MIN_CONST,
+  MAX_CONST,
 };
 
 struct testMinMaxParams {
@@ -292,8 +294,10 @@ class TestMinMaxSuite : public::testing::TestWithParam<testMinMaxParams>{};
 
 TEST_P(TestMinMaxSuite, testLowerThan) {
     struct testMinMaxParams params = GetParam();
-    Fixed a(params.a);
-    Fixed b(params.b);
+	Fixed a(params.a);
+	Fixed b(params.b);
+	const Fixed const_a(params.a);
+	const Fixed const_b(params.b);
 
     switch (params.op) {
     case MIN:
@@ -302,11 +306,23 @@ TEST_P(TestMinMaxSuite, testLowerThan) {
         else
             ASSERT_EQ(&Fixed::min(a, b), &b);   // Otherwise c should be a reference to big
         break;
+    case MIN_CONST:
+        if (params.a <= params.b)
+            ASSERT_EQ(&Fixed::min(const_a, const_b), &const_a); // c should be a reference to small if small < big
+        else
+            ASSERT_EQ(&Fixed::min(const_a, const_b), &const_b);   // Otherwise c should be a reference to big
+        break;
     case MAX:
         if (params.a >= params.b)
             ASSERT_EQ(&Fixed::max(a, b), &a); // c should be a reference to small if small < big
         else
             ASSERT_EQ(&Fixed::max(a, b), &b);   // Otherwise c should be a reference to big
+        break;
+    case MAX_CONST:
+        if (params.a >= params.b)
+            ASSERT_EQ(&Fixed::max(const_a, b), &const_a); // c should be a reference to small if small < big
+        else
+            ASSERT_EQ(&Fixed::max(const_a, const_b), &const_b);   // Otherwise c should be a reference to big
         break;
     }
 }
@@ -334,5 +350,25 @@ INSTANTIATE_TEST_SUITE_P(
         testMinMaxParams{6, 0.0, -0.00390625, MAX},
         testMinMaxParams{7, 0.0, -0.0000001, MAX},
         testMinMaxParams{7, 1.0, 1.0000001, MAX},
-        testMinMaxParams{7, -1.0, -1.0000001, MAX}
+        testMinMaxParams{7, -1.0, -1.0000001, MAX},
+        testMinMaxParams{0, 0, 1, MIN_CONST},
+        testMinMaxParams{1, 1, 1, MIN_CONST},
+        testMinMaxParams{2, 2, 1, MIN_CONST},
+        testMinMaxParams{3, 0.0, 0.00390625, MIN_CONST},
+        testMinMaxParams{4, 0.0, 0.00390624, MIN_CONST},
+        testMinMaxParams{5, 0.0, -0.00390624, MIN_CONST},
+        testMinMaxParams{6, 0.0, -0.00390625, MIN_CONST},
+        testMinMaxParams{7, 0.0, -0.0000001, MIN_CONST},
+        testMinMaxParams{7, 1.0, 1.0000001, MIN_CONST},
+        testMinMaxParams{7, -1.0, -1.0000001, MIN_CONST},
+        testMinMaxParams{0, 0, 1, MAX_CONST},
+        testMinMaxParams{1, 1, 1, MAX_CONST},
+        testMinMaxParams{2, 2, 1, MAX_CONST},
+        testMinMaxParams{3, 0.0, 0.00390625, MAX_CONST},
+        testMinMaxParams{4, 0.0, 0.00390624, MAX_CONST},
+        testMinMaxParams{5, 0.0, -0.00390624, MAX_CONST},
+        testMinMaxParams{6, 0.0, -0.00390625, MAX_CONST},
+        testMinMaxParams{7, 0.0, -0.0000001, MAX_CONST},
+        testMinMaxParams{7, 1.0, 1.0000001, MAX_CONST},
+        testMinMaxParams{7, -1.0, -1.0000001, MAX_CONST}
         ));

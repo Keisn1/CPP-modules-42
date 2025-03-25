@@ -1,0 +1,31 @@
+:PROPERTIES:
+:ID:       af7c9361-7820-4a43-8d6e-98baac3105ac
+:END:
+#+title: virtual functions
+#+date: [2025-03-25 Tue 15:32]
+#+startup: overview
+
+- a function declared and defined in a base class, which can be overridden by derived classes
+  #+begin_src cpp
+virtual override_me();
+  #+end_src
+
+- in CPP it is a function declared virtual and virtual means "may be redefined later in a class derived from this class"
+
+- in CPP classes hold tables of function pointers to their virtual functions: [[id:24990dd7-21f6-4653-83c0-9a381e7b7aef][virtual tables]]
+
+- there is a *virtual function call mechanism* which makes sure that the right function is called
+
+- argument types must exactly be the same
+
+- unless it is a [[id:59e61e30-5c2c-4d0a-b2d9-14e933559b7f][pure virtual function]], the virtual function needs to be defined in the class, where it is first declared
+
+- a function that does not need a virtual function declared in a base class, does not need to define one
+
+- virtual functions are called appropriate to their type
+  - if manager (who is an employee (derived from Employee))) prints, it is the implementation of print inside Manager, which is being called ([[id:8ffd98c5-9849-48dc-8789-fedd08e58850][polymorphism]])
+    - unless explicitely otherwise stated
+
+- a type (a class, a struct etc.) is being called _polymorphic type_ (more precisely a _runtime polymorphic type_), if it has a virtual function
+
+- one should not call virtual functions from within constructors or destructors

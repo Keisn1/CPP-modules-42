@@ -1,0 +1,16 @@
+:PROPERTIES:
+:ID:       169951af-3fb4-4a7c-92d2-6bd56b376bd9
+:END:
+#+title: derived classes
+#+date: [2025-03-25 Tue 10:59]
+#+startup: overview
+
+- derived classes in CPP are Classes that are declared with the syntax
+- in this case we are using [[id:70a9181a-27f9-46c2-8f9a-0df0389de3a0][public inheritance]]
+#+begin_src cpp
+class Derived : public Base{
+	...
+}
+#+end_src
+
+* [[id:3457211c-6c22-4655-97fd-fcf477140151][construction and destruction of derived classes]]

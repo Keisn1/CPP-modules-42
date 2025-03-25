@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       28d52664-3d1e-4636-9bca-a2e763746b66
+:END:
+#+title: destruction of derived classes
+#+date: [2025-03-25 Tue 11:10]
+#+startup: overview
+
+- in case of destruction, the derived class needs to be deleted first
+- it is done in this order, because
+  1. the derived class can be sure that the inherited-members and the base class still exist
+  2. avoids that already destroyed ressources are accessed by the derived class
+  3. Each class is responsible for its ressources

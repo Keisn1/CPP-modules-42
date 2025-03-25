@@ -5,7 +5,6 @@
 #+date: [2025-02-16 Sun 19:27]
 #+startup: overview
 
-
 - [[id:1619e17d-631a-4bef-8c7e-a80bc205a089][public members]] provide the class's interface
 - [[id:0e7ee4af-ff53-4900-8844-ddfd5d001105][private members]] provide implementation details
 - access specifiers can b eused many times in a single class declaration

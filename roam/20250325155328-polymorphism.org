@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       8ffd98c5-9849-48dc-8789-fedd08e58850
+:END:
+#+title: polymorphism
+#+date: [2025-03-25 Tue 15:53]
+#+startup: overview
+
+- polymorphism a mechanism for calling functions, which abstracts, away which implementation of a function is being invoked, from the caller

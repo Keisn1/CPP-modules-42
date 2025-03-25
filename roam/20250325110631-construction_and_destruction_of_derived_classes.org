@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       3457211c-6c22-4655-97fd-fcf477140151
+:END:
+#+title: construction and destruction of derived classes
+#+date: [2025-03-25 Tue 11:06]
+#+startup: overview
+
+- before there is an instance of a derived class, there needs to be an instance of the base class
+- in a way, the constructor/destructor of the derived class also need to handle the construction/destruction of the base class
+
+[[id:747d0d5e-85a0-4142-8032-28e9c3c2a7e2][construction of derived classes]]
+[[id:28d52664-3d1e-4636-9bca-a2e763746b66][destruction of derived classes]]

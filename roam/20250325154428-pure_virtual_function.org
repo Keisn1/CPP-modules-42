@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       59e61e30-5c2c-4d0a-b2d9-14e933559b7f
+:END:
+#+title: pure virtual function
+#+date: [2025-03-25 Tue 15:44]
+#+startup: overview
+
+- a pure virtual function doesn't need a definition inside the class where it has been declared

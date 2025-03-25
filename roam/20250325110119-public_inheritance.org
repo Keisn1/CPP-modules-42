@@ -1,0 +1,8 @@
+:PROPERTIES:
+:ID:       70a9181a-27f9-46c2-8f9a-0df0389de3a0
+:END:
+#+title: public inheritance
+#+date: [2025-03-25 Tue 11:01]
+#+startup: overview
+
+- public inheritance is a concept in CPP, where a derived class has access to all the public member functions and variables of the base class

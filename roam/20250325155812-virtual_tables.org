@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       24990dd7-21f6-4653-83c0-9a381e7b7aef
+:END:
+#+title: virtual tables
+#+date: [2025-03-25 Tue 15:58]
+#+startup: overview
+
+- virtual tables, are tables of pointers which point to the virtual functions of a type
+- each entry of the vtable points to virtual functions, which can be called upon the class
+- each Class has its own vtable
+- each instance of a class contains a pointer to that table
+

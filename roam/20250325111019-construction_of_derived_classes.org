@@ -1,0 +1,31 @@
+:PROPERTIES:
+:ID:       747d0d5e-85a0-4142-8032-28e9c3c2a7e2
+:END:
+#+title: construction of derived classes
+#+date: [2025-03-25 Tue 11:10]
+#+startup: overview
+
+- in cpp, any constructor of a derived class will call a constructor of the base class automatically
+
+#+begin_src cpp
+class ScavTrap : public ClapTrap {
+ScavTrap::ScavTrap() {
+	// will call ClapTrap
+}
+#+end_src
+
+- when you want to invoke a specific constructor to be invoked, you can do it via the member initialiazer list
+    #+begin_src cpp
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
+    // will call ClapTrap
+}
+    #+end_src
+
+
+- inside the body
+  #+begin_src cpp
+ScavTrap::ScavTrap(std::string name)  {
+	*this = ClapTrap(name);
+}
+  #+end_src
+  - this creates and destroys a temporary object

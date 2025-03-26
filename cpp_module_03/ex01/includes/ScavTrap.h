@@ -9,7 +9,8 @@ public:
 	ScavTrap(std::string name);
 	~ScavTrap();
 	ScavTrap(const ScavTrap&);
-	// ScavTrap operator=(const ScavTrap&);
+	ScavTrap& operator=(const ScavTrap&);
+	void guardGate(void);
 };
 
 #endif // SCAVTRAP_H

@@ -55,6 +55,7 @@ unsigned int ClapTrap::get_hit_points() const { return _hit_points;}
 unsigned int ClapTrap::get_energy_points() const { return _energy_points;}
 unsigned int ClapTrap::get_attack_damage() const { return _attack_damage; }
 
+void ClapTrap::set_name(std::string name) { _name = name; }
 void ClapTrap::set_hit_points(unsigned int hp) { _hit_points = hp; }
 void ClapTrap::set_energy_points(unsigned int ep) { _energy_points = ep; };
 void ClapTrap::set_attack_damage(unsigned int ad) { _attack_damage = ad; };

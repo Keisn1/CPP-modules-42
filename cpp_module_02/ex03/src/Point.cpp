@@ -23,6 +23,10 @@ Point &Point::operator=(const Point &p) {
     return *this;
 }
 
+// getter
+Fixed Point::get_x(void) const { return _x; }
+Fixed Point::get_y(void) const { return _y; }
+
 // destructor
 Point::~Point(void) {}
 

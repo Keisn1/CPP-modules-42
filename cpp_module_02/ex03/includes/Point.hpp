@@ -4,17 +4,19 @@
 #include "Fixed.hpp"
 
 class Point {
-    private:
-        const Fixed _x;
-        const Fixed _y;
-    public:
-        Point(void);
-        Point(const float x, const float y);
-        Point(Fixed x, Fixed y);
-        Point(const Point&);
-        Point &operator=(const Point&);
-        ~Point(void);
-        Point operator-(const Point&) const;
+private:
+    const Fixed _x;
+    const Fixed _y;
+public:
+    Point(void);
+    Point(const float x, const float y);
+    Point(Fixed x, Fixed y);
+    Point(const Point&);
+    Point &operator=(const Point&);
+    ~Point(void);
+    Point operator-(const Point&) const;
+    Fixed get_x(void) const;
+    Fixed get_y(void) const;
 };
 
 #endif // POINT_H

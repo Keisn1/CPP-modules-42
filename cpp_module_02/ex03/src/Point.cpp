@@ -1,16 +1,31 @@
 #include "Point.hpp"
 
-Point::Point() : x(0), y(0) {}
-Point::Point(const Fixed &x, const Fixed &y) : x(x), y(y) {}
-Point::~Point(void) {}
-Point::Point(const Point &p) : x(p.x), y(p.y) {}
+// default constructor
+Point::Point(void) : _x(0), _y(0) {}
 
+// floating point constructor
+Point::Point(const float x, const float y) : _x(Fixed(x)), _y(Fixed(y)) {
+    std::cout << "flaot constructor called" << std::endl;
+}
+
+// floating point constructor
+Point::Point(Fixed x, Fixed y) : _x(x), _y(y) {
+    std::cout << "fixed constructor called" << std::endl;
+}
+
+// copy constructor
+Point::Point(const Point &p) : _x(p._x), _y(p._y) {}
+
+// assignment operator
+// since members are const, this makes no sense
 Point &Point::operator=(const Point &p) {
-    this->x = p.x;
-    this->y = p.y;
+    (void)p;
     return *this;
 }
 
+// destructor
+Point::~Point(void) {}
+
 Point Point::operator-(const Point &p1) const {
-    return Point(p1.x - this->x, p1.y - this->y);
+    return Point(p1._x - this->_x, p1._y - this->_y);
 }

@@ -23,7 +23,7 @@ NAME := fixed
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRC_FILES)
 	$(CXX) $(CXX_FLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
 
 clean:

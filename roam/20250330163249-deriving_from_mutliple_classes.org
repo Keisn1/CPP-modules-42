@@ -1,0 +1,55 @@
+:PROPERTIES:
+:ID:       a9871717-1e55-4f26-8947-ec117069f2b5
+:END:
+#+title: deriving from mutliple classes
+#+date: [2025-03-30 So 16:32]
+#+startup: overview
+
+#+begin_src cpp
+#include <iostream>
+int main() {
+    std::cout << "hello" << std::endl;
+    return 0;
+}
+#+end_src
+
+#+RESULTS:
+: hello
+
+*** so the point is, if I declare a Base-class pointer, and initialize it to pointing to a derived class, then with virtual functions, the function f of BaseClass would be executed, and without virtual, it is the function of the derived class that would be executed?
+
+Not quite. The behavior is actually the opposite for the non-virtual case:
+
+1. *With Virtual Functions:*
+   - When a virtual function in a base class is overridden in a derived class, and you have a base class pointer or reference pointing to a derived class object, the derived class's overridden function will be called. This is known as dynamic dispatch or polymorphism. The correct function is determined at runtime based on the actual object type.
+
+   #+begin_src cpp
+   struct Base {
+       virtual void f() { /* Base implementation */ }
+   };
+
+   struct Derived : Base {
+       void f() override { /* Derived implementation */ }
+   };
+
+   Base* ptr = new Derived();
+   ptr->f(); // Calls Derived::f() due to virtual dispatch
+   #+end_src
+
+2. *Without Virtual Functions:*
+   - If the function is not virtual, then the function call is resolved at compile-time based on the static type of the pointer or reference. If the pointer is of type =Base*=, the base class's version of the function will be called, not the derived class's.
+
+   #+begin_src cpp
+   struct Base {
+       void f() { /* Base implementation */ }
+   };
+
+   struct Derived : Base {
+       void f() { /* Derived implementation */ }
+   };
+
+   Base* ptr = new Derived();
+   ptr->f(); // Calls Base::f() because it's not virtual
+   #+end_src
+
+So, with virtual functions, the derived class function gets called when accessed through a base class pointer, achieving polymorphic behavior. Without virtual functions, the base class function is called when accessed through a base class pointer, because it relies on static type information at compile-time.

@@ -13,7 +13,7 @@
 # variable's value will not change even if the variables it depends on change later
 
 CXX := c++
-CXXFLAGS := -std=c++98 -Wall -Werror -Wextra
+CXXFLAGS := -std=c++98 -Wall -Werror -Wextra -Wshadow
 
 SRC_DIR := src
 BUILD_DIR := build
@@ -25,7 +25,7 @@ NAME := diamondtrap
 all: $(NAME)
 
 $(NAME): $(SRC_FILES)
-	$(CXX) $(CXX_FLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
 
 clean:
 	rm -rf .cache

@@ -25,7 +25,7 @@ NAME := fragtrap
 all: $(NAME)
 
 $(NAME): $(SRC_FILES)
-	$(CXX) $(CXX_FLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
 
 clean:
 	rm -rf .cache

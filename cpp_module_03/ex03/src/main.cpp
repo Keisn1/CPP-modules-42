@@ -5,9 +5,7 @@ int main() {
         DiamondTrap d1 ("d1");
         d1.attack("target asdf");
         d1.whoAmI();
-    }
-    {
-        FragTrap f1("f1");
+        d1.highFivesGuys();
     }
     return 0;
 }

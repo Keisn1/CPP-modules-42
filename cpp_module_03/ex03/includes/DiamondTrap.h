@@ -10,6 +10,7 @@ private:
 	std::string _name;
 public:
 	DiamondTrap(std::string name);
+	void whoAmI(void);
 };
 
 #endif // DIAMONDTRAP_H

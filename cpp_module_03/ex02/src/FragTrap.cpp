@@ -2,47 +2,50 @@
 #include <iostream>
 
 FragTrap::FragTrap() : ClapTrap("") {
-    this->set_hit_points(100);
-    this->set_energy_points(100);
-    this->set_attack_damage(30);
-    std::cout << "FragTrap " << this->get_name() << " was constructed"
-              << " with hp: " << this->get_hit_points()
-              << ", ep: " << this->get_energy_points()
-              << " and ad: " << this->get_attack_damage() << std::endl;
+
+    _hit_points=100;
+    _energy_points=100;
+    _attack_damage=30;
+    std::cout << "FragTrap" << _name << " was constructed"
+              << " with hp: " << _hit_points
+              << ", ep: " << _energy_points
+              << " and ad: " << _attack_damage << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
-    this->set_hit_points(100);
-    this->set_energy_points(100);
-    this->set_attack_damage(30);
-    std::cout << "FragTrap " << this->get_name() << " was constructed"
-              << " with hp: " << this->get_hit_points()
-              << ", ep: " << this->get_energy_points()
-              << " and ad: " << this->get_attack_damage() << std::endl;
+    _hit_points=100;
+    _energy_points=100;
+    _attack_damage=30;
+    std::cout << "FragTrap" << _name << " was constructed"
+              << " with hp: " << _hit_points
+              << ", ep: " << _energy_points
+              << " and ad: " << _attack_damage << std::endl;
 }
 
 FragTrap::~FragTrap() {
-    std::cout << "FragTrap " << this->get_name() << " got destructed"
+    std::cout << "FragTrap " << _name << " got destructed"
               << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &st) : ClapTrap(st) {
-    std::cout << "FragTrap " << this->get_name() << " got copied"
-              << " with hp: " << this->get_hit_points()
-              << ", ep: " << this->get_energy_points()
-              << " and ad: " << this->get_attack_damage() << std::endl;
+FragTrap::FragTrap(const FragTrap &ft) : ClapTrap(ft) {
+    std::cout << "FragTrap " << _name << " got copied"
+              << " with hp: " << _hit_points
+              << ", ep: " << _energy_points
+              << " and ad: " << _attack_damage << std::endl;
 }
 
-FragTrap &FragTrap::operator=(const FragTrap &st) {
-    std::cout << "FragTrap " << this->get_name() << " got assigned FragTrap "
-              << st.get_name() << std::endl;
-    this->set_name(st.get_name());
-    this->set_hit_points(st.get_hit_points());
-    this->set_energy_points(st.get_energy_points());
-    this->set_attack_damage(st.get_attack_damage());
+FragTrap &FragTrap::operator=(const FragTrap &ft) {
+    if (this == &ft)
+        return *this;
+    std::cout << "FragTrap " << _name << " got assigned ScavTrap "
+              << ft._name << std::endl;
+    _name = ft._name;
+    _hit_points = ft._hit_points;
+    _energy_points = ft._energy_points;
+    _attack_damage = ft._attack_damage;
     return *this;
 }
 
 void FragTrap::highFivesGuys(void) {
-    std::cout << "FragTrap " << get_name() << " sagt: High Five" << std::endl;
+    std::cout << "FragTrap " << _name << " sagt: High Five" << std::endl;
 }

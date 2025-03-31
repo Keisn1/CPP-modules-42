@@ -20,7 +20,7 @@ BUILD_DIR := build
 INCLUDES := -Iincludes
 SRC_FILES := $(SRC_DIR)/ClapTrap.cpp $(SRC_DIR)/FragTrap.cpp $(SRC_DIR)/ScavTrap.cpp $(SRC_DIR)/main.cpp
 
-NAME := scavtrap
+NAME := fragtrap
 
 all: $(NAME)
 

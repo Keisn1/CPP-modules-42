@@ -6,7 +6,7 @@ FragTrap::FragTrap() : ClapTrap("") {
     _hit_points=100;
     _energy_points=100;
     _attack_damage=30;
-    std::cout << "FragTrap" << _name << " was constructed"
+    std::cout << "FragTrap " << _name << " was constructed"
               << " with hp: " << _hit_points
               << ", ep: " << _energy_points
               << " and ad: " << _attack_damage << std::endl;
@@ -16,7 +16,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
     _hit_points=100;
     _energy_points=100;
     _attack_damage=30;
-    std::cout << "FragTrap" << _name << " was constructed"
+    std::cout << "FragTrap " << _name << " was constructed"
               << " with hp: " << _hit_points
               << ", ep: " << _energy_points
               << " and ad: " << _attack_damage << std::endl;

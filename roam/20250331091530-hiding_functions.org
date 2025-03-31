@@ -1,0 +1,34 @@
+:PROPERTIES:
+:ID:       7c81323e-75e7-40e7-bee4-855dd27566e4
+:END:
+#+title: hiding functions
+#+date: [2025-03-31 Mo 09:15]
+#+startup: overview
+
+Hiding functions in CPP lingo, actually means, that a function of a base-class is implemented with the same name but different signature in a derived class.
+When the function has the same signature, it is considered [[id:d0f79033-59d4-4626-b5f8-1662e49ddc8c][overidden]].
+
+In the case of overriding, it is also hidden. But these terms are quite seperately used. The hidden term is used when the described case above arises.
+
+#+begin_src cpp
+#include <iostream>
+class Base {
+	public:
+	void print() { std::cout << "hello from base" << std::endl; }
+};
+
+class Der: public Base {
+	public:
+	void print(int i) { std::cout << "hello from derived" << i << std::endl; }
+};
+
+int main() {
+    Der der;
+	der.print(1);
+
+	Base* b = &der;
+	b->print();
+    return 0;
+}
+#+end_src
+

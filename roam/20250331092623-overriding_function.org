@@ -1,0 +1,71 @@
+:PROPERTIES:
+:ID:       d0f79033-59d4-4626-b5f8-1662e49ddc8c
+:END:
+#+title: overriding function
+#+date: [2025-03-31 Mo 09:26]
+#+startup: overview
+
+
+When a [[id:169951af-3fb4-4a7c-92d2-6bd56b376bd9][derived class]] declare a function that has the same name and signature as a function of the base class, the function of the base class is *overridden*.
+
+* with virtual
+- With virtual function specifier, we get [[id:8ffd98c5-9849-48dc-8789-fedd08e58850][polymorphism]], a base-class pointer is going to execute the function of the derived class
+#+begin_src cpp
+#include <iostream>
+class Base {
+	public:
+	virtual void print() { std::cout << "hello from base" << std::endl; }
+};
+
+class Der: public Base {
+	public:
+	void print() { std::cout << "hello from derived" << std::endl; }
+};
+
+int main() {
+    Der der;
+	der.print();
+
+	Base* b = &der;
+	b->print();
+    return 0;
+}
+#+end_src
+
+#+RESULTS:
+| hello | from | derived |
+| hello | from | derived |
+
+* without virtual
+- without using virtual for the base-class function, the function essentially gets [[id:7c81323e-75e7-40e7-bee4-855dd27566e4][hidden]] in the derived class
+- with the same signature one still speaks of overriding a function
+- with different signature, people talk about hiding a function
+- the behavior is the same (as far as I've investigated it)
+  - when a base-class pointer to a derived class is calling the function, then the base-class function is being executed and no polymorphism takes place
+#+begin_src cpp
+#include <iostream>
+class Base {
+	public:
+	void print() { std::cout << "hello from base" << std::endl; }
+};
+
+class Der: public Base {
+	public:
+	void print() { std::cout << "hello from derived" << std::endl; }
+};
+
+int main() {
+    Der der;
+	der.print();
+
+	Base* b = &der;
+	b->print();
+    return 0;
+}
+#+end_src
+
+#+RESULTS:
+| hello | from | derived |
+| hello | from | base    |
+
+* [[id:357643a9-8d35-4db4-9b48-f0a94404ea12][override keyword]]

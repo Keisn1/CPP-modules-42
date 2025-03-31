@@ -1,0 +1,30 @@
+:PROPERTIES:
+:ID:       b525c24a-446d-4504-9047-db194108bd14
+:END:
+#+title: virtual Destructors
+#+date: [2025-03-31 Mo 11:58]
+#+startup: overview
+
+Destructors absolutely should be declared virtual
+
+Interfaces are usually manipulated through the base class interface
+#+begin_src cpp
+class Shape {
+	public:
+	virtual void draw(void);
+};
+
+class Circle: public Shape {
+	void draw(void);
+};
+
+void print(Shape* s) {
+	s->draw();
+	delete s;
+}
+#+end_src
+
+- calling delete on Shape s, without virtual destructor would lead to the BaseClass Constructor being called
+
+
+- See [[id:d0f79033-59d4-4626-b5f8-1662e49ddc8c][overriding function]] and [[id:7c81323e-75e7-40e7-bee4-855dd27566e4][hiding functions]]

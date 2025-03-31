@@ -12,6 +12,9 @@ int main() {
         ScavTrap st5 ("st5");
         st4 = st5;
         st4.guardGate();
+        st4.attack("target #1");
+        st4.takeDamage(10);
+        st4.beRepaired(20);
         st4.set_name("st4");
     }
     {
@@ -24,6 +27,9 @@ int main() {
         FragTrap ft5 ("ft5");
         ft4 = ft5;
         ft4.highFivesGuys();
+        ft4.attack("target #1");
+        ft4.takeDamage(10);
+        ft4.beRepaired(20);
         ft4.set_name("ft4");
     }
     return 0;

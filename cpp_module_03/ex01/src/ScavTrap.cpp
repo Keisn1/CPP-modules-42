@@ -1,7 +1,7 @@
 #include "ScavTrap.h"
 #include <iostream>
 
-ScavTrap::ScavTrap() : ClapTrap("") {
+ScavTrap::ScavTrap() : ClapTrap() {
     this->set_hit_points(100);
     this->set_energy_points(50);
     this->set_attack_damage(20);

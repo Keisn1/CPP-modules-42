@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       357643a9-8d35-4db4-9b48-f0a94404ea12
+:END:
+#+title: override keyword
+#+date: [2025-03-31 Mo 10:44]
+#+startup: overview
+
+from C++11 on, one has =override= to be more explicit when overrriding a function
+- it means, that you're overriding a [[id:af7c9361-7820-4a43-8d6e-98baac3105ac][virtual function]] of a base class
+
+- the simple =virtual= specifier just says that a functin *may be overridden*

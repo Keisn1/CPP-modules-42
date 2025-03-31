@@ -37,7 +37,7 @@ FragTrap::FragTrap(const FragTrap &ft) : ClapTrap(ft) {
 FragTrap &FragTrap::operator=(const FragTrap &ft) {
     if (this == &ft)
         return *this;
-    std::cout << "FragTrap " << _name << " got assigned ScavTrap "
+    std::cout << "FragTrap " << _name << " got assigned FragTrap "
               << ft._name << std::endl;
     _name = ft._name;
     _hit_points = ft._hit_points;

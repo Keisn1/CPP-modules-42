@@ -1,0 +1,37 @@
+:PROPERTIES:
+:ID:       e8572142-12d5-4245-bbe2-d6564fe8451f
+:END:
+#+title: multiple inheritance
+#+date: [2025-04-02 Mi 10:23]
+#+startup: overview
+
+* DiamondProblem in iniheritance
+#+begin_src
+      ClapTrap
+         ^
+        / \
+       /   \
+      /     \
+ScavTrap   FragTrap
+    \        /
+     \      /
+      \    /
+    DiamondTrap
+#+end_src
+- when I do not use virtual inheritance in ScavTrap and FragTrap,
+  - then DiamondTrap will have 2 seperate instances of =ClapTrap=
+  - this will cause ambiguity when resolving for the members of =ClapTrap=
+
+- by declaring virtual inheritance on ScavTrap and FragTrap, only one instance of ClapTrap is going to be created
+
+#+begin_src cpp
+class ClapTrap {};
+
+class ScavTrap : virtual public ClapTrap {};
+
+class FragTrap : virtual public ClapTrap {};
+
+class DiamondTrap : public ScavTrap, public FragTrap {};
+#+end_src
+
+* [[id:001795f6-927f-4b75-84d4-d5247d4cdfbb][method resolution]]

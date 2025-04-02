@@ -1,0 +1,15 @@
+:PROPERTIES:
+:ID:       001795f6-927f-4b75-84d4-d5247d4cdfbb
+:END:
+#+title: method resolution
+#+date: [2025-04-02 Mi 10:30]
+#+startup: overview
+
+- method resolution appears when there are multiple candidate class methods to be called, particularly in the context of inheritance
+- specifically when a method is overriden
+
+- the method resolution order (MRO) of the given language is determining the method that is being called
+- inside a class hierarchy, the derived class will always use the most recent overriden version of a method
+- in CPP, when using multiple inheritance, and there is a method of the base class that is overridden by multiple parents at the same level, this will lead to an ambiguity error thrown by the compiler (in CPP)
+
+ This behavior is due to dynamic dispatch (or late binding), which ensures that the method corresponding to the actual object's class is invoked at runtime.

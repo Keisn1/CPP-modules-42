@@ -13,21 +13,27 @@ int main() {
     {
         std::cout << DEEPSKYBLUE <<  "Test default constructor" << RESET << std::endl;
         FragTrap ft1;
+        ft1.printAttributes();
     }
     {
         std::cout << DEEPSKYBLUE <<  "Test string constructor" << RESET << std::endl;
         FragTrap ft1 ("ft1");
+        ft1.printAttributes();
     }
     {
         std::cout << DEEPSKYBLUE <<  "Test copy constructor" << RESET << std::endl;
         FragTrap ft1 ("ft1");
         FragTrap ft2 (ft1);
+        ft1.printAttributes();
+        ft2.printAttributes();
     }
     {
         std::cout << DEEPSKYBLUE <<  "Test copy assignment constructor" << RESET << std::endl;
         FragTrap ft1 ("ft1");
         FragTrap ft2 ("ft2");
         ft2 = ft1;
+        ft1.printAttributes();
+        ft2.printAttributes();
     }
     {
         std::cout << DEEPSKYBLUE <<  "Test other member functions" << RESET << std::endl;

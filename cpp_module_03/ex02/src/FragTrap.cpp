@@ -2,7 +2,6 @@
 #include <iostream>
 
 FragTrap::FragTrap() : ClapTrap("") {
-
     _hit_points=100;
     _energy_points=100;
     _attack_damage=30;
@@ -47,5 +46,5 @@ FragTrap &FragTrap::operator=(const FragTrap &ft) {
 }
 
 void FragTrap::highFivesGuys(void) {
-    std::cout << "FragTrap " << _name << " sagt: High Five" << std::endl;
+    std::cout << "FragTrap " << _name << " says: High Five" << std::endl;
 }

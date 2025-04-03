@@ -35,8 +35,7 @@ ScavTrap::ScavTrap(const ScavTrap &st) : ClapTrap(st) {
 ScavTrap &ScavTrap::operator=(const ScavTrap &st) {
     if (this == &st)
         return *this;
-    std::cout << "ScavTrap " << _name << " got assigned ScavTrap "
-              << st._name << std::endl;
+    std::cout << "ScavTrap " << _name << " got assigned ScavTrap " << st._name << std::endl;
     _name = st._name;
     _hit_points = st._hit_points;
     _energy_points = st._energy_points;

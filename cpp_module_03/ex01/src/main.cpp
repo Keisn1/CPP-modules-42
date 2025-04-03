@@ -13,25 +13,30 @@ int main() {
     {
         std::cout << DEEPSKYBLUE <<  "Test default constructor" << RESET << std::endl;
         ScavTrap st1;
+        st1.printAttributes();
     }
     {
         std::cout << DEEPSKYBLUE <<  "Test string constructor" << RESET << std::endl;
         ScavTrap st1 ("st1");
+        st1.printAttributes();
     }
     {
         std::cout << DEEPSKYBLUE <<  "Test copy constructor" << RESET << std::endl;
         ScavTrap st1 ("st1");
         ScavTrap st2 (st1);
+        st1.printAttributes();
     }
     {
         std::cout << DEEPSKYBLUE <<  "Test copy assignment constructor" << RESET << std::endl;
         ScavTrap st1 ("st1");
         ScavTrap st2 ("st2");
         st2 = st1;
+        st2.printAttributes();
     }
     {
         std::cout << DEEPSKYBLUE <<  "Test other member functions" << RESET << std::endl;
         ScavTrap st1 ("st1");
+        st1.printAttributes();
         st1.guardGate();
         st1.attack("target #1");
         st1.takeDamage(10);

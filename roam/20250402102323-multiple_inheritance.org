@@ -34,4 +34,13 @@ class FragTrap : virtual public ClapTrap {};
 class DiamondTrap : public ScavTrap, public FragTrap {};
 #+end_src
 
+- when you inherit from multiple classes the order in which you inherit from them plays a crucial role
+- specifically, when you change protected data members of the base-class inside the constructors, they will be changed one after the other
+
+- there is a big question about who gets to initialize the =virtual= base class
+  - it is initialized by the most derived class
+  - the other constructors will not initialize their own instance of ClapTrap
+    - intermediate constructor initializers for the baseClass are ignored
+
+
 * [[id:001795f6-927f-4b75-84d4-d5247d4cdfbb][method resolution]]

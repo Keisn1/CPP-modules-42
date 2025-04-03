@@ -6,3 +6,5 @@
 #+startup: overview
 
 - public inheritance is a concept in CPP, where a derived class has access to all the public member functions and variables of the base class
+- when inheriting from a base class, the constructor of the child class needs to call the constructor of the base-class inside its [[id:c4c0f974-311b-43cb-9e30-dd8524376e27][member initializer list]]
+  - with non-virtual inheritance, the base constructor will actually be automatically called

@@ -7,6 +7,9 @@
 
 [[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::515++6.23][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 515]]
 
+- a member initializer list can be used in a constructor of a class to initialize certain members
+
+- it can be used to initialize non-static data members
 #+begin_src cpp
 class MyClass {
     int x;
@@ -16,3 +19,18 @@ public:
     MyClass(int a, int b) : x(a), y(b) {// Constructor body, if needed}
 };
 #+end_src
+
+- it can be used to initiliaze [[id:4c906f3e-c5ea-4297-9f3a-ed2787df1df3][direct]] and [[id:a77a68b7-3f4b-4586-902e-1519d540ee27][virtual]]  Base-Classes
+  #+begin_src cpp
+class Base {
+public:
+	Base();
+	Base(std::string&);
+};
+
+class Sub: public Base {
+public:
+	Sub();
+	Sub(std::string& s) : Base(s) {}
+}
+  #+end_src

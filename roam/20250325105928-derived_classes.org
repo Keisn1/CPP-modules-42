@@ -5,8 +5,10 @@
 #+date: [2025-03-25 Tue 10:59]
 #+startup: overview
 
-- derived classes in CPP are Classes that are declared with the syntax
-- in this case we are using [[id:70a9181a-27f9-46c2-8f9a-0df0389de3a0][public inheritance]]
+- derived classes in CPP are Classes that are declared with following syntax
+  - in this case we are using [[id:70a9181a-27f9-46c2-8f9a-0df0389de3a0][public inheritance]]
+- when deriving a class, the derived class *contains* the instance of the base-class
+  - it includes the base-class as a subobject
 #+begin_src cpp
 class Derived : public Base{
 	...

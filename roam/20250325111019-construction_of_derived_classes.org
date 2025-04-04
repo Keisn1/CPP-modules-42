@@ -6,6 +6,7 @@
 #+startup: overview
 
 - in cpp, any constructor of a derived class will call a constructor of the base class automatically
+- one can also control how these constructors are called by providing them arguments in the [[id:c4c0f974-311b-43cb-9e30-dd8524376e27][member initializer list]]
 
 #+begin_src cpp
 class ScavTrap : public ClapTrap {

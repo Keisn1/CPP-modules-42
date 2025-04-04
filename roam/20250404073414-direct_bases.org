@@ -1,0 +1,12 @@
+:PROPERTIES:
+:ID:       4c906f3e-c5ea-4297-9f3a-ed2787df1df3
+:END:
+#+title: direct and indirect bases
+#+date: [2025-04-04 Fri 07:34]
+#+startup: overview
+
+- bases that appear after the colon in a class declarations are called *direct*
+- the list after the colon of a class-declaration is called *base-clause*
+- so classes that appear inside the base-clause are *direct*
+
+- base classes of direct bases are called *indirect*

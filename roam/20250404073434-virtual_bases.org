@@ -1,0 +1,10 @@
+:PROPERTIES:
+:ID:       a77a68b7-3f4b-4586-902e-1519d540ee27
+:END:
+#+title: virtual bases
+#+date: [2025-04-04 Fri 07:34]
+#+startup: overview
+
+- virtual bases are base-classes which appear with a =virtual= specifier inside the =base-clause=
+- this is related to [[id:e8572142-12d5-4245-bbe2-d6564fe8451f][multiple inheritance]], because [[id:4c906f3e-c5ea-4297-9f3a-ed2787df1df3][indirect bases]] can appear multiple timeis inside the =base-clause=
+- in that case, as long as the direct base-classes that have the common ancestor, are specified virtual, only one instance of this common ancestor is constructed

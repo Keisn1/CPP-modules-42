@@ -8,9 +8,11 @@ protected:
 	std::string _type;
 public:
 	Animal(void);
-	~Animal(void);
+	virtual ~Animal(void);
 	Animal(const Animal&);
 	Animal& operator=(const Animal&);
+	void makeSound(void);
+	void printType(void);
 };
 
 #endif // ANIMAL_H

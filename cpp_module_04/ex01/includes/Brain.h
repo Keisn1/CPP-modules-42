@@ -8,6 +8,7 @@ public:
 	std::string ideas[100];
 	Brain(void);
 	~Brain(void);
+	Brain(const Brain&);
 };
 
 

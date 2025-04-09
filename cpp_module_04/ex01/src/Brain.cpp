@@ -8,3 +8,9 @@ Brain::Brain(void) {
 Brain::~Brain(void) {
 	std::cout << "Brain was destructed" << std::endl;
 }
+
+Brain::Brain(const Brain &b) {
+	(void)b;
+	std::cout << "ideas were copied" << std::endl;
+	std::cout << "Brain was copy-constructed" << std::endl;
+}

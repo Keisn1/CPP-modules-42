@@ -13,7 +13,8 @@ Cat::~Cat() {
 }
 
 Cat::Cat(const Cat &d) : Animal(d) {
-	std::cout << "Cat was copied" << std::endl;
+	_brain = new Brain(*d._brain);
+	std::cout << "Cat was copy-constructed" << std::endl;
 }
 
 Cat& Cat::operator=(const Cat &c) {

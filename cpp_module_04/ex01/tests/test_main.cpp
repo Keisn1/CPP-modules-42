@@ -110,4 +110,76 @@ Cat was destructed
 Animal was destructed
 )";
 	ASSERT_EQ(want, got);
+
+
+	{
+		testing::internal::CaptureStdout();
+		const Cat* cat1 = new Cat();
+		const Cat* cat2 = new Cat(*cat1);
+		delete cat1;
+		delete cat2;
+	}
+	got = testing::internal::GetCapturedStdout();
+	want = R"(Animal was constructed
+Brain was constructed
+Cat was constructed
+Animal was copied
+ideas were copied
+Brain was copy-constructed
+Cat was copy-constructed
+Brain was destructed
+Cat was destructed
+Animal was destructed
+Brain was destructed
+Cat was destructed
+Animal was destructed
+)";
+	ASSERT_EQ(want, got);
+
+	{
+		testing::internal::CaptureStdout();
+		const Dog dog1 = Dog();
+		const Dog dog2 (dog1);
+	}
+	got = testing::internal::GetCapturedStdout();
+	want = R"(Animal was constructed
+Brain was constructed
+Dog was constructed
+Animal was copied
+ideas were copied
+Brain was copy-constructed
+Dog was copy-constructed
+Brain was destructed
+Dog was destructed
+Animal was destructed
+Brain was destructed
+Dog was destructed
+Animal was destructed
+)";
+	ASSERT_EQ(want, got);
+
+
+	{
+		testing::internal::CaptureStdout();
+		const Dog* dog1 = new Dog();
+		const Dog* dog2 = new Dog(*dog1);
+		delete dog1;
+		delete dog2;
+	}
+	got = testing::internal::GetCapturedStdout();
+	want = R"(Animal was constructed
+Brain was constructed
+Dog was constructed
+Animal was copied
+ideas were copied
+Brain was copy-constructed
+Dog was copy-constructed
+Brain was destructed
+Dog was destructed
+Animal was destructed
+Brain was destructed
+Dog was destructed
+Animal was destructed
+)";
+	ASSERT_EQ(want, got);
 }

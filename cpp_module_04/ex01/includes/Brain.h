@@ -4,11 +4,13 @@
 #include <string>
 
 class Brain {
+private:
+	std::string _ideas[100];
 public:
-	std::string ideas[100];
 	Brain(void);
 	~Brain(void);
 	Brain(const Brain&);
+	void printIdeas(int amount) const;
 };
 
 

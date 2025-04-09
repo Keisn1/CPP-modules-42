@@ -13,7 +13,8 @@ Dog::~Dog() {
 }
 
 Dog::Dog(const Dog &d) : Animal(d) {
-	std::cout << "Dog was copied" << std::endl;
+	_brain = new Brain(*d._brain);
+	std::cout << "Dog was copy-constructed" << std::endl;
 }
 
 Dog& Dog::operator=(const Dog &d) {

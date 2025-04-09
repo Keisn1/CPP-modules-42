@@ -18,7 +18,7 @@ CXXFLAGS := -std=c++98 -Wall -Werror -Wextra -Wshadow
 SRC_DIR := src
 BUILD_DIR := build
 INCLUDES := -Iincludes
-SRC_FILES := $(SRC_DIR)/Brain.cpp
+SRC_FILES := $(SRC_DIR)/Brain.cpp $(SRC_DIR)/Animal.cpp $(SRC_DIR)/Dog.cpp $(SRC_DIR)/Cat.cpp
 
 NAME := brain
 

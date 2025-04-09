@@ -1,0 +1,27 @@
+#include "Cat.h"
+#include <iostream>
+
+Cat::Cat() : Animal() {
+	_type = "Cat";
+	_brain = new Brain();
+	std::cout << "Cat was constructed" << std::endl;
+}
+
+Cat::~Cat() {
+	delete _brain;
+	std::cout << "Cat was destructed" << std::endl;
+}
+
+Cat::Cat(const Cat &d) : Animal(d) {
+	std::cout << "Cat was copied" << std::endl;
+}
+
+Cat& Cat::operator=(const Cat &c) {
+	(void)c;
+	std::cout << "Cat was assigned to another Cat" << std::endl;
+	return *this;
+}
+
+void Cat::makeSound(void) const {
+	std::cout << "Cat makes a Cat sound: Miau" << std::endl;
+}

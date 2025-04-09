@@ -307,15 +307,4 @@ TEST(WrongAnimalsMakeWrongSounds, sounds) {
 	}
 	std::string want =  "WrongAnimal makes an animal sound\n";
 	ASSERT_EQ(want, got);
-
-	// ASSERT_EQ(want, got);
-
-	// {
-	// 	WrongCat c1;
-	// 	testing::internal::CaptureStdout();
-	// 	c1.makeSound();
-	// 	got = testing::internal::GetCapturedStdout();
-	// }
-	// want = "Animal makes an animal sound: Miau\n";
-	// ASSERT_EQ(want, got);
 }

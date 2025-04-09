@@ -6,8 +6,28 @@
 },
 {
   "directory": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build",
+  "command": "/usr/bin/c++  -I/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/./includes -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googletest -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googlemock/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/src/Cat.cpp.o -c /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/src/Cat.cpp",
+  "file": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/src/Cat.cpp"
+},
+{
+  "directory": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build",
   "command": "/usr/bin/c++  -I/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/./includes -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googletest -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googlemock/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/src/Dog.cpp.o -c /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/src/Dog.cpp",
   "file": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/src/Dog.cpp"
+},
+{
+  "directory": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build",
+  "command": "/usr/bin/c++  -I/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/./includes -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googletest -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googlemock/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/src/WrongAnimal.cpp.o -c /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/src/WrongAnimal.cpp",
+  "file": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/src/WrongAnimal.cpp"
+},
+{
+  "directory": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build",
+  "command": "/usr/bin/c++  -I/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/./includes -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googletest -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googlemock/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/src/WrongCat.cpp.o -c /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/src/WrongCat.cpp",
+  "file": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/src/WrongCat.cpp"
+},
+{
+  "directory": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build",
+  "command": "/usr/bin/c++  -I/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/./includes -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googletest -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googlemock/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/tests/ex00_tests.cpp.o -c /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/tests/ex00_tests.cpp",
+  "file": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/tests/ex00_tests.cpp"
 },
 {
   "directory": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex00/build",

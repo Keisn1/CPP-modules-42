@@ -19,3 +19,7 @@ Dog& Dog::operator=(const Dog &d) {
 	std::cout << "Dog was assigned to another Dog" << std::endl;
 	return *this;
 }
+
+void Dog::makeSound(void) const {
+	std::cout << "Dog makes a Dog sound: Wuff Wuff" << std::endl;
+}

@@ -2,6 +2,8 @@
 #include "Animal.h"
 #include "Dog.h"
 #include "Cat.h"
+#include "WrongAnimal.h"
+#include "WrongCat.h"
 
 TEST(TestAnimal, AnimalTests) {
 	// ##########################################################################################
@@ -254,7 +256,7 @@ Animal was destructed
 	ASSERT_EQ(want, got);
 }
 
-TEST(MakeSounds, sounds) {
+TEST(AnimalsMakeSounds, sounds) {
 	std::string got;
 	{
 		Animal a1;
@@ -274,16 +276,46 @@ TEST(MakeSounds, sounds) {
 	want = "Dog makes a Dog sound: Wuff Wuff\n";
 	ASSERT_EQ(want, got);
 
-// 	testing::internal::CaptureStdout();
-// 	{
-// 		Dog d1;
-// 		d1.makeSound();
-// 	}
-// 	got = testing::internal::GetCapturedStdout();
-// 	want = R"(Dog was constructed
-//
-// Dog was destructed
-// )";
-// 	ASSERT_EQ(want, got);
+	{
+		Cat c1;
+		testing::internal::CaptureStdout();
+		c1.makeSound();
+		got = testing::internal::GetCapturedStdout();
+	}
+	want = "Cat makes a Cat sound: Miau\n";
+	ASSERT_EQ(want, got);
 
+	{
+		const Animal* a = new  Cat();
+		testing::internal::CaptureStdout();
+		a->makeSound();
+		got = testing::internal::GetCapturedStdout();
+		delete a;
+	}
+	want = "Cat makes a Cat sound: Miau\n";
+	ASSERT_EQ(want, got);
+}
+
+TEST(WrongAnimalsMakeWrongSounds, sounds) {
+	std::string got;
+	{
+		const WrongAnimal* a1 = new WrongCat();
+		testing::internal::CaptureStdout();
+		a1->makeSound();
+		got = testing::internal::GetCapturedStdout();
+		delete a1;
+	}
+	std::string want =  "WrongAnimal makes an animal sound\n";
+	ASSERT_EQ(want, got);
+
+	// ASSERT_EQ(want, got);
+
+	// {
+	// 	WrongCat c1;
+	// 	testing::internal::CaptureStdout();
+	// 	c1.makeSound();
+	// 	got = testing::internal::GetCapturedStdout();
+	// }
+	// want = "Animal makes an animal sound: Miau\n";
+	// ASSERT_EQ(want, got);
 }

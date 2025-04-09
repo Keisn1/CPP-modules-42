@@ -18,14 +18,14 @@ CXXFLAGS := -std=c++98 -Wall -Werror -Wextra -Wshadow
 SRC_DIR := src
 BUILD_DIR := build
 INCLUDES := -Iincludes
-SRC_FILES := $(SRC_DIR)/Animal.cpp $(SRC_DIR)/Dog.cpp $(SRC_DIR)/Cat.cpp
+SRC_FILES := $(SRC_DIR)/Animal.cpp $(SRC_DIR)/Dog.cpp $(SRC_DIR)/Cat.cpp $(SRC_DIR)/WrongCat.cpp $(SRC_DIR)/WrongAnimal.cpp
 
 NAME := Animal
 
 all: $(NAME)
 
-$(NAME): $(SRC_FILES)
-	$(CXX) $(CXXFLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
+$(NAME): $(SRC_FILES) $(SRC_DIR)/main.cpp
+	$(CXX) $(CXXFLAGS) $(SRC_FILES) $(SRC_DIR)/main.cpp -o $(NAME) $(INCLUDES)
 
 clean:
 	rm -rf .cache

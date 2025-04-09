@@ -19,12 +19,10 @@ Animal& Animal::operator=(const Animal &a) {
 	return *this;
 }
 
-void Animal::makeSound(void) {
-	if (_type == "Dog") {
-		std::cout << "Dog makes a Dog sound: Wuff Wuff" << std::endl;
-		return;
-	}
+void Animal::makeSound(void) const {
 	std::cout << "Animal makes an animal sound" << std::endl;
 }
 
 void Animal::printType(void) { std::cout << "type: " << _type << std::endl; }
+
+std::string Animal::getType(void) const { return _type; }

@@ -19,3 +19,7 @@ Cat& Cat::operator=(const Cat &d) {
 	std::cout << "Cat was assigned to another Cat" << std::endl;
 	return *this;
 }
+
+void Cat::makeSound(void) const {
+	std::cout << "Cat makes a Cat sound: Miau" << std::endl;
+}

@@ -36,7 +36,33 @@ int main() {
 		d2 = *d1;
 
 		delete d1;
+	}
 
+	{
+		Animal animals[10];
+		for (int i = 0; i < 5; i++)
+			animals[i] = Dog();
+		for (int i = 5; i < 10; i++)
+			animals[i] = Cat();
+		for (int i = 0; i < 10; i++) {
+			animals[i].printType();
+			animals[i].makeSound();
+		}
+	}
+
+	{
+		Animal* animals[10];
+		for (int i = 0; i < 5; i++)
+			animals[i] = new Dog();
+		for (int i = 5; i < 10; i++)
+			animals[i] = new Cat();
+		for (int i = 0; i < 10; i++) {
+			animals[i]->printType();
+			animals[i]->makeSound();
+		}
+
+		for (int i = 0; i < 10; i++)
+			delete animals[i];
 	}
 	return 0;
 }

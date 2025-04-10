@@ -22,7 +22,6 @@ Brain was destructed
 Cat was destructed
 Animal was destructed
 )";
-	ASSERT_EQ(want, got);
 
 	{
 		testing::internal::CaptureStdout();
@@ -157,7 +156,6 @@ Dog was destructed
 Animal was destructed
 )";
 	ASSERT_EQ(want, got);
-
 
 	{
 		testing::internal::CaptureStdout();

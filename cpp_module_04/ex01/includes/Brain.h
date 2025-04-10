@@ -10,6 +10,7 @@ public:
 	Brain(void);
 	~Brain(void);
 	Brain(const Brain&);
+	Brain& operator=(const Brain&);
 	void printIdeas(int amount) const;
 };
 

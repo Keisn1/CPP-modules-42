@@ -10,9 +10,21 @@ Brain::~Brain(void) {
 }
 
 Brain::Brain(const Brain &b) {
-	(void)b;
+	for (int i = 0; i < 100; ++i)
+		_ideas[i] = b._ideas[i];
 	std::cout << "ideas were copied" << std::endl;
 	std::cout << "Brain was copy-constructed" << std::endl;
+}
+
+Brain& Brain::operator=(const Brain& b) {
+
+	if (this == &b)
+		return *this;
+	for (int i = 0; i < 100; ++i)
+		_ideas[i] = b._ideas[i];
+	std::cout << "ideas were copied" << std::endl;
+	std::cout << "Brain was copy-assigned" << std::endl;
+	return *this;
 }
 
 void Brain::printIdeas(int amount) const {

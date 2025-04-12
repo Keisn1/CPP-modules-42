@@ -180,4 +180,31 @@ Dog was destructed
 Animal was destructed
 )";
 	ASSERT_EQ(want, got);
+
+	{
+		testing::internal::CaptureStdout();
+		Dog basic;
+		{
+			Dog tmp;
+			tmp = basic;
+		}
+	}
+	got = testing::internal::GetCapturedStdout();
+        want = R"(Animal was constructed
+Brain was constructed
+Dog was constructed
+Animal was constructed
+Brain was constructed
+Dog was constructed
+ideas were copied
+Brain was copy-assigned
+Dog was assigned to another Dog
+Brain was destructed
+Dog was destructed
+Animal was destructed
+Brain was destructed
+Dog was destructed
+Animal was destructed
+)";
+	ASSERT_EQ(want, got);
 }

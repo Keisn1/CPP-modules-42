@@ -83,7 +83,6 @@ int main() {
 		delete a;
 	}
 	{
-
 		std::cout << DEEPSKYBLUE <<  "Test deep copy" << RESET << std::endl;
 		Dog basic;
 		std::cout << DEEPSKYBLUE <<  "Before basic" << RESET << std::endl;

@@ -1,13 +1,17 @@
 #include "Dog.h"
 #include "Cat.h"
+#include "WrongCat.h"
 #include <iostream>
 
 #define DEEPSKYBLUE "\033[38;2;0;191;255m"
 #define RESET "\033[0m"
 
 int main() {
-	Brain b;
-	b.printIdeas(5);
+	{
+
+		Brain b;
+		b.printIdeas(5);
+	}
 	{
         std::cout << DEEPSKYBLUE <<  "Test default constructor" << RESET << std::endl;
 		const Animal* j = new Dog();
@@ -72,6 +76,19 @@ int main() {
 
 		for (int i = 0; i < 10; i++)
 			delete animals[i];
+	}
+	{
+
+		std::cout << DEEPSKYBLUE <<  "Test deep copy" << RESET << std::endl;
+		Dog basic;
+		{
+			Dog tmp = basic;
+		}
+	}
+	{
+		std::cout << DEEPSKYBLUE <<  "WrongCat is not getting deleted" << RESET << std::endl;
+		WrongAnimal* a = new WrongCat();
+		delete a;
 	}
 	return 0;
 }

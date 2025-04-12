@@ -78,17 +78,29 @@ int main() {
 			delete animals[i];
 	}
 	{
-
-		std::cout << DEEPSKYBLUE <<  "Test deep copy" << RESET << std::endl;
-		Dog basic;
-		{
-			Dog tmp = basic;
-		}
-	}
-	{
 		std::cout << DEEPSKYBLUE <<  "WrongCat is not getting deleted" << RESET << std::endl;
 		WrongAnimal* a = new WrongCat();
 		delete a;
+	}
+	{
+
+		std::cout << DEEPSKYBLUE <<  "Test deep copy" << RESET << std::endl;
+		Dog basic;
+		std::cout << DEEPSKYBLUE <<  "Before basic" << RESET << std::endl;
+		{
+			Dog tmp = basic;
+		}
+		std::cout << DEEPSKYBLUE <<  "After basic" << RESET << std::endl;
+	}
+	{
+		std::cout << DEEPSKYBLUE <<  "Test deep copy with copy-assignment" << RESET << std::endl;
+		Dog basic;
+		std::cout << DEEPSKYBLUE <<  "Before basic" << RESET << std::endl;
+		{
+			Dog tmp;
+			tmp = basic;
+		}
+		std::cout << DEEPSKYBLUE <<  "After basic" << RESET << std::endl;
 	}
 	return 0;
 }

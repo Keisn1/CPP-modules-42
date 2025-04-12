@@ -17,7 +17,6 @@ Brain::Brain(const Brain &b) {
 }
 
 Brain& Brain::operator=(const Brain& b) {
-
 	if (this == &b)
 		return *this;
 	for (int i = 0; i < 100; ++i)

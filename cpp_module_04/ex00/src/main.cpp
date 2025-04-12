@@ -16,9 +16,14 @@ int main() {
 		meta->makeSound();
 	}
 	{
+		const WrongCat* i = new WrongCat();
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound(); //will output the animal sound!
+	}
+	{
 		const WrongAnimal* i = new WrongCat();
 		std::cout << i->getType() << " " << std::endl;
-		i->makeSound(); //will output the cat sound!
+		i->makeSound(); //will output the animal sound!
 	}
 	return 0;
 }

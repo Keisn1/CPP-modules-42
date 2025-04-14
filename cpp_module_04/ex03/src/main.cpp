@@ -61,10 +61,6 @@ int main() {
         delete del;
 
         character1.use(0, character2); // should do nothing
-
-        // Clean up
-        delete ice;
-        delete cure;
     }
     {
         std::cout << DEEPSKYBLUE << "Fourth test: MateriaSource learn and create" << RESET << std::endl;
@@ -153,10 +149,23 @@ int main() {
 
         // Clean up dynamically allocated resources
         delete excessIce;
-        delete ice1;
-        delete ice2;
-        delete ice3;
-        delete ice4;
+    }
+    {
+        IMateriaSource* src = new MateriaSource();
+        src->learnMateria(new Ice());
+        src->learnMateria(new Cure());
+        ICharacter* me = new Character("me");
+        AMateria* tmp;
+        tmp = src->createMateria("ice");
+        me->equip(tmp);
+        tmp = src->createMateria("cure");
+        me->equip(tmp);
+        ICharacter* bob = new Character("bob");
+        me->use(0, *bob);
+        me->use(1, *bob);
+        delete bob;
+        delete me;
+        delete src;
     }
 
     return 0;

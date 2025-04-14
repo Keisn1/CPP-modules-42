@@ -20,6 +20,11 @@
   "file": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/src/Ice.cpp"
 },
 {
+  "directory": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build",
+  "command": "/usr/bin/c++  -I/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/./includes -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-src/googletest -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-src/googlemock/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/src/MateriaSource.cpp.o -c /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/src/MateriaSource.cpp",
+  "file": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/src/MateriaSource.cpp"
+},
+{
   "directory": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-build/googlemock",
   "command": "/usr/bin/c++  -I/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-src/googlemock/include -I/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-src/googlemock -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-src/googletest/include -isystem /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-src/googletest -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
   "file": "/home/kfreyer/workspace/CPP-modules-42/cpp_module_04/ex03/build/_deps/googletest-src/googlemock/src/gmock-all.cc"

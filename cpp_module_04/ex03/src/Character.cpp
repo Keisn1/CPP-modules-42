@@ -62,7 +62,7 @@ void Character::equip(AMateria* m) {
     int i = 0;
     while (i < MAX_NBR_MATERIA) {
         if (!_slots[i]) {
-            _slots[i] = m->clone();
+            _slots[i] = m;
             break;
         }
         i++;

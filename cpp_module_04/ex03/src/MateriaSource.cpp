@@ -12,7 +12,7 @@ MateriaSource::~MateriaSource(void) {
         if (_materias[i])
             delete _materias[i];
     }
-    delete _materias;
+    delete[] _materias;
 }
 
 MateriaSource::MateriaSource(const MateriaSource& ms) {

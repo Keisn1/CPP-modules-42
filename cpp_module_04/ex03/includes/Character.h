@@ -15,6 +15,7 @@ class Character : public ICharacter {
 
   public:
     Character();
+    Character(std::string name);
     ~Character();
     Character(const Character&);
     Character& operator=(const Character&);

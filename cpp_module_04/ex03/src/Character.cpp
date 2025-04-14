@@ -9,12 +9,19 @@ Character::Character() : _name("nobody"), _slots(NULL), _nbrMat() {
     std::cout << _name << "-Character was constructed" << std::endl;
 }
 
+Character::Character(std::string name) : _name(name), _slots(NULL), _nbrMat() {
+    _slots = new AMateria*[MAX_NBR_MATERIA];
+    for (int i = 0; i < MAX_NBR_MATERIA; i++)
+        _slots[i] = NULL;
+    std::cout << _name << "-Character was constructed" << std::endl;
+}
+
 Character::~Character() {
     for (int i = 0; i < MAX_NBR_MATERIA; i++) {
         if (_slots[i])
             delete _slots[i];
     }
-    delete _slots;
+    delete[] _slots;
     std::cout << _name << "-Character was destructed" << std::endl;
 }
 
@@ -55,7 +62,7 @@ void Character::equip(AMateria* m) {
     int i = 0;
     while (i < MAX_NBR_MATERIA) {
         if (!_slots[i]) {
-            _slots[i] = m;
+            _slots[i] = m->clone();
             break;
         }
         i++;

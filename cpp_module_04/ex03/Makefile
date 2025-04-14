@@ -13,14 +13,18 @@
 # variable's value will not change even if the variables it depends on change later
 
 CXX := c++
-CXXFLAGS := -std=c++98 -Wall -Werror -Wextra -Wshadow
+CXXFLAGS := -std=c++98 -Wall -Werror -Wextra -Wshadow -fsanitize=address
 
 SRC_DIR := src
 BUILD_DIR := build
 INCLUDES := -Iincludes
-SRC_FILES := $(SRC_DIR)/Brain.cpp $(SRC_DIR)/Animal.cpp $(SRC_DIR)/Dog.cpp $(SRC_DIR)/Cat.cpp
+SRC_FILES := $(SRC_DIR)/AMateria.cpp \
+	$(SRC_DIR)/Character.cpp \
+	$(SRC_DIR)/Cure.cpp \
+	$(SRC_DIR)/Ice.cpp \
+	$(SRC_DIR)/MateriaSource.cpp
 
-NAME := brain
+NAME := materia
 
 all: $(NAME)
 

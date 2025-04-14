@@ -5,20 +5,24 @@
 
 #include "AMateria.h"
 
-class Character {
-private:
-	std::string _name;
-	AMateria* _slots;
-public:
-	Character();
-	~Character();
-	Character(const Character&);
-	Character& operator=(const Character&);
-	std::string const &getName() const;
-	void equip(AMateria *m);
-	void unequip(int idx);
-	void use(int idx, Character &target);
-};
+#define MAX_NBR_MATERIA 4
 
+class Character : public ICharacter {
+  private:
+    std::string _name;
+    AMateria** _slots;
+    unsigned char _nbrMat;
+
+  public:
+    Character();
+    ~Character();
+    Character(const Character&);
+    Character& operator=(const Character&);
+    std::string const& getName() const;
+    void equip(AMateria* m);
+    void unequip(int idx);
+    void use(int idx, ICharacter& target);
+    AMateria* getMateria(int idx);
+};
 
 #endif // CHARACTER_H

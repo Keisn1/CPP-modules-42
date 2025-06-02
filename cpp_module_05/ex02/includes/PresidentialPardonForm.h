@@ -16,4 +16,6 @@ class PresidentialPardonForm : public AForm {
     virtual void execute(const Bureaucrat&) const;
 };
 
+void presidentialPardon_main();
+
 #endif // PRESIDENTIALPARDONFORM_H

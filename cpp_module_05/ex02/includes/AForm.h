@@ -17,6 +17,7 @@ class AForm {
     AForm(void);
     AForm(std::string, unsigned int, unsigned int);
     virtual ~AForm();
+    AForm(const AForm&);
     std::string getName() const;
     bool isSigned() const;
     unsigned int getGradeSign() const;

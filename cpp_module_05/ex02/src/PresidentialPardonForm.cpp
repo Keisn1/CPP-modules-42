@@ -10,6 +10,10 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target)
 
 PresidentialPardonForm::~PresidentialPardonForm(void) {}
 
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& ppf) : AForm(ppf), _target(ppf._target) {}
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm&) { return *this; }
+
 void PresidentialPardonForm::execute(const Bureaucrat& b) const {
     checkIsSigned();
     checkExecGrade(b.getGrade());

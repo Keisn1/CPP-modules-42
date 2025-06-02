@@ -1,16 +1,122 @@
 #include "AForm.h"
+#include "Bureaucrat.h"
 #include "PresidentialPardonForm.h"
 #include <iostream>
 
 int main() {
     {
-        std::cout << "===Throw an exception sign Grade too high===" << std::endl;
+        std::cout << "===" << "Let Miraculix pardon Jack Sparrow" << "===" << std::endl;
+        Bureaucrat b("Miraculix", 5);
+        PresidentialPardonForm pbf("Captain Jack Sparrow");
+        // sign the form before executing
+        b.signForm(pbf);
+
+        // execute the form
+        pbf.execute(b);
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===Let Miraculix pardon Jack Sparrow===" << std::endl;
+        std::cout << "===(with pointers)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Miraculix", 5);
+        PresidentialPardonForm pbf("Captain Jack Sparrow");
+        // sign the form before executing
+        b->signForm(pbf);
+
+        // execute the form
+        pbf.execute(*b);
+        delete b;
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===" << "Let Miraculix pardon Jack Sparrow" << "===" << std::endl;
+        std::cout << "===(Copy Constructor of PresidentialPardonForm)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Miraculix", 5);
+        PresidentialPardonForm* pbf1 = new PresidentialPardonForm("Captain Jack Sparrow");
+        PresidentialPardonForm pbf2 = *pbf1;
+        // sign the form before executing
+        b->signForm(pbf2);
+
+        // execute the form
+        pbf2.execute(*b);
+        delete b;
+        delete pbf1;
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===" << "Let Miraculix pardon Jack Sparrow" << "===" << std::endl;
+        std::cout << "===(Copy Assign Operator of PresidentialPardonForm)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Miraculix", 5);
+        PresidentialPardonForm* pbf1 = new PresidentialPardonForm("Captain Jack Sparrow");
+        PresidentialPardonForm* pbf2 = new PresidentialPardonForm("Bibi Blocksberg");
+        // sign the form before executing
+        b->signForm(*pbf2);
+
+        *pbf1 = *pbf2;
+
+        // NOTE: pbf1 is still not signed, since pbf1 _signed is private and is not copied
+        // NOTE: pbf1 has also still the same target since it is constant
+        // execute the form
         try {
-            PresidentialPardonForm pbf("Captain Jack Sparrow");
-        } catch (AForm::GradeTooHighException& e) {
+            pbf1->execute(*b);
+        } catch (std::exception& e) {
             std::cout << e.what() << std::endl;
         }
-        std::cout << std::endl;
+        pbf2->execute(*b);
+        delete b;
+        delete pbf1;
+        delete pbf2;
     }
+    std::cout << std::endl;
+    // {
+    //     std::cout << "===" << "Let Miraculix pardon Bibi Blocksberg" << "===" << std::endl;
+    //     Bureaucrat b("Miraculix", 5);
+    //     PresidentialPardonForm pbf("Bibi Blocksberg");
+    //     // sign the form before executing
+    //     b.signForm(pbf);
+
+    //     // execute the form
+    //     pbf.execute(b);
+    // }
+    // {
+    //     Bureaucrat b("Miraculix", 5);
+    //     PresidentialPardonForm pbf("Bibi Blocksberg");
+
+    //     EXPECT_THROW(pbf.execute(b), AForm::FormNotSignedException);
+    // }
+    // {
+    //     // NOTE: 6 is too low of a grade, therefore it fails
+    //     Bureaucrat b("Rastafarix", 6);
+    //     PresidentialPardonForm pbf("Bibi Blocksberg");
+
+    //     // sign the form before executing
+    //     b.signForm(pbf);
+
+    //     // execute form with unsufficient grade
+    //     EXPECT_THROW(pbf.execute(b), AForm::GradeTooLowException);
+    // }
+    // {
+    //     // NOTE: Form is not signed
+    //     Bureaucrat b("Rastafarix", 5);
+    //     PresidentialPardonForm pbf("Bibi Blocksberg");
+
+    //     // execute form with unsufficient grade
+    //     EXPECT_THROW(pbf.execute(b), AForm::FormNotSignedException);
+    // }
+    // {
+    //     Bureaucrat b("Rastafarix", 5);
+    //     PresidentialPardonForm pbf("Bibi Blocksberg");
+    //     // sign the form before executing
+    //     b.signForm(pbf);
+
+    //     // execute the form
+    //     testing::internal::CaptureStdout();
+    //     b.executeForm(pbf);
+    //     std::string got = testing::internal::GetCapturedStdout();
+
+    //     std::string want = "Bibi Blocksberg has been pardoned by Zaphod Beeblebrox\n"
+    //                        "Rastafarix executed Presidential Pardon\n";
+    //     ASSERT_EQ(want, got);
+    // }
     return 0;
 }

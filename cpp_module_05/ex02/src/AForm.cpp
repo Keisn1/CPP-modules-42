@@ -20,6 +20,8 @@ AForm::AForm(std::string n, unsigned int gs, unsigned int ge)
 
 AForm::~AForm(void) {}
 
+AForm::AForm(const AForm& f) : _name(f._name), _signed(f._signed), _gradeSign(f._gradeSign), _gradeExec(f._gradeExec) {}
+
 std::string AForm::getName() const { return _name; }
 bool AForm::isSigned() const { return _signed; }
 unsigned int AForm::getGradeSign() const { return _gradeSign; }

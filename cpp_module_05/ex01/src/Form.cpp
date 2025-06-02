@@ -19,9 +19,8 @@ Form::Form(std::string n, unsigned int gs, unsigned int ge) : _name(n), _signed(
 
 Form::~Form(void) {}
 
-Form::Form(const Form& f) : _name(f.getName()), _signed(f._signed), _gradeSign(f._gradeSign), _gradeExec(f._gradeExec) {
-    *this = f;
-}
+Form::Form(const Form& f)
+    : _name(f.getName()), _signed(f._signed), _gradeSign(f._gradeSign), _gradeExec(f._gradeExec) {}
 
 Form& Form::operator=(const Form& f) {
     if (this == &f)

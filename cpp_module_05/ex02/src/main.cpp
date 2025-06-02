@@ -68,55 +68,46 @@ int main() {
         delete pbf2;
     }
     std::cout << std::endl;
-    // {
-    //     std::cout << "===" << "Let Miraculix pardon Bibi Blocksberg" << "===" << std::endl;
-    //     Bureaucrat b("Miraculix", 5);
-    //     PresidentialPardonForm pbf("Bibi Blocksberg");
-    //     // sign the form before executing
-    //     b.signForm(pbf);
+    {
+        std::cout << "===" << "Nobody has signed the pardon for Bibi" << "===" << std::endl;
+        Bureaucrat b("Miraculix", 5);
+        PresidentialPardonForm pbf("Bibi Blocksberg");
 
-    //     // execute the form
-    //     pbf.execute(b);
-    // }
-    // {
-    //     Bureaucrat b("Miraculix", 5);
-    //     PresidentialPardonForm pbf("Bibi Blocksberg");
+        try {
+            std::cout << "===" << "Execute Bibis Pardon" << "===" << std::endl;
+            pbf.execute(b);
+        } catch (AForm::FormNotSignedException& e) {
+            std::cout << e.what() << std::endl;
+        }
+    }
+    std::cout << std::endl;
+    {
+        // NOTE: 6 is too low of a grade, therefore it fails
+        std::cout << "===" << "Rastafarix Grade is not high enough for execution" << "===" << std::endl;
+        Bureaucrat b("Rastafarix", 6);
+        PresidentialPardonForm pbf("Bibi Blocksberg");
 
-    //     EXPECT_THROW(pbf.execute(b), AForm::FormNotSignedException);
-    // }
-    // {
-    //     // NOTE: 6 is too low of a grade, therefore it fails
-    //     Bureaucrat b("Rastafarix", 6);
-    //     PresidentialPardonForm pbf("Bibi Blocksberg");
+        // sign the form before executing
+        b.signForm(pbf);
 
-    //     // sign the form before executing
-    //     b.signForm(pbf);
+        // execute form with unsufficient grade
+        try {
+            pbf.execute(b);
+        } catch (AForm::GradeTooLowException& e) {
+            std::cout << e.what() << std::endl;
+        }
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===" << "Rastafarix signs and executes Presidential Pardon for Bibi (habibi)"
+                  << "===" << std::endl;
+        Bureaucrat b("Rastafarix", 5);
+        PresidentialPardonForm pbf("Bibi Blocksberg");
+        // sign the form before executing
+        b.signForm(pbf);
 
-    //     // execute form with unsufficient grade
-    //     EXPECT_THROW(pbf.execute(b), AForm::GradeTooLowException);
-    // }
-    // {
-    //     // NOTE: Form is not signed
-    //     Bureaucrat b("Rastafarix", 5);
-    //     PresidentialPardonForm pbf("Bibi Blocksberg");
-
-    //     // execute form with unsufficient grade
-    //     EXPECT_THROW(pbf.execute(b), AForm::FormNotSignedException);
-    // }
-    // {
-    //     Bureaucrat b("Rastafarix", 5);
-    //     PresidentialPardonForm pbf("Bibi Blocksberg");
-    //     // sign the form before executing
-    //     b.signForm(pbf);
-
-    //     // execute the form
-    //     testing::internal::CaptureStdout();
-    //     b.executeForm(pbf);
-    //     std::string got = testing::internal::GetCapturedStdout();
-
-    //     std::string want = "Bibi Blocksberg has been pardoned by Zaphod Beeblebrox\n"
-    //                        "Rastafarix executed Presidential Pardon\n";
-    //     ASSERT_EQ(want, got);
-    // }
+        // execute the form
+        b.executeForm(pbf);
+    }
     return 0;
 }

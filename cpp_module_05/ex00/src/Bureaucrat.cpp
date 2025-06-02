@@ -15,12 +15,14 @@ Bureaucrat::Bureaucrat(std::string n, unsigned int g) : _name(n) {
 
 Bureaucrat::~Bureaucrat() { std::cout << "Bureaucrat " << _name << " destructed" << std::endl; }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& b) : _name(b._name) {}
+Bureaucrat::Bureaucrat(const Bureaucrat& b) : _name(b._name), _grade(b._grade) {
+    std::cout << "Copy constructed: " << b << std::endl;
+}
 
-Bureaucrat Bureaucrat::operator=(const Bureaucrat& b) {
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& b) {
     if (this == &b)
         return *this;
-
+    this->_grade = b._grade;
     return *this;
 }
 

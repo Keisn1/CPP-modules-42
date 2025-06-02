@@ -3,6 +3,38 @@
 
 int main() {
     {
+        std::cout << "===Copy a bureaucrat===" << std::endl;
+        Bureaucrat b("Bureaucrat1", 45);
+        std::cout << b << std::endl;
+
+        Bureaucrat c(b);
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===Copy assign a bureaucrat===" << std::endl;
+        Bureaucrat b("Bureaucrat1", 45);
+        std::cout << b << std::endl;
+        Bureaucrat c("Bureaucrat2", 50);
+        std::cout << c << std::endl;
+
+        c = b;
+        std::cout << c << std::endl;
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===Copy assign a bureaucrat===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Bureaucrat1", 45);
+        std::cout << *b << std::endl;
+        Bureaucrat* c = new Bureaucrat("Bureaucrat2", 50);
+        std::cout << *c << std::endl;
+
+        *c = *b;
+        std::cout << *c << std::endl;
+        delete b;
+        delete c;
+    }
+    std::cout << std::endl;
+    {
         std::cout << "===Throw an exception for a grade that is too high===" << std::endl;
         try {
             Bureaucrat("Nobody", 0);
@@ -72,11 +104,6 @@ int main() {
         } catch (Bureaucrat::GradeTooLowException& e) {
             std::cout << e.what() << std::endl;
         }
-    }
-    std::cout << std::endl;
-    {
-        Bureaucrat b("Nobody", 1);
-        std::cout << b << std::endl;
     }
     return 0;
 }

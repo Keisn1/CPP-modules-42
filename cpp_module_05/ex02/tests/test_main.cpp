@@ -1,3 +1,4 @@
+#include "AForm.h"
 #include "Bureaucrat.h"
 #include "PresidentialPardonForm.h"
 #include "gtest/gtest.h"
@@ -39,22 +40,40 @@ TEST(presedentialPardonFormTest, firstTests) {
         Bureaucrat b("Miraculix", 5);
         PresidentialPardonForm pbf("Bibi Blocksberg");
 
-        // execute the unsigned form
-        testing::internal::CaptureStdout();
-        pbf.execute(b);
-        std::string got = testing::internal::GetCapturedStdout();
-        ASSERT_EQ("Could not exec Presidential Pardon due to Exception: Form was not signed\n", got);
+        EXPECT_THROW(pbf.execute(b), AForm::FormNotSignedException);
     }
     {
+        // NOTE: 6 is too low of a grade, therefore it fails
         Bureaucrat b("Rastafarix", 6);
         PresidentialPardonForm pbf("Bibi Blocksberg");
+
         // sign the form before executing
         b.signForm(pbf);
 
         // execute form with unsufficient grade
+        EXPECT_THROW(pbf.execute(b), AForm::GradeTooLowException);
+    }
+    {
+        // NOTE: Form is not signed
+        Bureaucrat b("Rastafarix", 5);
+        PresidentialPardonForm pbf("Bibi Blocksberg");
+
+        // execute form with unsufficient grade
+        EXPECT_THROW(pbf.execute(b), AForm::FormNotSignedException);
+    }
+    {
+        Bureaucrat b("Rastafarix", 5);
+        PresidentialPardonForm pbf("Bibi Blocksberg");
+        // sign the form before executing
+        b.signForm(pbf);
+
+        // execute the form
         testing::internal::CaptureStdout();
-        pbf.execute(b);
+        b.executeForm(pbf);
         std::string got = testing::internal::GetCapturedStdout();
-        ASSERT_EQ("Could not exec Presidential Pardon due to Exception: Grade too low\n", got);
+
+        std::string want = "Bibi Blocksberg has been pardoned by Zaphod Beeblebrox\n"
+                           "Rastafarix executed Presidential Pardon\n";
+        ASSERT_EQ(want, got);
     }
 }

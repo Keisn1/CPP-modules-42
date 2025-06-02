@@ -43,12 +43,12 @@ const char* AForm::GradeTooLowException::what() const throw() { return "Exceptio
 
 const char* AForm::FormNotSignedException::what() const throw() { return "Exception: Form was not signed"; }
 
-void AForm::checkExecGrade(unsigned int grade) {
+void AForm::checkExecGrade(unsigned int grade) const {
     if (grade > _gradeExec)
         throw GradeTooLowException();
 }
 
-void AForm::checkIsSigned() {
+void AForm::checkIsSigned() const {
     if (!_signed)
         throw FormNotSignedException();
 }

@@ -43,8 +43,8 @@ int main() {
     {
         std::cout << "===No exception===" << std::endl;
         Bureaucrat b("Nobody", 1);
-        std::cout << std::endl;
     }
+    std::cout << std::endl;
     {
         std::cout << "===No exception (pointer)===" << std::endl;
         Bureaucrat* b = new Bureaucrat("Nobody", 1);
@@ -72,8 +72,8 @@ int main() {
         } catch (Bureaucrat::GradeTooLowException& e) {
             std::cout << e.what() << std::endl;
         }
-        std::cout << std::endl;
     }
+    std::cout << std::endl;
     {
         Bureaucrat b("Nobody", 1);
         std::cout << b << std::endl;

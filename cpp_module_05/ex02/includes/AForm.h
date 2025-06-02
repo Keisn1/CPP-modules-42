@@ -22,9 +22,9 @@ class AForm {
     unsigned int getGradeSign() const;
     unsigned int getGradeExec() const;
     void beSigned(const Bureaucrat&);
-    void checkExecGrade(unsigned int grade);
-    void checkIsSigned();
-    virtual void execute(const Bureaucrat&) = 0;
+    void checkExecGrade(unsigned int grade) const;
+    void checkIsSigned() const;
+    virtual void execute(const Bureaucrat&) const = 0;
 
     class GradeTooHighException : public std::exception {
       public:

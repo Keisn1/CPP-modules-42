@@ -3,20 +3,15 @@
 #include "Bureaucrat.h"
 #include <iostream>
 
-PresidentialPardonForm::PresidentialPardonForm(void) : AForm() {}
+PresidentialPardonForm::PresidentialPardonForm(void) {}
 
-PresidentialPardonForm::PresidentialPardonForm(std::string n) : AForm(n, 25, 5) {}
+PresidentialPardonForm::PresidentialPardonForm(std::string target)
+    : AForm("Presidential Pardon", 25, 5), _target(target) {}
 
 PresidentialPardonForm::~PresidentialPardonForm(void) {}
 
-void PresidentialPardonForm::execute(const Bureaucrat& b) {
-    try {
-        checkIsSigned();
-        checkExecGrade(b.getGrade());
-    } catch (std::exception& e) {
-        std::cout << "Could not exec Presidential Pardon due to " << e.what() << std::endl;
-        return;
-    }
-
-    std::cout << getName() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+void PresidentialPardonForm::execute(const Bureaucrat& b) const {
+    checkIsSigned();
+    checkExecGrade(b.getGrade());
+    std::cout << _target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

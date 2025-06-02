@@ -4,7 +4,7 @@
 
 int main() {
     {
-        std::cout << "===Throw an exception sign Grade too high===" << std::endl;
+        std::cout << "===Throw an exception signGrade too high===" << std::endl;
         try {
             Form("Noform", 0, 1);
         } catch (Form::GradeTooHighException& e) {
@@ -13,7 +13,7 @@ int main() {
         std::cout << std::endl;
     }
     {
-        std::cout << "===Throw an exception exec Grade too high===" << std::endl;
+        std::cout << "===Throw an exception execGrade too high===" << std::endl;
         try {
             Form("Noform", 1, 0);
         } catch (Form::GradeTooHighException& e) {
@@ -22,7 +22,7 @@ int main() {
         std::cout << std::endl;
     }
     {
-        std::cout << "===Throw an exception sign Grade too low===" << std::endl;
+        std::cout << "===Throw an exception signGrade too low===" << std::endl;
         try {
             Form("Noform", 151, 1);
         } catch (Form::GradeTooLowException& e) {
@@ -31,7 +31,7 @@ int main() {
         std::cout << std::endl;
     }
     {
-        std::cout << "===Throw an exception exec Grade too low===" << std::endl;
+        std::cout << "===Throw an exception execGrade too low===" << std::endl;
         try {
             Form("Noform", 1, 151);
         } catch (Form::GradeTooLowException& e) {
@@ -47,7 +47,7 @@ int main() {
     {
         Bureaucrat b("Stromberg", 3);
         Form f("kuendigung", 2, 1);
-        std::cout << "===Throw an exception exec Grade too low===" << std::endl;
+        std::cout << "===Throw an exception execGrade too low===" << std::endl;
         try {
             f.beSigned(b);
         } catch (Form::GradeTooLowException& e) {

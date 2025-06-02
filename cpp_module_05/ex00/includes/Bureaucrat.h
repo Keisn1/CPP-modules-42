@@ -2,7 +2,6 @@
 #define BUREAUCRAT_H
 
 #include <exception>
-#include <istream>
 #include <string>
 
 class Bureaucrat {
@@ -32,5 +31,7 @@ class Bureaucrat {
         virtual const char* what() const throw();
     };
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
 
 #endif // BUREAUCRAT_H

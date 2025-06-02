@@ -1,5 +1,5 @@
-#ifndef FORM_H
-#define FORM_H
+#ifndef AFORM_H
+#define AFORM_H
 
 #include <exception>
 #include <string>
@@ -16,11 +16,15 @@ class AForm {
   public:
     AForm(void);
     AForm(std::string, unsigned int, unsigned int);
+    virtual ~AForm();
     std::string getName() const;
     bool isSigned() const;
     unsigned int getGradeSign() const;
     unsigned int getGradeExec() const;
     void beSigned(const Bureaucrat&);
+    void checkExecGrade(unsigned int grade);
+    void checkIsSigned();
+    virtual void execute(const Bureaucrat&) = 0;
 
     class GradeTooHighException : public std::exception {
       public:
@@ -31,8 +35,13 @@ class AForm {
       public:
         virtual const char* what() const throw();
     };
+
+    class FormNotSignedException : public std::exception {
+      public:
+        virtual const char* what() const throw();
+    };
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& f);
 
-#endif // FORM_H
+#endif // AFORM_H

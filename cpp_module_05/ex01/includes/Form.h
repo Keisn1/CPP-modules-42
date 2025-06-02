@@ -16,6 +16,7 @@ class Form {
   public:
     Form(void);
     Form(std::string, unsigned int, unsigned int);
+    ~Form(void);
     std::string getName() const;
     bool isSigned() const;
     unsigned int getGradeSign() const;

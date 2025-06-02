@@ -1,4 +1,4 @@
-#include "Form.h"
+#include "AForm.h"
 #include "Bureaucrat.h"
 #include <iostream>
 
@@ -17,6 +17,8 @@ AForm::AForm(std::string n, unsigned int gs, unsigned int ge)
     if (ge > 150)
         throw AForm::GradeTooLowException();
 }
+
+AForm::~AForm(void) {}
 
 std::string AForm::getName() const { return _name; }
 bool AForm::isSigned() const { return _signed; }
@@ -38,3 +40,15 @@ std::ostream& operator<<(std::ostream& os, const AForm& f) {
 const char* AForm::GradeTooHighException::what() const throw() { return "Exception: Grade too high"; }
 
 const char* AForm::GradeTooLowException::what() const throw() { return "Exception: Grade too low"; }
+
+const char* AForm::FormNotSignedException::what() const throw() { return "Exception: Form was not signed"; }
+
+void AForm::checkExecGrade(unsigned int grade) {
+    if (grade > _gradeExec)
+        throw GradeTooLowException();
+}
+
+void AForm::checkIsSigned() {
+    if (!_signed)
+        throw FormNotSignedException();
+}

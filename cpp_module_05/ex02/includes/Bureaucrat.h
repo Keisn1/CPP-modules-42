@@ -1,7 +1,7 @@
 #ifndef BUREAUCRAT_H
 #define BUREAUCRAT_H
 
-#include "Form.h"
+#include "AForm.h"
 #include <exception>
 #include <string>
 

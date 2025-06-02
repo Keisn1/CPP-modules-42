@@ -17,6 +17,8 @@ Form::Form(std::string n, unsigned int gs, unsigned int ge) : _name(n), _signed(
         throw Form::GradeTooLowException();
 }
 
+Form::~Form(void) {}
+
 std::string Form::getName() const { return _name; }
 bool Form::isSigned() const { return _signed; }
 unsigned int Form::getGradeSign() const { return _gradeSign; }

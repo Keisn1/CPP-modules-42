@@ -1,14 +1,17 @@
 #include "RobotomyRequestForm.h"
+#include "AForm.h"
 #include "Bureaucrat.h"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 
-RobotomyRequestForm::RobotomyRequestForm(void) {
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm("Robotomy Request Form", 72, 45) {
     std::srand(std::time(NULL)); // use current time as seed for random generator
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy Request", 72, 45), _target(target) {}
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy Request Form", 72, 45), _target(target) {
+    std::srand(std::time(NULL)); // use current time as seed for random generator
+}
 
 RobotomyRequestForm::~RobotomyRequestForm(void) {}
 
@@ -43,10 +46,10 @@ void robotomyRequest_main() {
     }
     std::cout << std::endl;
     {
-        std::cout << "===Let Miraculix pardon Jack Sparrow===" << std::endl;
+        std::cout << "===Let Lilly robotomize Glumanda===" << std::endl;
         std::cout << "===(with pointers)===" << std::endl;
-        Bureaucrat* b = new Bureaucrat("Miraculix", 5);
-        RobotomyRequestForm pbf("Captain Jack Sparrow");
+        Bureaucrat* b = new Bureaucrat("Lilly", 5);
+        RobotomyRequestForm pbf("Glumanda");
         // sign the form before executing
         b->signForm(pbf);
 
@@ -54,87 +57,49 @@ void robotomyRequest_main() {
         pbf.execute(*b);
         delete b;
     }
-    // std::cout << std::endl;
-    // {
-    //     std::cout << "===" << "Let Miraculix pardon Jack Sparrow" << "===" << std::endl;
-    //     std::cout << "===(Copy Constructor of RobotomyRequestForm)===" << std::endl;
-    //     Bureaucrat* b = new Bureaucrat("Miraculix", 5);
-    //     RobotomyRequestForm* pbf1 = new RobotomyRequestForm("Captain Jack Sparrow");
-    //     RobotomyRequestForm pbf2 = *pbf1;
-    //     // sign the form before executing
-    //     b->signForm(pbf2);
+    std::cout << std::endl;
+    {
+        std::cout << "===Let Default Robotomizer robotomize ===" << std::endl;
+        std::cout << "===(with pointers)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Default Robotomizer", 5);
+        RobotomyRequestForm pbf;
+        // sign the form before executing
+        b->signForm(pbf);
 
-    //     // execute the form
-    //     pbf2.execute(*b);
-    //     delete b;
-    //     delete pbf1;
-    // }
-    // std::cout << std::endl;
-    // {
-    //     std::cout << "===" << "Let Miraculix pardon Jack Sparrow" << "===" << std::endl;
-    //     std::cout << "===(Copy Assign Operator of RobotomyRequestForm)===" << std::endl;
-    //     std::cout << "===(Failing because signing doesn't get copied with copy assign)===" << std::endl;
-    //     Bureaucrat* b = new Bureaucrat("Miraculix", 5);
-    //     RobotomyRequestForm* pbf1 = new RobotomyRequestForm("Captain Jack Sparrow");
-    //     RobotomyRequestForm* pbf2 = new RobotomyRequestForm("Bibi Blocksberg");
-    //     // sign the form before executing
-    //     b->signForm(*pbf2);
+        // execute the form
+        pbf.execute(*b);
+        delete b;
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===Let  robotomize exception===" << std::endl;
+        std::cout << "===(with pointers)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat;
+        RobotomyRequestForm pbf;
+        // sign the form before executing
+        try {
+            b->signForm(pbf);
+        } catch (AForm::GradeTooLowException& e) {
+            std::cout << "could not sign: " << e.what() << std::endl;
+        }
+        delete b;
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===Let Lilly robotomize===" << std::endl;
+        std::cout << "===(with pointers)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Lilly", 55);
+        RobotomyRequestForm pbf;
+        // sign the form before executing
+        b->signForm(pbf);
 
-    //     *pbf1 = *pbf2;
+        // execute the form
+        try {
+            pbf.execute(*b);
+        } catch (AForm::GradeTooLowException& e) {
+            std::cout << "could not execute: " << e.what() << std::endl;
+        }
 
-    //     // NOTE: pbf1 is still not signed, since pbf1 _signed is private and is not copied
-    //     // NOTE: pbf1 has also still the same target since it is constant
-    //     // execute the form
-    //     try {
-    //         pbf1->execute(*b);
-    //     } catch (std::exception& e) {
-    //         std::cout << e.what() << std::endl;
-    //     }
-    //     pbf2->execute(*b);
-    //     delete b;
-    //     delete pbf1;
-    //     delete pbf2;
-    // }
-    // std::cout << std::endl;
-    // {
-    //     std::cout << "===" << "Nobody has signed the pardon for Bibi" << "===" << std::endl;
-    //     Bureaucrat b("Miraculix", 5);
-    //     RobotomyRequestForm pbf("Bibi Blocksberg");
-
-    //     try {
-    //         std::cout << "===" << "Execute Bibis Pardon" << "===" << std::endl;
-    //         pbf.execute(b);
-    //     } catch (AForm::FormNotSignedException& e) {
-    //         std::cout << e.what() << std::endl;
-    //     }
-    // }
-    // std::cout << std::endl;
-    // {
-    //     // NOTE: 6 is too low of a grade, therefore it fails
-    //     std::cout << "===" << "Rastafarix Grade is not high enough for execution" << "===" << std::endl;
-    //     Bureaucrat b("Rastafarix", 6);
-    //     RobotomyRequestForm pbf("Bibi Blocksberg");
-
-    //     // sign the form before executing
-    //     b.signForm(pbf);
-
-    //     // execute form with unsufficient grade
-    //     try {
-    //         pbf.execute(b);
-    //     } catch (AForm::GradeTooLowException& e) {
-    //         std::cout << e.what() << std::endl;
-    //     }
-    // }
-    // std::cout << std::endl;
-    // {
-    //     std::cout << "===" << "Rastafarix signs and executes Presidential Pardon for Bibi (habibi)"
-    //               << "===" << std::endl;
-    //     Bureaucrat b("Rastafarix", 5);
-    //     RobotomyRequestForm pbf("Bibi Blocksberg");
-    //     // sign the form before executing
-    //     b.signForm(pbf);
-
-    //     // execute the form
-    //     b.executeForm(pbf);
-    // }
+        delete b;
+    }
 }

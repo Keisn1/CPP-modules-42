@@ -17,7 +17,7 @@ CXXFLAGS := -std=c++98 -Wall -Werror -Wextra
 SRC_DIR := src
 BUILD_DIR := build
 INCLUDES := -Iincludes
-SRC_FILES := $(SRC_DIR)/main.cpp  $(SRC_DIR)/Bureaucrat.cpp $(SRC_DIR)/AForm.cpp $(SRC_DIR)/PresidentialPardonForm.cpp $(SRC_DIR)/RobotomyRequestForm.cpp
+SRC_FILES := $(SRC_DIR)/main.cpp  $(SRC_DIR)/Bureaucrat.cpp $(SRC_DIR)/AForm.cpp $(SRC_DIR)/ShrubberyCreationForm.cpp $(SRC_DIR)/PresidentialPardonForm.cpp $(SRC_DIR)/RobotomyRequestForm.cpp
 
 NAME := ex02
 

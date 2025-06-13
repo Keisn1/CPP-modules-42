@@ -3,7 +3,7 @@
 #include "Bureaucrat.h"
 #include <iostream>
 
-PresidentialPardonForm::PresidentialPardonForm(void) {}
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("Presidential Pardon", 25, 5) {}
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
     : AForm("Presidential Pardon", 25, 5), _target(target) {}
@@ -36,10 +36,7 @@ void presidentialPardon_main() {
         std::cout << "===(with pointers)===" << std::endl;
         Bureaucrat* b = new Bureaucrat("Miraculix", 5);
         PresidentialPardonForm pbf("Captain Jack Sparrow");
-        // sign the form before executing
         b->signForm(pbf);
-
-        // execute the form
         pbf.execute(*b);
         delete b;
     }
@@ -50,10 +47,7 @@ void presidentialPardon_main() {
         Bureaucrat* b = new Bureaucrat("Miraculix", 5);
         PresidentialPardonForm* pbf1 = new PresidentialPardonForm("Captain Jack Sparrow");
         PresidentialPardonForm pbf2 = *pbf1;
-        // sign the form before executing
         b->signForm(pbf2);
-
-        // execute the form
         pbf2.execute(*b);
         delete b;
         delete pbf1;
@@ -125,5 +119,57 @@ void presidentialPardon_main() {
 
         // execute the form
         b.executeForm(pbf);
+    }
+    std::cout << std::endl;
+    {
+        std::cout
+            << "==="
+            << "Testing default constructor of form: Rastafarix signs and executes Presidential Pardon for empty string"
+            << "===" << std::endl;
+        Bureaucrat b("Rastafarix", 5);
+        PresidentialPardonForm pbf;
+        // sign the form before executing
+        b.signForm(pbf);
+
+        // execute the form
+        b.executeForm(pbf);
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "==="
+                  << "Testing default constructor of form (grade too low for signing): Rastafarix signs and executes "
+                     "Presidential "
+                     "Pardon for empty string"
+                  << "===" << std::endl;
+        Bureaucrat b("Rastafarix", 80);
+        PresidentialPardonForm pbf;
+        // sign the form before executing
+        try {
+            b.signForm(pbf);
+        } catch (AForm::GradeTooLowException& e) {
+            std::cout << "could not sign: " << e.what() << std::endl;
+        }
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "==="
+                  << "Testing default constructor of form (grade too low for signing): Rastafarix signs and executes "
+                     "Presidential "
+                     "Pardon for empty string"
+                  << "===" << std::endl;
+        std::cout << "===(with pointers)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Lilly", 20);
+        PresidentialPardonForm pbf;
+        // sign the form before executing
+        b->signForm(pbf);
+
+        // execute the form
+        try {
+            pbf.execute(*b);
+        } catch (AForm::GradeTooLowException& e) {
+            std::cout << "could not execute: " << e.what() << std::endl;
+        }
+
+        delete b;
     }
 }

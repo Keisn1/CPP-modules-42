@@ -17,4 +17,6 @@ class ShrubberyCreationForm : public AForm {
     virtual void execute(const Bureaucrat&) const;
 };
 
+void shrubbery_main();
+
 #endif // SHRUBBERYCREATIONFORM_H

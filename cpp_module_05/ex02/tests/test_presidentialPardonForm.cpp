@@ -102,7 +102,7 @@ TEST(presidentialPardonFormTest, firstTests) {
         b.executeForm(pbf);
         std::string got = testing::internal::GetCapturedStdout();
 
-        std::string want = " has been pardoned by Zaphod Beeblebrox\n"
+        std::string want = "Default Target has been pardoned by Zaphod Beeblebrox\n"
                            "Rastafarix executed Presidential Pardon\n";
         ASSERT_EQ(want, got);
     }

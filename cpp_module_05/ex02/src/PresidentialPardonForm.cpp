@@ -3,7 +3,7 @@
 #include "Bureaucrat.h"
 #include <iostream>
 
-PresidentialPardonForm::PresidentialPardonForm(void) : AForm("Presidential Pardon", 25, 5) {}
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("Presidential Pardon", 25, 5), _target("Default Target") {}
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
     : AForm("Presidential Pardon", 25, 5), _target(target) {}

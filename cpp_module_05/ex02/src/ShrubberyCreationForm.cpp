@@ -1,11 +1,13 @@
 #include "ShrubberyCreationForm.h"
+#include "Bureaucrat.h"
 
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <unistd.h>
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("Shrubbery Creation Form", 145, 137) {}
+ShrubberyCreationForm::ShrubberyCreationForm(void)
+    : AForm("Shrubbery Creation Form", 145, 137), _target("Default Target") {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
     : AForm("Shrubbery Creation Form", 145, 137), _target(target) {}
@@ -32,4 +34,43 @@ void ShrubberyCreationForm::execute(const Bureaucrat& b) const {
          << "  ||||" << std::endl;
 
     file.close();
+}
+
+void shrubbery_main() {
+    {
+        std::cout << "===" << "Ash signs Shrubbery, Pikachu file" << "===" << std::endl;
+        Bureaucrat b("Ash", 5);
+        ShrubberyCreationForm scf("Pikachu");
+
+        // sign the form before executing
+        b.signForm(scf);
+
+        // execute the form
+        scf.execute(b);
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===" << "Lilly signs Shrubbery, Glumanda file" << "===" << std::endl;
+        Bureaucrat b("Lilly", 5);
+        ShrubberyCreationForm scf("Glumanda");
+
+        // sign the form before executing
+        b.signForm(scf);
+
+        // execute the form
+        b.executeForm(scf);
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===Rocko signs Shrubbery, Bisasam file===" << std::endl;
+        std::cout << "===(with pointers)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Rokko", 55);
+        ShrubberyCreationForm pbf("Bisasam");
+        // sign the form before executing
+        b->signForm(pbf);
+
+        // execute the form
+        b->executeForm(pbf);
+        delete b;
+    }
 }

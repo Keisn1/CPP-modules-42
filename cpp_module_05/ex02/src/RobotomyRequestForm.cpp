@@ -117,9 +117,22 @@ void robotomyRequest_main() {
     }
     std::cout << std::endl;
     {
-        std::cout << "===Let Lilly robotomize===" << std::endl;
+        std::cout << "===Let Lilly robotomize but Grade too low===" << std::endl;
         std::cout << "===(with pointers)===" << std::endl;
         Bureaucrat* b = new Bureaucrat("Lilly", 55);
+        RobotomyRequestForm pbf;
+        // sign the form before executing
+        b->signForm(pbf);
+
+        // execute the form
+        b->executeForm(pbf);
+        delete b;
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===Let Lilly robotomize but Lilly could not sign===" << std::endl;
+        std::cout << "===(with pointers)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Lilly", 100);
         RobotomyRequestForm pbf;
         // sign the form before executing
         b->signForm(pbf);

@@ -5,7 +5,7 @@
 #include <ctime>
 #include <iostream>
 
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("Robotomy Request Form", 72, 45) {
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm("Robotomy Request Form", 72, 45), _target("Default Target") {
     std::srand(std::time(NULL)); // use current time as seed for random generator
 }
 
@@ -59,7 +59,7 @@ void robotomyRequest_main() {
     }
     std::cout << std::endl;
     {
-        std::cout << "===Let Default Robotomizer robotomize ===" << std::endl;
+        std::cout << "===Let Default Robotomizer robotomize - Form without Target===" << std::endl;
         std::cout << "===(with pointers)===" << std::endl;
         Bureaucrat* b = new Bureaucrat("Default Robotomizer", 5);
         RobotomyRequestForm pbf;
@@ -100,6 +100,32 @@ void robotomyRequest_main() {
             std::cout << "could not execute: " << e.what() << std::endl;
         }
 
+        delete b;
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===Let Lilly robotomize Glumanda===" << std::endl;
+        std::cout << "===(with pointers)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Lilly", 5);
+        RobotomyRequestForm pbf("Glumanda");
+        // sign the form before executing
+        b->signForm(pbf);
+
+        // execute the form
+        b->executeForm(pbf);
+        delete b;
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "===Let Lilly robotomize===" << std::endl;
+        std::cout << "===(with pointers)===" << std::endl;
+        Bureaucrat* b = new Bureaucrat("Lilly", 55);
+        RobotomyRequestForm pbf;
+        // sign the form before executing
+        b->signForm(pbf);
+
+        // execute the form
+        b->executeForm(pbf);
         delete b;
     }
 }

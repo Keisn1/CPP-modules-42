@@ -23,10 +23,13 @@ AForm* Intern::makeForm(std::string formName, std::string target) {
 
     switch (form) {
     case ShrubberyCreation:
+        std::cout << "Intern creates " << forms[form] << std::endl;
         return new ShrubberyCreationForm(target);
     case RobotomyRequest:
+        std::cout << "Intern creates " << forms[form] << std::endl;
         return new RobotomyRequestForm(target);
     case PresidentialPardon:
+        std::cout << "Intern creates " << forms[form] << std::endl;
         return new PresidentialPardonForm(target);
     default:
         std::cerr << "This Form is unknown to the intern" << std::endl;

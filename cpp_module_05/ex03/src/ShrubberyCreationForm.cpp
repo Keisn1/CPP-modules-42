@@ -5,7 +5,8 @@
 #include <iostream>
 #include <unistd.h>
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("Shrubbery Creation Form", 145, 137) {}
+ShrubberyCreationForm::ShrubberyCreationForm(void)
+    : AForm("Shrubbery Creation Form", 145, 137), _target("Default Target") {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
     : AForm("Shrubbery Creation Form", 145, 137), _target(target) {}

@@ -5,7 +5,6 @@
 Form::Form(void) : _name(""), _signed(false), _gradeSign(1), _gradeExec(1) {}
 
 Form::Form(std::string n, unsigned int gs, unsigned int ge) : _name(n), _signed(false), _gradeSign(gs), _gradeExec(ge) {
-
     if (gs < 1)
         throw Form::GradeTooHighException();
     if (gs > 150)

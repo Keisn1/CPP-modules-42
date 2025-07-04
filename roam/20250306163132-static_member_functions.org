@@ -8,3 +8,15 @@
 [[pdf:~/workspace/CPP-modules-42/The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf::482++0.00][The_C++_Programming_Language_4th_Edition_Bjarne_Stroustrup.pdf: Page 482]]
 
 - a function that needs access to members of a class, yet doesn’t need to be invoked for a particular object, is called a static member function
+
+#+begin_src cpp
+class Something
+{
+public:
+    static inline int s_value { 1 };
+};
+#+end_src
+
+#+begin_src cpp
+
+#+end_src

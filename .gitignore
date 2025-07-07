@@ -81,3 +81,7 @@
 /cpp_module_06/build/
 /cpp_module_06/compile_commands.json
 /cpp_module_06/convert
+/cpp_module_06/ex00/.cache/
+/cpp_module_06/ex00/build/
+/cpp_module_06/ex00/compile_commands.json
+/cpp_module_06/ex00/convert

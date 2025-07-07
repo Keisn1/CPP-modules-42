@@ -1,0 +1,21 @@
+#+title: Readme
+
+* Sources
+https://www.learncpp.com/cpp-tutorial/explicit-type-conversion-casting-and-static-cast/
+
+#+begin_src c
+int i { 48 };
+char ch = i; // implicit narrowing conversion
+#+end_src
+- problematic since we don't know if the integer fits into a char (might be overflowing)
+- potentially unsafe
+- compiler will typically print a warning
+
+#+begin_src c
+int i { 48 };
+
+// explicit conversion from int to char, so that a char is assigned to variable ch
+char ch { static_cast<char>(i) };
+#+end_src
+- conversion is intended
+  - we accept responsibility for the consequences

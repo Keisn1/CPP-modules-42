@@ -1,0 +1,698 @@
+:PROPERTIES:
+:GPTEL_MODEL: claude-sonnet-4-20250514
+:GPTEL_BACKEND: Claude
+:GPTEL_SYSTEM: You are a large language model living in Emacs and a helpful assistant. Avoid long answers.
+:GPTEL_BOUNDS: ((response (615 1487) (1555 2734) (2786 3931) (4027 5326) (5390 6584) (6922 8220) (8279 9620) (9893 9959) (10029 10034) (10047 11136) (11176 12046) (12092 12902) (12929 13830) (13882 15124) (15179 16385) (16422 17635) (17665 18882) (18927 19888) (20199 21131) (21177 22233)))
+:END:
+
+*** how may i recognize a newline given as argument to this small command line programm. How can a user input a newline as argument?
+
+To input a newline as a command line argument, users can use:
+
+*Shell escape sequences:*
+#+begin_src bash
+./program $'\n'    # bash/zsh
+./program '\n'     # some shells (literal backslash-n)
+#+end_src
+
+*In your code, fix the newline detection:*
+#+begin_src cpp
+bool isConvertibleToChar(std::string str, char* c) {
+    if (str.length() == 1) {
+        *c = str[0];
+        if (*c >= '0' && *c <= '9') {
+            return false;
+        }
+        return true;
+    }
+
+    // Check for escaped newline
+    if (str == "\\n") {
+        *c = '\n';
+        return true;
+    }
+
+    return false;
+}
+#+end_src
+
+*Alternative approaches:*
+- Accept ="\\n"= as string representation of newline
+- Use =printf= to pipe: =printf '\n' | xargs ./program=
+- Accept ASCII code: =./program 10=
+
+The =$'\n'= syntax is the most direct way for users to pass actual newline characters as arguments.
+
+*** how may i input other non-displayable characters (like STX)?
+
+You can input non-displayable characters in several ways:
+
+*Using bash $'...' syntax:*
+#+begin_src bash
+./program $'\x02'    # STX (hex)
+./program $'\002'    # STX (octal)
+./program $'\a'      # Bell (BEL)
+./program $'\t'      # Tab
+./program $'\r'      # Carriage return
+./program $'\v'      # Vertical tab
+./program $'\f'      # Form feed
+#+end_src
+
+*Using ASCII decimal values:*
+#+begin_src bash
+./program 2     # STX
+./program 7     # BEL
+./program 127   # DEL
+#+end_src
+
+*Using printf and command substitution:*
+#+begin_src bash
+./program "$(printf '\x02')"
+./program "$(printf '\002')"
+#+end_src
+
+*In your code, enhance the char detection:*
+#+begin_src cpp
+bool isConvertibleToChar(std::string str, char* c) {
+    if (str.length() == 1) {
+        *c = str[0];
+        if (*c >= '0' && *c <= '9') {
+            return false;
+        }
+        return true;
+    }
+
+    // Handle escape sequences
+    if (str == "\\n") { *c = '\n'; return true; }
+    if (str == "\\t") { *c = '\t'; return true; }
+    if (str == "\\r") { *c = '\r'; return true; }
+    // ... add more as needed
+
+    return false;
+}
+#+end_src
+
+The =$'\x02'= syntax is most flexible for any character by hex code.
+
+*** am i able to input "negative chars" in bash?
+
+No, you cannot input "negative chars" in bash because *characters are inherently unsigned* (0-255 range).
+
+However, you can work with *signed char interpretation* in C++:
+
+/What happens with high ASCII values:/
+#+begin_src bash
+./program $'\xff'    # 255 as unsigned, -1 as signed char
+./program $'\x80'    # 128 as unsigned, -128 as signed char
+./program $'\xfe'    # 254 as unsigned, -2 as signed char
+#+end_src
+
+/In your code, check how you handle char:/
+#+begin_src cpp
+void treatChar(char c) {
+    std::cout << "char value: " << static_cast<int>(c) << std::endl;  // Shows signed value
+    std::cout << "unsigned: " << static_cast<unsigned char>(c) << std::endl;  // Shows 0-255
+
+    if (c >= '!' && c <= '~') {  // This works for positive ASCII
+        std::cout << "char: " << c << std::endl;
+    } else {
+        std::cout << "char: Non-displayable" << std::endl;
+    }
+}
+#+end_src
+
+/Example:/
+#+begin_src bash
+./program $'\xff'  # Will show -1 as signed int, 255 as unsigned
+#+end_src
+
+So while bash can't input "negative" characters directly, high ASCII values (128-255) will be interpreted as negative when cast to signed char in C++.
+
+*** do you see a problem in the way that i'm casting integer to float or double in treatInt?
+
+Yes, there's a potential precision loss issue in =treatInt=:
+
+#+begin_src cpp
+void treatInt(int nbr) {
+    // ...
+    std::cout << "float: " << static_cast<float>(nbr) << std::endl;  // Problem here
+    std::cout << "double: " << static_cast<double>(nbr) << std::endl;
+}
+#+end_src
+
+*The issue:*
+- =float= has only ~7 decimal digits of precision
+- Large =int= values (beyond ~16 million) will lose precision when cast to =float=
+- =double= is generally safe for =int= values
+
+*Example:*
+#+begin_src cpp
+int nbr = 16777217;  // 2^24 + 1
+float f = static_cast<float>(nbr);
+std::cout << f;  // Prints 16777216 (lost precision!)
+#+end_src
+
+*Better approach:*
+#+begin_src cpp
+void treatInt(int nbr) {
+    // ... char handling ...
+
+    std::cout << "int: " << nbr << std::endl;
+
+    if (nbr > 16777216 || nbr < -16777216) {
+        std::cout << "float: precision loss" << std::endl;
+    } else {
+        std::cout << "float: " << static_cast<float>(nbr) << std::endl;
+    }
+
+    std::cout << "double: " << static_cast<double>(nbr) << std::endl;
+}
+#+end_src
+
+Or check if the cast preserves the value:
+#+begin_src cpp
+float f = static_cast<float>(nbr);
+if (static_cast<int>(f) == nbr) {
+    std::cout << "float: " << f << std::endl;
+} else {
+    std::cout << "float: precision loss" << std::endl;
+}
+#+end_src
+*** this number is not part of std::numeric_limits it appears
+
+You're right! The precision limit isn't directly in =std::numeric_limits=. Here's how to properly check for float precision loss:
+
+#+begin_src cpp
+#include <limits>
+
+void treatInt(int nbr) {
+    // ... char handling ...
+
+    std::cout << "int: " << nbr << std::endl;
+
+    // Check if int can be exactly represented as float
+    float f = static_cast<float>(nbr);
+    if (static_cast<int>(f) == nbr) {
+        std::cout << "float: " << f << "f" << std::endl;
+    } else {
+        std::cout << "float: precision loss" << std::endl;
+    }
+
+    std::cout << "double: " << static_cast<double>(nbr) << std::endl;
+}
+#+end_src
+
+/Alternative using =std::numeric_limits= properties:/
+#+begin_src cpp
+// Float has ~24 bits of precision for mantissa
+const int max_precise_int = (1 << std::numeric_limits<float>::digits) - 1;
+// or use FLT_MANT_DIG from <cfloat>
+
+if (std::abs(nbr) <= max_precise_int) {
+    std::cout << "float: " << static_cast<float>(nbr) << "f" << std::endl;
+} else {
+    std::cout << "float: precision loss" << std::endl;
+}
+#+end_src
+
+The round-trip test (=static_cast<int>(static_cast<float>(nbr)) == nbr=) is the most reliable way to check if the conversion preserves the exact value.
+
+*** There is a implicit type conversion here which is probably not good
+#+begin_src cpp
+    if (flt < std::numeric_limits< int >::min() && std::numeric_limits< int >::max() < flt) {
+        std::cout << "int: impossible" << std::endl;
+    } else {
+        std::cout << "int: " << static_cast< int >(flt) << std::endl;
+    }
+#+end_src
+
+
+You're absolutely right! The condition has a logical error AND implicit conversions:
+
+*Problems:*
+1. *Logic error*: Using =&&= instead of =||= - the condition can never be true
+2. *Implicit conversions*: =int= limits are converted to =float= for comparison
+
+*Fixed version:*
+#+begin_src cpp
+if (flt < std::numeric_limits<int>::min() || flt > std::numeric_limits<int>::max()) {
+    std::cout << "int: impossible" << std::endl;
+} else {
+    std::cout << "int: " << static_cast<int>(flt) << std::endl;
+}
+#+end_src
+
+*Even better - explicit casts to avoid any ambiguity:*
+#+begin_src cpp
+if (flt < static_cast<float>(std::numeric_limits<int>::min()) ||
+    flt > static_cast<float>(std::numeric_limits<int>::max())) {
+    std::cout << "int: impossible" << std::endl;
+} else {
+    std::cout << "int: " << static_cast<int>(flt) << std::endl;
+}
+#+end_src
+
+*Or handle special float values:*
+#+begin_src cpp
+if (std::isnan(flt) || std::isinf(flt) ||
+    flt < std::numeric_limits<int>::min() ||
+    flt > std::numeric_limits<int>::max()) {
+    std::cout << "int: impossible" << std::endl;
+} else {
+    std::cout << "int: " << static_cast<int>(flt) << std::endl;
+}
+#+end_src
+
+The original condition would never print "impossible" because no value can be both less than min AND greater than max simultaneously.
+*** it remains the implicit conversion from int to float
+
+You're absolutely right! Even with the fix, there's still implicit conversion. Here's how to avoid it:
+
+/Explicit cast to avoid implicit conversion:/
+#+begin_src cpp
+if (std::isnan(flt) || std::isinf(flt) ||
+    flt < static_cast<float>(std::numeric_limits<int>::min()) ||
+    flt > static_cast<float>(std::numeric_limits<int>::max())) {
+    std::cout << "int: impossible" << std::endl;
+} else {
+    std::cout << "int: " << static_cast<int>(flt) << std::endl;
+}
+#+end_src
+
+/Alternative - cast float to double for comparison:/
+#+begin_src cpp
+if (std::isnan(flt) || std::isinf(flt) ||
+    static_cast<double>(flt) < std::numeric_limits<int>::min() ||
+    static_cast<double>(flt) > std::numeric_limits<int>::max()) {
+    std::cout << "int: impossible" << std::endl;
+} else {
+    std::cout << "int: " << static_cast<int>(flt) << std::endl;
+}
+#+end_src
+
+/Or use constants:/
+#+begin_src cpp
+const float INT_MIN_F = static_cast<float>(std::numeric_limits<int>::min());
+const float INT_MAX_F = static_cast<float>(std::numeric_limits<int>::max());
+
+if (std::isnan(flt) || std::isinf(flt) || flt < INT_MIN_F || flt > INT_MAX_F) {
+    std::cout << "int: impossible" << std::endl;
+} else {
+    std::cout << "int: " << static_cast<int>(flt) << std::endl;
+}
+#+end_src
+
+The explicit cast makes the conversion intention clear and avoids compiler warnings.
+
+*** what about
+#+begin_src cpp
+    if (std::isnan(flt) || std::isinf(flt) ||
+        static_cast< double >(flt) < static_cast< double >(std::numeric_limits< int >::min()) ||
+        static_cast< double >(flt) > static_cast< double >(std::numeric_limits< int >::max())) {
+        std::cout << "int: impossible" << std::endl;
+    } else {
+        std::cout << "int: " << static_cast< int >(flt) << std::endl;
+    }
+#+end_src
+
+
+That's a great solution! Casting both values to =double= is actually the best approach here because:
+
+*Advantages:*
+- *No precision loss*: =double= can exactly represent all =int= values and all =float= values
+- *Explicit conversions*: Makes your intent clear - no implicit conversions
+- *Consistent comparison*: Both sides are the same type (=double=)
+- *Safe*: =double= has enough precision to handle the full range of both types
+
+*Why this is better than casting to =float=:*
+- Casting =int= limits to =float= might lose precision for very large values
+- Your approach ensures exact comparison without any precision issues
+
+*Your solution:*
+#+begin_src cpp
+if (std::isnan(flt) || std::isinf(flt) ||
+    static_cast<double>(flt) < static_cast<double>(std::numeric_limits<int>::min()) ||
+    static_cast<double>(flt) > static_cast<double>(std::numeric_limits<int>::max())) {
+    std::cout << "int: impossible" << std::endl;
+} else {
+    std::cout << "int: " << static_cast<int>(flt) << std::endl;
+}
+#+end_src
+
+This is clean, explicit, and avoids any potential precision issues. Well done!
+
+*** how do i assign nanf to a float?
+
+Use =std::nanf("")= or the =nanf()= function:
+
+#+begin_src cpp
+#include <cmath>
+
+float f1 = std::nanf("");        // C++ way
+float f2 = nanf("");             // C way
+float f3 = NAN;                  // If available (might be double)
+float f4 = std::numeric_limits<float>::quiet_NaN();  // More explicit
+#+end_src
+
+*In your code context:*
+#+begin_src cpp
+bool isConvertibleToFloat(std::string str, float* flt) {
+    if (str == "nan" || str == "nanf") {
+        *flt = std::nanf("");    // Fixed: was std::nanf (missing parentheses)
+        return true;
+    }
+    std::istringstream iss(str);
+    iss >> *flt;
+    return iss.eof() && !iss.fail();
+}
+#+end_src
+
+*Your original code had a typo:*
+#+begin_src cpp
+*flt = std::nanf;  // Wrong - missing parentheses
+#+end_src
+
+The =std::nanf("")= function takes a string argument (usually empty) and returns a =float= NaN value.
+
+*** do i need have a special compile flag?
+
+No special compile flags are needed for =std::nanf("")=. It's part of the standard library since C++11.
+
+/However, if you want to use the =NAN= macro:/
+#+begin_src cpp
+#define _GNU_SOURCE    // or
+#define _BSD_SOURCE    // before including <cmath>
+#include <cmath>
+
+float f = NAN;  // Now available
+#+end_src
+
+/Or compile with:/
+#+begin_src bash
+g++ -std=c++11 -D_GNU_SOURCE your_file.cpp
+#+end_src
+
+/But stick with =std::nanf("")= - it's portable and standard:/
+#+begin_src cpp
+#include <cmath>
+float f = std::nanf("");  // Always works, no flags needed
+#+end_src
+
+/For C++98 compatibility (if needed):/
+#+begin_src bash
+g++ -std=c++98 your_file.cpp  # std::nanf still works in most implementations
+#+end_src
+
+The =std::nanf("")= approach is the most portable and doesn't require any special defines or flags.
+
+*** I'm using std=c++98
+
+In C++98, =std::nanf= might not be available. Use these alternatives:
+
+/Option 1: Use C function =nanf=/
+#+begin_src cpp
+#include <cmath>
+float f = nanf("");  // C function, usually available
+#+end_src
+
+/Option 2: Create NaN manually/
+#+begin_src cpp
+#include <limits>
+float f = std::numeric_limits<float>::quiet_NaN();  // Available in C++98
+#+end_src
+
+/Option 3: Division by zero (platform-dependent)/
+#+begin_src cpp
+float f = 0.0f / 0.0f;  // Creates NaN, but may warn
+#+end_src
+
+/For your code:/
+#+begin_src cpp
+bool isConvertibleToFloat(std::string str, float* flt) {
+    if (str == "nan" || str == "nanf") {
+        *flt = std::numeric_limits<float>::quiet_NaN();  // C++98 compatible
+        return true;
+    }
+    std::istringstream iss(str);
+    iss >> *flt;
+    return iss.eof() && !iss.fail();
+}
+#+end_src
+
+The =std::numeric_limits<float>::quiet_NaN()= is the most portable C++98 solution.
+
+*** is static casting from double to float safe?
+
+No, casting from =double= to =float= is *not always safe*. Here are the potential issues:
+
+/Precision loss:/
+#+begin_src cpp
+double d = 3.141592653589793;
+float f = static_cast<float>(d);  // Loses precision
+// f becomes 3.14159f (fewer digits)
+#+end_src
+
+/Overflow to infinity:/
+#+begin_src cpp
+double d = 1e50;  // Very large number
+float f = static_cast<float>(d);  // f becomes +inf
+#+end_src
+
+/Underflow to zero:/
+#+begin_src cpp
+double d = 1e-50;  // Very small number
+float f = static_cast<float>(d);  // f becomes 0.0f
+#+end_src
+
+/In your =treatDouble= function:/
+#+begin_src cpp
+void treatDouble(double dbl) {
+    // Check for overflow/underflow before casting
+    if (std::isnan(dbl) || std::isinf(dbl)) {
+        std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+    } else if (std::abs(dbl) > std::numeric_limits<float>::max()) {
+        std::cout << "float: inf" << std::endl;
+    } else if (std::abs(dbl) < std::numeric_limits<float>::min() && dbl != 0.0) {
+        std::cout << "float: 0.0f (underflow)" << std::endl;
+    } else {
+        std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+    }
+}
+#+end_src
+
+The cast is "safe" in that it won't crash, but it may not preserve the value.
+
+*** why std::abs (it's the absolute value, right?)?
+
+Yes, =std::abs= is the absolute value function, and it's needed because:
+
+/Range checks work with absolute values:/
+#+begin_src cpp
+// Wrong - doesn't handle negative numbers correctly
+if (dbl > std::numeric_limits<float>::max()) // Only checks positive overflow
+
+// Right - handles both positive and negative overflow
+if (std::abs(dbl) > std::numeric_limits<float>::max()) // Checks both directions
+#+end_src
+
+/Examples:/
+#+begin_src cpp
+double d1 = 1e50;   // Positive overflow
+double d2 = -1e50;  // Negative overflow (also overflows to -inf)
+
+// Without abs:
+if (d2 > std::numeric_limits<float>::max()) // false! (-1e50 is NOT > +3.4e38)
+
+// With abs:
+if (std::abs(d2) > std::numeric_limits<float>::max()) // true! (1e50 > 3.4e38)
+#+end_src
+
+/Better approach - check both bounds explicitly:/
+#+begin_src cpp
+if (dbl > std::numeric_limits<float>::max() ||
+    dbl < std::numeric_limits<float>::lowest()) {
+    std::cout << "float: overflow" << std::endl;
+}
+#+end_src
+
+Note: =std::numeric_limits<float>::lowest()= returns the most negative finite value (≈ -3.4e38), while =min()= returns the smallest positive normal value.
+
+The =std::abs= approach is shorter but less clear than explicit bound checking.
+
+*** ok, so i need it wihtout abs
+
+
+Exactly! Without =std::abs=, you need to check both bounds explicitly:
+
+#+begin_src cpp
+void treatDouble(double dbl) {
+    // ... char and int handling ...
+
+    if (std::isnan(dbl) || std::isinf(dbl)) {
+        std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+    } else if (dbl > std::numeric_limits<float>::max() ||
+               dbl < std::numeric_limits<float>::lowest()) {
+        std::cout << "float: overflow" << std::endl;
+    } else if (dbl != 0.0 && std::abs(dbl) < std::numeric_limits<float>::min()) {
+        std::cout << "float: underflow" << std::endl;
+    } else {
+        std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+    }
+}
+#+end_src
+
+/Or for underflow check without abs:/
+#+begin_src cpp
+else if (dbl != 0.0 &&
+         (dbl > 0.0 && dbl < std::numeric_limits<float>::min()) ||
+         (dbl < 0.0 && dbl > -std::numeric_limits<float>::min())) {
+    std::cout << "float: underflow" << std::endl;
+}
+#+end_src
+
+The explicit bound checking is clearer and avoids the need for =std::abs=. Remember:
+- =max()= = largest finite value (≈ 3.4e38)
+- =lowest()= = most negative finite value (≈ -3.4e38)
+- =min()= = smallest positive normal value (≈ 1.2e-38)
+
+*** but you used abs again
+
+You're absolutely right! I used =std::abs= again in the underflow check. Here's the corrected version without any =std::abs=:
+
+#+begin_src cpp
+void treatDouble(double dbl) {
+    // ... char and int handling ...
+
+    if (std::isnan(dbl) || std::isinf(dbl)) {
+        std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+    } else if (dbl > std::numeric_limits<float>::max() ||
+               dbl < std::numeric_limits<float>::lowest()) {
+        std::cout << "float: overflow" << std::endl;
+    } else if (dbl != 0.0 &&
+               ((dbl > 0.0 && dbl < std::numeric_limits<float>::min()) ||
+                (dbl < 0.0 && dbl > -std::numeric_limits<float>::min()))) {
+        std::cout << "float: underflow" << std::endl;
+    } else {
+        std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+    }
+}
+#+end_src
+
+/Or simpler - just allow the conversion and let it handle underflow naturally:/
+#+begin_src cpp
+if (dbl > std::numeric_limits<float>::max() ||
+    dbl < std::numeric_limits<float>::lowest()) {
+    std::cout << "float: overflow" << std::endl;
+} else {
+    std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+}
+#+end_src
+
+Thanks for catching that!
+
+*** lowest again is not part of std=c++98
+
+You're right! =std::numeric_limits<float>::lowest()= was added in C++11. For C++98, use the negative of =max()=:
+
+#+begin_src cpp
+void treatDouble(double dbl) {
+    // ... char and int handling ...
+
+    if (std::isnan(dbl) || std::isinf(dbl)) {
+        std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+    } else if (dbl > std::numeric_limits<float>::max() ||
+               dbl < -std::numeric_limits<float>::max()) {  // C++98 compatible
+        std::cout << "float: overflow" << std::endl;
+    } else {
+        std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+    }
+}
+#+end_src
+
+/In C++98:/
+- =max()= = largest finite value (≈ 3.4e38)
+- =-max()= = most negative finite value (≈ -3.4e38)
+- =min()= = smallest positive normal value (≈ 1.2e-38)
+
+So for overflow checking in both directions:
+- Positive overflow: =dbl > std::numeric_limits<float>::max()=
+- Negative overflow: =dbl < -std::numeric_limits<float>::max()=
+
+*** but shouldn't it be then:
+#+begin_src cpp
+    if (dbl > std::numeric_limits< float >::max() || dbl < std::numeric_limits< float >::min()) {
+        std::cout << "float: overflow" << std::endl;
+    } else {
+        std::cout << "float: " << static_cast< float >(dbl) << "f" << std::endl;
+    }
+#+end_src
+
+
+No! That's incorrect. =std::numeric_limits<float>::min()= is the /smallest positive normal value/ (≈ 1.2e-38), not the most negative value.
+
+Your condition would be:
+- =dbl > 3.4e38= (correct for positive overflow)
+- =dbl < 1.2e-38= (wrong! this catches small positive numbers, not negative overflow)
+
+/Correct for C++98:/
+#+begin_src cpp
+if (dbl > std::numeric_limits<float>::max() ||
+    dbl < -std::numeric_limits<float>::max()) {  // Negative of max()
+    std::cout << "float: overflow" << std::endl;
+} else {
+    std::cout << "float: " << static_cast<float>(dbl) << "f" << std::endl;
+}
+#+end_src
+
+/Why your version is wrong:/
+#+begin_src cpp
+double dbl = 0.5;  // Normal positive number
+// Your condition: 0.5 < 1.2e-38 is FALSE (good)
+// But for dbl = -1e50 (should overflow):
+// Your condition: -1e50 < 1.2e-38 is TRUE (but wrong reason!)
+#+end_src
+
+For C++98, use =-std::numeric_limits<float>::max()= for the negative bound.
+
+*** how do i get an inf value for a float?
+
+For C++98, use these methods to get infinity for a float:
+
+/Option 1: Division by zero/
+#+begin_src cpp
+float pos_inf = 1.0f / 0.0f;   // +inf
+float neg_inf = -1.0f / 0.0f;  // -inf
+#+end_src
+
+/Option 2: Using numeric_limits (C++98 compatible)/
+#+begin_src cpp
+#include <limits>
+float pos_inf = std::numeric_limits<float>::infinity();
+float neg_inf = -std::numeric_limits<float>::infinity();
+#+end_src
+
+/Option 3: Using HUGE_VALF macro (if available)/
+#+begin_src cpp
+#include <cmath>
+float pos_inf = HUGE_VALF;   // May not be available in all C++98 implementations
+float neg_inf = -HUGE_VALF;
+#+end_src
+
+/In your code context:/
+#+begin_src cpp
+bool isConvertibleToFloat(std::string str, float* flt) {
+    if (str == "inf" || str == "+inf") {
+        *flt = std::numeric_limits<float>::infinity();
+        return true;
+    }
+    if (str == "-inf") {
+        *flt = -std::numeric_limits<float>::infinity();
+        return true;
+    }
+    // ... rest of function
+}
+#+end_src
+
+The =std::numeric_limits<float>::infinity()= is the most portable C++98 solution.
+
+***

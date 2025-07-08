@@ -8,7 +8,6 @@ int main(int argc, char* argv[]) {
     }
     std::string str(argv[1]);
 
-    ScalarConverter sc;
-    sc.convert(str);
+    ScalarConverter::convert(str);
     return 0;
 }

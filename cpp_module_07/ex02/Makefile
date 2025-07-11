@@ -18,13 +18,13 @@ CXXFLAGS := -std=c++98 -Wall -Werror -Wextra
 SRC_DIR := src
 BUILD_DIR := build
 INCLUDES := -Iincludes
-SRC_FILES := $(SRC_DIR)/main.cpp
+SRC_FILES := $(SRC_DIR)/main.cpp $(SRC_DIR)/Array.cpp
 
-NAME := ex01
+NAME := ex02
 
 all: $(NAME)
 
-$(NAME): $(SRC_FILES) includes/iter.h
+$(NAME): $(SRC_FILES) includes/Array.h
 	$(CXX) $(CXXFLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
 
 clean:

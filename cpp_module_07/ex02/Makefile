@@ -37,6 +37,9 @@ fclean: clean
 re: fclean
 	make $(NAME)
 
+test: all
+	valgrind --leak-check=full ./$(NAME)
+
 unittest:
 	cmake -S . -B build && \
 	cmake --build build && \

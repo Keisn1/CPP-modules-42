@@ -1,4 +1,5 @@
 #include "Array.h"
+#include <exception>
 #include <iostream>
 #include <limits>
 
@@ -44,44 +45,81 @@ int main() {
         }
         {
             Array< int >* a = new Array< int >(10);
-            // for (size_t i = 0; i < a->size(); i++) {
-            //     std::cout << (*a)[0] << std::endl;
-            // }
+            for (size_t i = 0; i < a->size(); i++) {
+                std::cout << (*a)[0] << std::endl;
+            }
             delete a;
         }
         {
-            Array< std::string >* a = new Array< std::string >(std::numeric_limits< unsigned int >::max());
+            // try {
+            //     Array< std::string >* a = new Array< std::string >(std::numeric_limits< unsigned int >::max());
+            //     delete a;
+            // } catch (std::exception& e) {
+            //     std::cerr << e.what() << std::endl;
+            // }
+        }
+        {
+            Array< TestClass >* a = new Array< TestClass >(20);
             delete a;
         }
-        // {
-        //     Array< TestClass >* a = new Array< TestClass >(20);
-        //     delete a;
-        // }
     }
-    // {
-    //     std::cout << "(TEST 3)" << std::endl;
-    //     std::cout << "Copy construct and look that nothing changes" << std::endl;
-    //     std::cout << "Then print the default values of the parameter" << std::endl;
-    //     {
-    //         Array< char >* a = new Array< char >(10);
-    //         delete a;
-    //     }
-    //     {
-    //         Array< int >* a = new Array< int >(1);
-    //         delete a;
-    //     }
-    //     {
-    //         Array< std::string >* a = new Array< std::string >(std::numeric_limits< unsigned int >::max());
-    //         delete a;
-    //     }
-    //     {
-    //         Array< TestClass >* a = new Array< TestClass >(20);
-    //         delete a;
-    //     }
-    // }
-    // {
-    //     int* a = new int();
-    //     std::cout << *a << std::endl;
-    // }
+    std::cout << std::endl;
+    {
+        std::cout << "(TEST 3)" << std::endl;
+        std::cout << "Copy construct and look that nothing changes" << std::endl;
+        std::cout << "check that changes are present only the changed array" << std::endl;
+        {
+            Array< char >* a = new Array< char >(10);
+            for (size_t i = 0; i < a->size(); i++) {
+                (*a)[i] = 'a' + i;
+            }
+            for (size_t i = 0; i < a->size(); i++) {
+                std::cout << static_cast< char >((*a)[i]);
+            }
+            std::cout << std::endl;
+            Array< char > b = Array< char >(*a);
+            for (size_t i = 0; i < a->size(); i++) {
+                std::cout << static_cast< char >((*a)[i]);
+            }
+            std::cout << std::endl;
+            for (size_t i = 0; i < a->size(); i++) {
+                b[i] = 'b' + i;
+            }
+            for (size_t i = 0; i < a->size(); i++) {
+                std::cout << static_cast< char >(b[i]);
+            }
+            std::cout << std::endl;
+
+            // try {
+            //     b[20];
+            // } catch (std::exception& e) {
+            //     std::cerr << e.what() << std::endl;
+            // }
+            // try {
+            //     b[-20];
+            // } catch (std::exception& e) {
+            //     std::cerr << e.what() << std::endl;
+            // }
+            delete a;
+        }
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "(TEST 4)" << std::endl;
+        std::cout << "Copy assignment and look that nothing changes" << std::endl;
+        std::cout << "check that changes are present only the changed array" << std::endl;
+        Array< char >* a = new Array< char >(10);
+        for (size_t i = 0; i < a->size(); i++) {
+            (*a)[i] = 'a' + i;
+        }
+        for (size_t i = 0; i < a->size(); i++) {
+            std::cout << static_cast< char >((*a)[i]);
+        }
+        std::cout << std::endl;
+
+        Array< char > b;
+        b = *a;
+        delete a;
+    }
     return 0;
 }

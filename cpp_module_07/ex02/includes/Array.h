@@ -2,32 +2,21 @@
 #define ARRAY_H
 
 #include <cstddef>
-#include <exception>
-#include <iostream>
+#include <stdexcept>
 
 template < typename T >
 class Array {
   private:
-    size_t _size;
+    int _size;
     T* _data;
 
   public:
     Array(void) : _size(0), _data(NULL) {}
 
-    Array(unsigned int n) : _size(n), _data(NULL) {
-        try {
-            this->_data = new T[n];
-        } catch (std::exception& e) {
-            std::cerr << e.what() << std::endl;
-            _size = 0;
-            return;
+    Array(unsigned int n) : _size(n), _data(new T[n]) {
+        for (int i = 0; i < _size; i++) {
+            _data[i] = T();
         }
-
-        T* tmp = new T();
-        for (size_t i = 0; i < _size; i++) {
-            _data[i] = *tmp;
-        }
-        delete tmp;
     };
 
     ~Array(void) {
@@ -36,24 +25,42 @@ class Array {
         }
     };
 
-    // Array(const Array& arr) {
-    //     try {
-    //         this->_data = new T[arr._size];
-    //     } catch (std::exception& e) {
-    //         std::cerr << e.what() << std::endl;
-    //         return;
-    //     }
+    Array(const Array& arr) : _size(arr._size), _data(new T[arr._size]) {
+        for (int i = 0; i < arr._size; i++) {
+            _data[i] = arr._data[i];
+        }
+    };
 
-    //     _size = arr._size;
-    //     for (size_t i = 0; i < arr._size; i++) {
-    //         _data[i] = arr._data[i];
-    //     }
-    // };
+    Array& operator=(const Array& other) {
+        if (this == &other)
+            return *this;
 
-    Array& operator=(const Array&);
-    T& operator[](int index) { return _data[index]; }
+        if (_data)
+            delete[] _data;
 
-    size_t size() { return _size; };
+        _data = new T[other._size];
+        _size = other._size;
+        for (int i = 0; i < other._size; i++) {
+            _data[i] = other._data[i];
+        }
+        return *this;
+    };
+
+    T& operator[](int index) {
+        if (index >= _size || index < 0) {
+            throw std::out_of_range("Index is out of range");
+        }
+        return _data[index];
+    }
+
+    const T& operator[](int index) const {
+        if (index >= _size || index < 0) {
+            throw std::out_of_range("Index is out of range");
+        }
+        return _data[index];
+    }
+
+    size_t size() const { return _size; };
 };
 
 #endif // ARRAY_H

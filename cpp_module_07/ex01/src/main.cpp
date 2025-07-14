@@ -40,10 +40,17 @@ void withCharConst() {
     std::cout << std::endl;
 }
 
+void tryToPrintConst(const int& x) { std::cout << x << std::endl; }
+void increment(int& x) { x++; }
+
 int main() {
     withInt();
     withIntConst();
     withChar();
     withCharConst();
+
+    const int arr[] = {1, 2, 3};
+    iter(arr, 3, tryToPrintConst); // works!
+    // iter(arr, 3, increment);       // compile error (which is good)!
     return 0;
 }

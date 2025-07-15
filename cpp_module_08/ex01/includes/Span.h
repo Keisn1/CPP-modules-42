@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <iterator>
+#include <stack>
 #include <stdexcept>
 #include <vector>
 
@@ -12,6 +13,7 @@ class Span {
     std::vector< int > arr;
 
   public:
+    typedef typename std::stack< int >::container_type::iterator iterator;
     Span(void) : N(0) {};
     Span(unsigned int n) : N(n) {};
     Span(const Span&) {};

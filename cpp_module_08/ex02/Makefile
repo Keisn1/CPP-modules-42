@@ -24,7 +24,7 @@ NAME := ex02
 
 all: $(NAME)
 
-$(NAME): $(SRC_FILES)
+$(NAME): $(SRC_FILES) includes/MutantStack.h
 	$(CXX) $(CXXFLAGS) $(SRC_FILES) -o $(NAME) $(INCLUDES)
 
 clean:

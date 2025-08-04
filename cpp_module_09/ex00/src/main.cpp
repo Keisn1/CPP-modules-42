@@ -1,9 +1,8 @@
 #include "BitcoinExchange.hpp"
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <sstream>
-
-double BitcoinExchange::rate = 1.5;
 
 bool isLeapYear(int year) {
     if (year % 400 == 0)
@@ -77,7 +76,6 @@ double convertToDouble(std::string valStr) {
 }
 
 int main(int argc, char** argv) {
-    (void)argv;
     if (argc != 2) {
         std::cerr << "Error: no file" << std::endl;
         return 1;
@@ -110,8 +108,8 @@ int main(int argc, char** argv) {
             std::cout << "Error: too large a number" << std::endl;
             continue;
         }
-
-        std::cout << date << " => " << value << " = " << BitcoinExchange::exchange(value) << std::endl;
+        std::cout << date << " => " << std::fixed << std::setprecision(2) << value << " = "
+                  << BitcoinExchange::exchange(date, value) << std::endl;
     }
     file.close();
 

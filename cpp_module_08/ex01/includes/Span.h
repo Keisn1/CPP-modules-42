@@ -3,60 +3,67 @@
 
 #include <algorithm>
 #include <iterator>
-#include <stack>
-#include <stdexcept>
 #include <vector>
 
 class Span {
   private:
-    unsigned int N;
-    std::vector< int > arr;
+    unsigned int _N;
+    std::vector< int > _arr;
 
   public:
-    typedef typename std::stack< int >::container_type::iterator iterator;
-    Span(void) : N(0) {};
-    Span(unsigned int n) : N(n) {};
-    Span(const Span&) {};
+    typedef typename std::vector< int >::iterator iterator;
+
+    Span(void) : _N(0) {};
+    Span(unsigned int n) : _N(n) {};
+    Span(const Span& other) : _N(other._N), _arr(other._arr) {};
     ~Span(void) {};
-    Span& operator=(const Span&) { return *this; };
+
+    Span& operator=(const Span& other) {
+        if (this == &other)
+            return *this;
+        _N = other._N;
+        _arr = other._arr;
+        return *this;
+    };
+
     void addNumber(int nbr) {
-        if (arr.size() == N) {
+        if (_arr.size() == _N) {
             throw SpanIsFullException();
         }
-        arr.push_back(nbr);
+        _arr.push_back(nbr);
     };
 
     template < typename Iterator >
     void addNumbers(Iterator begin, Iterator end) {
-        if (std::distance(begin, end) + arr.size() >= N) {
+        if (std::distance(begin, end) + _arr.size() > _N) {
             throw SpanIsFullException();
         }
-        arr.insert(arr.end(), begin, end);
+        _arr.insert(_arr.end(), begin, end);
     };
 
-    int shortestSpan() {
-        if (arr.size() < 2)
+    unsigned int shortestSpan() const {
+        if (_arr.size() < 2)
             return 0;
 
-        std::vector< int > sorted = arr;
+        std::vector< int > sorted = _arr;
         std::sort(sorted.begin(), sorted.end());
 
-        int minSpan = sorted[1] - sorted[0];
-        for (size_t i = 1; i < sorted.size(); i++) {
-            int span = sorted[i] - sorted[i - 1];
+        long long minSpan = static_cast< long long >(sorted[1]) - static_cast< long long >(sorted[0]);
+        for (size_t i = 2; i < sorted.size(); i++) {
+            long long span = static_cast< long long >(sorted[i]) - static_cast< long long >(sorted[i - 1]);
             if (span < minSpan)
                 minSpan = span;
         }
-        return minSpan;
+        return static_cast< unsigned int >(minSpan);
     };
 
-    int longestSpan() {
-        if (arr.size() < 2)
+    unsigned int longestSpan() const {
+        if (_arr.size() < 2)
             return 0;
 
-        int minVal = *std::min_element(arr.begin(), arr.end());
-        int maxVal = *std::max_element(arr.begin(), arr.end());
-        return maxVal - minVal;
+        long long minVal = static_cast< long long >(*std::min_element(_arr.begin(), _arr.end()));
+        long long maxVal = static_cast< long long >(*std::max_element(_arr.begin(), _arr.end()));
+        return static_cast< unsigned int >(maxVal - minVal);
     };
 
     class SpanIsFullException : public std::exception {

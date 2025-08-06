@@ -1,15 +1,57 @@
 [
 {
   "directory": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build",
-  "command": "/usr/bin/c++  -I/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/./includes -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/src/main.cpp.o -c /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/src/main.cpp",
-  "file": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/src/main.cpp",
-  "output": "CMakeFiles/run_unittests.dir/src/main.cpp.o"
+  "command": "/usr/bin/c++  -I/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/./includes -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/src/binaryInsertDeque.cpp.o -c /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/src/binaryInsertDeque.cpp",
+  "file": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/src/binaryInsertDeque.cpp",
+  "output": "CMakeFiles/run_unittests.dir/src/binaryInsertDeque.cpp.o"
+},
+{
+  "directory": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build",
+  "command": "/usr/bin/c++  -I/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/./includes -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/src/binaryInsertList.cpp.o -c /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/src/binaryInsertList.cpp",
+  "file": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/src/binaryInsertList.cpp",
+  "output": "CMakeFiles/run_unittests.dir/src/binaryInsertList.cpp.o"
+},
+{
+  "directory": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build",
+  "command": "/usr/bin/c++  -I/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/./includes -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/src/mergeInsertionList.cpp.o -c /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/src/mergeInsertionList.cpp",
+  "file": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/src/mergeInsertionList.cpp",
+  "output": "CMakeFiles/run_unittests.dir/src/mergeInsertionList.cpp.o"
+},
+{
+  "directory": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build",
+  "command": "/usr/bin/c++  -I/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/./includes -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/tests/binaryInsertDeque.cpp.o -c /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/binaryInsertDeque.cpp",
+  "file": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/binaryInsertDeque.cpp",
+  "output": "CMakeFiles/run_unittests.dir/tests/binaryInsertDeque.cpp.o"
+},
+{
+  "directory": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build",
+  "command": "/usr/bin/c++  -I/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/./includes -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/tests/binaryInsertList.cpp.o -c /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/binaryInsertList.cpp",
+  "file": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/binaryInsertList.cpp",
+  "output": "CMakeFiles/run_unittests.dir/tests/binaryInsertList.cpp.o"
+},
+{
+  "directory": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build",
+  "command": "/usr/bin/c++  -I/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/./includes -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/tests/buildSecondaryList.cpp.o -c /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/buildSecondaryList.cpp",
+  "file": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/buildSecondaryList.cpp",
+  "output": "CMakeFiles/run_unittests.dir/tests/buildSecondaryList.cpp.o"
+},
+{
+  "directory": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build",
+  "command": "/usr/bin/c++  -I/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/./includes -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/tests/mergeInsertionList.cpp.o -c /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/mergeInsertionList.cpp",
+  "file": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/mergeInsertionList.cpp",
+  "output": "CMakeFiles/run_unittests.dir/tests/mergeInsertionList.cpp.o"
 },
 {
   "directory": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build",
   "command": "/usr/bin/c++  -I/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/./includes -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/tests/test_main.cpp.o -c /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/test_main.cpp",
   "file": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/test_main.cpp",
   "output": "CMakeFiles/run_unittests.dir/tests/test_main.cpp.o"
+},
+{
+  "directory": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build",
+  "command": "/usr/bin/c++  -I/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/./includes -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googletest -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock/include -isystem /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-src/googlemock -Wall -Werror -Wextra -fsanitize=address -o CMakeFiles/run_unittests.dir/tests/test_utils.cpp.o -c /home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/test_utils.cpp",
+  "file": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/tests/test_utils.cpp",
+  "output": "CMakeFiles/run_unittests.dir/tests/test_utils.cpp.o"
 },
 {
   "directory": "/home/kay/workspace/CPP-modules-42/cpp_module_09/ex02/build/_deps/googletest-build/googlemock",

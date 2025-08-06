@@ -1,4 +1,5 @@
 #include "PMergeMe.hpp"
+#include <iostream>
 #include <list>
 
 std::list< int > buildSecondaryList(std::list< int > main, std::list< std::pair< int, int > > secondaryPairs) {
@@ -17,6 +18,14 @@ std::list< int > buildSecondaryList(std::list< int > main, std::list< std::pair<
         main.pop_back();
     }
     return secondary;
+}
+
+unsigned int jacobsthal(int n) {
+    if (n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
+    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
 }
 
 std::list< int > mergeInsertionList(std::list< int > values) {
@@ -48,10 +57,44 @@ std::list< int > mergeInsertionList(std::list< int > values) {
 
     mainChain = mergeInsertionList(mainChain);
     std::list< int > secondary = buildSecondaryList(mainChain, secondaryPairs);
-
-    binaryInsertList(mainChain, secondary.back());
-    secondary.pop_front();
     if (remaining != -1)
-        binaryInsertList(mainChain, remaining);
+        secondary.push_back(remaining);
+    mainChain.push_front(secondary.front());
+
+    if (secondary.size() == 1)
+        return mainChain;
+
+    int steps = secondary.size() < 3 ? (secondary.size() - 1) : (3 - 1);
+
+    while (steps > 0) {
+        std::list< int >::iterator itbegin = std::next(secondary.begin(), steps);
+        binaryInsertList(mainChain, *itbegin);
+        steps--;
+    }
+
+    if (secondary.size() <= 3) {
+        return mainChain;
+    }
+
+    steps = secondary.size() < 5 ? (secondary.size() - 1) : (5 - 1);
+
+    while (steps > 5 - 3) {
+        std::list< int >::iterator itbegin = std::next(secondary.begin(), steps);
+        binaryInsertList(mainChain, *itbegin);
+        steps--;
+    }
+
+    // if (secondary.size() == 2) {
+    //     std::list< int >::iterator itbegin = std::next(secondary.begin(), 1);
+    //     binaryInsertList(mainChain, *itbegin);
+    //     return mainChain;
+    // }
+
+    // if (secondary.size() > 2) {
+    //     std::list< int >::iterator itbegin = std::next(secondary.begin(), 2);
+    //     binaryInsertList(mainChain, *itbegin--);
+    //     binaryInsertList(mainChain, *itbegin);
+    // }
+
     return mainChain;
 }

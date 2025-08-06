@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);
-    testing::GTEST_FLAG(filter) = "*MergeInsertListSuite*";
+    // testing::GTEST_FLAG(filter) = "*MergeInsertListSuite*";
     return RUN_ALL_TESTS();
     return 0;
 }

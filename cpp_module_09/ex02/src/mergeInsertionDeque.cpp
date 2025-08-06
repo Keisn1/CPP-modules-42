@@ -1,12 +1,11 @@
 #include "PMergeMe.hpp"
-#include <iostream>
-#include <list>
+#include <deque>
 
-std::list< int > buildSecondaryList(std::list< int > main, std::list< std::pair< int, int > > secondaryPairs) {
-    std::list< int > secondary;
+std::deque< int > buildSecondaryDeque(std::deque< int > main, std::deque< std::pair< int, int > > secondaryPairs) {
+    std::deque< int > secondary;
     while (main.size()) {
         int value = main.back();
-        std::list< std::pair< int, int > >::iterator itPair = secondaryPairs.begin();
+        std::deque< std::pair< int, int > >::iterator itPair = secondaryPairs.begin();
         while (itPair != secondaryPairs.end()) {
             if ((*itPair).second == value) {
                 secondary.push_front((*itPair).first);
@@ -20,21 +19,13 @@ std::list< int > buildSecondaryList(std::list< int > main, std::list< std::pair<
     return secondary;
 }
 
-unsigned int jacobsthal(int n) {
-    if (n == 0)
-        return 0;
-    if (n == 1)
-        return 1;
-    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
-}
-
-std::list< int > mergeInsertionList(std::list< int > values) {
+std::deque< int > mergeInsertionDeque(std::deque< int > values) {
     int size = values.size();
     if (size <= 1)
         return values;
 
-    std::list< int > mainChain;
-    std::list< std::pair< int, int > > secondaryPairs;
+    std::deque< int > mainChain;
+    std::deque< std::pair< int, int > > secondaryPairs;
     int remaining = -1;
 
     if (values.size() % 2) {
@@ -42,7 +33,7 @@ std::list< int > mergeInsertionList(std::list< int > values) {
         values.pop_back();
     }
 
-    std::list< int >::iterator it = values.begin();
+    std::deque< int >::iterator it = values.begin();
     while (it != values.end()) {
         int val1 = *it++;
         int val2 = *it++;
@@ -55,8 +46,8 @@ std::list< int > mergeInsertionList(std::list< int > values) {
         }
     }
 
-    mainChain = mergeInsertionList(mainChain);
-    std::list< int > secondary = buildSecondaryList(mainChain, secondaryPairs);
+    mainChain = mergeInsertionDeque(mainChain);
+    std::deque< int > secondary = buildSecondaryDeque(mainChain, secondaryPairs);
     if (remaining != -1)
         secondary.push_back(remaining);
 
@@ -69,8 +60,8 @@ std::list< int > mergeInsertionList(std::list< int > values) {
     while (secondary.size() > jacobsthal(n - 1)) {
         unsigned int idx = secondary.size() < jacobsthal(n) ? (secondary.size() - 1) : (jacobsthal(n) - 1);
         while (idx > (jacobsthal(n - 1) - 1)) {
-            std::list< int >::iterator itbegin = std::next(secondary.begin(), idx);
-            binaryInsertList(mainChain, *itbegin);
+            std::deque< int >::iterator itbegin = std::next(secondary.begin(), idx);
+            binaryInsertDeque(mainChain, *itbegin);
             idx--;
         }
         n++;

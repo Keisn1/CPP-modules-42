@@ -29,6 +29,10 @@ def run_pmerge_me(nbrs, expected_output):
 
 if __name__ == "__main__":
     run_pmerge_me([], "Error")
-    run_pmerge_me([1], "1")
-    run_pmerge_me([1, 2], "2")
-    run_pmerge_me([1, 2, 1, 2], "4")
+    run_pmerge_me([-1], "Error")
+    run_pmerge_me([1, -2], "Error")
+    run_pmerge_me(
+        [1, 2, 1, 2],
+        """Before: 1 2 1 2
+After: 1 1 2 2""",
+    )

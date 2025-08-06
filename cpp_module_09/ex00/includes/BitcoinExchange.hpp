@@ -1,19 +1,17 @@
 #ifndef BITCOINEXCHANGE_H
 #define BITCOINEXCHANGE_H
 
-#include <iomanip>
-
 #include <fstream>
 #include <iostream>
-#include <list>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 class BitcoinExchange {
   private:
     // static std::list< std::pair< std::string, double > > rates;
-    static std::list< std::pair< std::string, double > > getRates(void) {
+    static std::vector< std::pair< std::string, double > > getRates(void) {
 
         std::ifstream file;
         file.open("data.csv");
@@ -22,7 +20,7 @@ class BitcoinExchange {
         }
 
         std::string line;
-        std::list< std::pair< std::string, double > > rates;
+        std::vector< std::pair< std::string, double > > rates;
         while (std::getline(file, line)) {
             if (line == "date,exchange_rate")
                 continue;
@@ -40,12 +38,12 @@ class BitcoinExchange {
 
   public:
     static double exchange(std::string date, double value) {
-        static std::list< std::pair< std::string, double > > rates; // Defined here, no separate definition needed
+        static std::vector< std::pair< std::string, double > > rates; // Defined here, no separate definition needed
         if (rates.empty()) {
             rates = getRates();
         }
 
-        std::list< std::pair< std::string, double > >::iterator it = rates.begin();
+        std::vector< std::pair< std::string, double > >::iterator it = rates.begin();
         while (it != rates.end() && (*it).first < date)
             it++;
 

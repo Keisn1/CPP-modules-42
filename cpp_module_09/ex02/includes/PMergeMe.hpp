@@ -1,69 +1,34 @@
-#ifndef RPN_H
-#define RPN_H
+#ifndef PMERGEME_H
+#define PMERGEME_H
 
-#include <cctype>
-#include <stack>
+#include <algorithm>
+#include <cstdlib>
+#include <iostream>
+#include <vector>
 
-class RPN {
+class MergeVector {
   private:
-    std::stack< int > _stack;
-
-    bool isOperation(char c) {
-        if (c == '+' || c == '-' || c == '*' || c == '/')
-            return true;
-        return false;
-    }
-
-    bool isValidChar(char c) {
-        if (c == ' ' || c == '+' || c == '-' || c == '*' || c == '/')
-            return true;
-        if (std::isdigit(c))
-            return true;
-        return false;
-    }
+    std::vector< int > _vec;
 
   public:
-    void eat(char c) {
-        if (!isValidChar(c))
-            throw InvalidException();
-
-        if (c == ' ')
-            return;
-
-        if (std::isdigit(c))
-            _stack.push(c - '0');
-
-        if (isOperation(c)) {
-            if (_stack.size() < 2)
-                throw InvalidException();
-
-            int rVal = _stack.top();
-            _stack.pop();
-            int lVal = _stack.top();
-            _stack.pop();
-            if (c == '+') {
-                _stack.push(lVal + rVal);
-            } else if (c == '-') {
-                _stack.push(lVal - rVal);
-            } else if (c == '*') {
-                _stack.push(lVal * rVal);
-            } else if (c == '/') {
-                if (rVal == 0)
-                    throw InvalidException();
-                _stack.push(lVal / rVal);
-            }
-        }
+    MergeVector() {};
+    void push(char* valStr) {
+        int val = std::atoi(valStr);
+        if (val < 0)
+            throw InvalidValException();
+        _vec.push_back(val);
     }
-    int result() {
-        if (_stack.size() != 1)
-            throw InvalidException();
-        return _stack.top();
+    void print() {
+        for (std::vector< int >::iterator it = _vec.begin(); it != _vec.end(); it++)
+            std::cout << " " << *it;
     }
 
-    class InvalidException : public std::exception {
+    void sort() { std::sort(_vec.begin(), _vec.end()); }
+
+    class InvalidValException : public std::exception {
       public:
-        const char* what() const throw() { return "invalid sequence"; }
+        const char* what() const throw() { return "invalid value"; }
     };
 };
 
-#endif // RPN_H
+#endif // PMERGEME_H

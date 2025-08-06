@@ -28,20 +28,15 @@ unsigned int jacobsthal(int n) {
     return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
 }
 
-std::list< int > mergeInsertionList(std::list< int > values) {
-    int size = values.size();
-    if (size <= 1)
-        return values;
+void buildMainAndSecondaryChain(std::list< int > values, std::list< int >& mainChain, std::list< int >& secondary) {
 
-    std::list< int > mainChain;
-    std::list< std::pair< int, int > > secondaryPairs;
     int remaining = -1;
-
     if (values.size() % 2) {
         remaining = values.back();
         values.pop_back();
     }
 
+    std::list< std::pair< int, int > > secondaryPairs;
     std::list< int >::iterator it = values.begin();
     while (it != values.end()) {
         int val1 = *it++;
@@ -56,15 +51,15 @@ std::list< int > mergeInsertionList(std::list< int > values) {
     }
 
     mainChain = mergeInsertionList(mainChain);
-    std::list< int > secondary = buildSecondaryList(mainChain, secondaryPairs);
+    secondary = buildSecondaryList(mainChain, secondaryPairs);
     if (remaining != -1)
         secondary.push_back(remaining);
 
     mainChain.push_front(secondary.front());
+    return;
+}
 
-    if (secondary.size() == 1)
-        return mainChain;
-
+void insertSecondaryIntoMainChain(std::list< int >& mainChain, std::list< int >& secondary) {
     int n = 3;
     while (secondary.size() > jacobsthal(n - 1)) {
         unsigned int idx = secondary.size() < jacobsthal(n) ? (secondary.size() - 1) : (jacobsthal(n) - 1);
@@ -75,5 +70,17 @@ std::list< int > mergeInsertionList(std::list< int > values) {
         }
         n++;
     }
+}
+
+std::list< int > mergeInsertionList(std::list< int > values) {
+    int size = values.size();
+    if (size <= 1)
+        return values;
+
+    std::list< int > mainChain;
+    std::list< int > secondary;
+    buildMainAndSecondaryChain(values, mainChain, secondary);
+    insertSecondaryIntoMainChain(mainChain, secondary);
+
     return mainChain;
 }

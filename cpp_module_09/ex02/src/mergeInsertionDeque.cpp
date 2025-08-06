@@ -19,20 +19,16 @@ std::deque< int > buildSecondaryDeque(std::deque< int > main, std::deque< std::p
     return secondary;
 }
 
-std::deque< int > mergeInsertionDeque(std::deque< int > values) {
-    int size = values.size();
-    if (size <= 1)
-        return values;
+void buildMainAndSecondaryChainDeque(std::deque< int > values, std::deque< int >& mainChain,
+                                     std::deque< int >& secondary) {
 
-    std::deque< int > mainChain;
-    std::deque< std::pair< int, int > > secondaryPairs;
     int remaining = -1;
-
     if (values.size() % 2) {
         remaining = values.back();
         values.pop_back();
     }
 
+    std::deque< std::pair< int, int > > secondaryPairs;
     std::deque< int >::iterator it = values.begin();
     while (it != values.end()) {
         int val1 = *it++;
@@ -47,15 +43,15 @@ std::deque< int > mergeInsertionDeque(std::deque< int > values) {
     }
 
     mainChain = mergeInsertionDeque(mainChain);
-    std::deque< int > secondary = buildSecondaryDeque(mainChain, secondaryPairs);
+    secondary = buildSecondaryDeque(mainChain, secondaryPairs);
     if (remaining != -1)
         secondary.push_back(remaining);
 
     mainChain.push_front(secondary.front());
+    return;
+}
 
-    if (secondary.size() == 1)
-        return mainChain;
-
+void insertSecondaryIntoMainChainDeque(std::deque< int >& mainChain, std::deque< int >& secondary) {
     int n = 3;
     while (secondary.size() > jacobsthal(n - 1)) {
         unsigned int idx = secondary.size() < jacobsthal(n) ? (secondary.size() - 1) : (jacobsthal(n) - 1);
@@ -66,5 +62,17 @@ std::deque< int > mergeInsertionDeque(std::deque< int > values) {
         }
         n++;
     }
+}
+
+std::deque< int > mergeInsertionDeque(std::deque< int > values) {
+    int size = values.size();
+    if (size <= 1)
+        return values;
+
+    std::deque< int > mainChain;
+    std::deque< int > secondary;
+    buildMainAndSecondaryChainDeque(values, mainChain, secondary);
+    insertSecondaryIntoMainChainDeque(mainChain, secondary);
+
     return mainChain;
 }

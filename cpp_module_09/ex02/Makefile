@@ -26,7 +26,7 @@ SRC_FILES :=  run/main.cpp \
 	$(SRC_DIR)/mergeInsertionList.cpp \
 
 
-NAME := PMergeMe
+NAME := PmergeMe
 
 all: $(NAME)
 

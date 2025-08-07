@@ -55,7 +55,8 @@ void insertSecondaryIntoMainChain(std::list< int >& mainChain, std::list< int >&
     while (secondary.size() > jacobsthal(n - 1)) {
         unsigned int idx = secondary.size() < jacobsthal(n) ? (secondary.size() - 1) : (jacobsthal(n) - 1);
         while (idx > (jacobsthal(n - 1) - 1)) {
-            std::list< int >::iterator itbegin = std::next(secondary.begin(), idx);
+            std::list< int >::iterator itbegin = secondary.begin();
+            std::advance(itbegin, idx);
             binaryInsertList(mainChain, *itbegin);
             idx--;
         }

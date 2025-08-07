@@ -56,7 +56,8 @@ void insertSecondaryIntoMainChainDeque(std::deque< int >& mainChain, std::deque<
     while (secondary.size() > jacobsthal(n - 1)) {
         unsigned int idx = secondary.size() < jacobsthal(n) ? (secondary.size() - 1) : (jacobsthal(n) - 1);
         while (idx > (jacobsthal(n - 1) - 1)) {
-            std::deque< int >::iterator itbegin = std::next(secondary.begin(), idx);
+            std::deque< int >::iterator itbegin = secondary.begin();
+            std::advance(itbegin, idx);
             binaryInsertDeque(mainChain, *itbegin);
             idx--;
         }

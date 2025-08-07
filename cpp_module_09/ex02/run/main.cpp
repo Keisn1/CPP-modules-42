@@ -1,4 +1,5 @@
 #include "PMergeMe.hpp"
+#include <cstdlib>
 #include <ctime>
 #include <iostream>
 
@@ -14,7 +15,7 @@ int main(int argc, char** argv) {
     int count = 1;
     while (count < argc) {
         int val = std::atoi(argv[count++]);
-        if (val < 0) {
+        if (val <= 0) {
             std::cerr << "Error" << std::endl;
             return 1;
         }

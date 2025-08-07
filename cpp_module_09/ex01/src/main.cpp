@@ -1,6 +1,5 @@
 #include "RPN.hpp"
 #include <iostream>
-#include <stack>
 
 int main(int argc, char** argv) {
     if (argc != 2) {
@@ -8,8 +7,8 @@ int main(int argc, char** argv) {
     }
     std::string input(argv[1]);
     std::string::iterator it = input.begin();
-    RPN rpn;
 
+    RPN rpn;
     while (it != input.end()) {
         try {
             rpn.eat(*it++);

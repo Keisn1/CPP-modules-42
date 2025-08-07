@@ -155,6 +155,8 @@ int main() {
         }
     }
     {
+        std::cout << "(TEST 3)" << std::endl;
+        std::cout << "fails if implemeneted without Container Template parameter" << std::endl;
 
         MutantStack< int, std::vector< int > > ms;
         ms.push(1);

@@ -1,5 +1,4 @@
 #include "PMergeMe.hpp"
-#include <iostream>
 #include <list>
 
 std::list< int > buildSecondaryList(std::list< int > main, std::list< std::pair< int, int > > secondaryPairs) {
@@ -10,7 +9,7 @@ std::list< int > buildSecondaryList(std::list< int > main, std::list< std::pair<
         while (itPair != secondaryPairs.end()) {
             if ((*itPair).second == value) {
                 secondary.push_front((*itPair).first);
-                itPair = secondaryPairs.erase(itPair); // erase returns next valid iterator
+                itPair = secondaryPairs.erase(itPair);
             } else {
                 itPair++;
             }

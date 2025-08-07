@@ -9,7 +9,7 @@ std::deque< int > buildSecondaryDeque(std::deque< int > main, std::deque< std::p
         while (itPair != secondaryPairs.end()) {
             if ((*itPair).second == value) {
                 secondary.push_front((*itPair).first);
-                itPair = secondaryPairs.erase(itPair); // erase returns next valid iterator
+                itPair = secondaryPairs.erase(itPair);
             } else {
                 itPair++;
             }

@@ -18,7 +18,13 @@ CXXFLAGS := -std=c++98 -Wall -Werror -Wextra
 SRC_DIR := src
 BUILD_DIR := build
 INCLUDES := -Iincludes
-SRC_FILES := $(SRC_DIR)/main.cpp
+SRC_FILES :=  run/main.cpp \
+	$(SRC_DIR)/binaryInsertDeque.cpp \
+	$(SRC_DIR)/binaryInsertList.cpp \
+	$(SRC_DIR)/jacobsthal.cpp \
+	$(SRC_DIR)/mergeInsertionDeque.cpp \
+	$(SRC_DIR)/mergeInsertionList.cpp \
+
 
 NAME := PMergeMe
 

@@ -20,16 +20,7 @@ std::list< int > buildSecondaryList(std::list< int > main, std::list< std::pair<
     return secondary;
 }
 
-unsigned int jacobsthal(int n) {
-    if (n == 0)
-        return 0;
-    if (n == 1)
-        return 1;
-    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
-}
-
 void buildMainAndSecondaryChain(std::list< int > values, std::list< int >& mainChain, std::list< int >& secondary) {
-
     int remaining = -1;
     if (values.size() % 2) {
         remaining = values.back();
@@ -51,6 +42,7 @@ void buildMainAndSecondaryChain(std::list< int > values, std::list< int >& mainC
     }
 
     mainChain = mergeInsertionList(mainChain);
+
     secondary = buildSecondaryList(mainChain, secondaryPairs);
     if (remaining != -1)
         secondary.push_back(remaining);

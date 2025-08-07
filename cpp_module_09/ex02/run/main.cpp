@@ -7,10 +7,13 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    MergeVector mVec;
+    std::list< int > listC;
+    std::deque< int > dequeC;
+
     int count = 1;
     while (count < argc) {
         try {
+            mVec.push(argv[count++]);
             mVec.push(argv[count++]);
         } catch (MergeVector::InvalidValException& e) {
             std::cout << "Error" << std::endl;

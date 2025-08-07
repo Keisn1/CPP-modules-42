@@ -3,7 +3,6 @@
 
 #include <deque>
 #include <list>
-#include <map>
 
 void binaryInsertList(std::list< int >& l, int val);
 void binaryInsertDeque(std::deque< int >& l, int val);
